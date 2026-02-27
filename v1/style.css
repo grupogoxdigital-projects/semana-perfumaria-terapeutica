@@ -543,13 +543,6 @@ h3 {
     padding: 100px 0;
 }
 
-.container-full {
-    width: 100%;
-    max-width: 100%;
-    overflow: hidden;
-    padding: 0;
-}
-
 .fixed-learning-cards {
     display: flex;
     justify-content: center;
@@ -888,5 +881,16 @@ h3 {
     .lotes-progress-block {
         margin: 1.5rem auto;
         /* Centraliza no mobile e espaca */
+    }
+}
+
+@media (max-width: 576px) {
+    .glass-card {
+        padding: 1.5rem;
+    }
+
+    .fixed-learning-cards {
+        gap: 1.5rem;
+        margin-top: 2.5rem;
     }
 }

@@ -1,8 +1,8 @@
 [build]
-  publish = "."
+  publish = "v1"
 
 [dev]
-  publish = "."
+  publish = "v1"
   port = 8888
   framework = "#static"
   autoLaunch = false

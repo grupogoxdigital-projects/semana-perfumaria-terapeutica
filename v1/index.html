@@ -8,11 +8,59 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <!-- Philosopher (Elegant Serif) + Outfit (Modern Sans) -->
-    <link
-        href="https://fonts.googleapis.com/css2?family=Philosopher:ital,wght@0,400;0,700&family=Outfit:wght@300;400;600;700&display=swap"
-        rel="stylesheet">
-    <link rel="stylesheet" href="/v1/style.css">
+    <link rel="preload" href="/.netlify/images?url=/v1/imagens/palmira01_optimized.png&w=1200&q=80" as="image">
+    <link href="https://fonts.googleapis.com/css2?family=Philosopher:ital,wght@0,400;0,700&family=Outfit:wght@400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --clr-primary: #84003b; --clr-primary-dark: #4a0021; --clr-accent: #5febe6;
+            --clr-bg: #FAFAFA; --clr-white: #ffffff; --clr-text-light: #ffffff;
+            --clr-text-dark: #1a1a1a; --clr-text-muted: #4a4a4a;
+            --font-heading: 'Philosopher', serif; --font-body: 'Outfit', sans-serif;
+            --pattern-perfume: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 5c-5 0-9 4-9 9v2c-2 0-4 2-4 4v16c0 6 5 11 11 11s11-5 11-11V20c0-2-2-4-4-4v-2c0-5-4-9-9-9zm0 2c3.9 0 7 3.1 7 7v2H23v-2c0-3.9 3.1-7 7-7zm-9 11h18c1.1 0 2 .9 2 2v16c0 5-4 9-9 9s-9-4-9-9V20c0-1.1.9-2 2-2z' fill='%23ffffff' fill-opacity='0.03' fill-rule='evenodd'/%3E%3C/svg%3E");
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background-color: var(--clr-bg); color: var(--clr-text-dark); font-family: var(--font-body); line-height: 1.6; overflow-x: hidden; -webkit-font-smoothing: antialiased; }
+        h1, h2, h3 { font-family: var(--font-heading); font-weight: 700; line-height: 1.1; }
+        .container { width: 90%; max-width: 1200px; margin: 0 auto; }
+        .text-accent { color: var(--clr-accent); }
+        .bg-subtle { background-color: var(--clr-primary) !important; background-image: radial-gradient(at 100% 0%, rgba(95, 235, 230, 0.05) 0%, transparent 40%), radial-gradient(at 0% 100%, var(--clr-primary-dark) 0%, transparent 50%), var(--pattern-perfume) !important; color: var(--clr-text-light) !important; }
+        .hero { min-height: 100vh; background-color: var(--clr-primary); background-image: radial-gradient(circle at top, rgba(132, 0, 59, 0.2) 0%, var(--clr-primary-dark) 80%), url('/.netlify/images?url=https://images.unsplash.com/photo-1594035910387-fea47794261f?auto=format%26fit=crop%26q=80%26w=1920&w=1920&q=80'), var(--pattern-perfume); background-size: cover, cover, auto; background-position: center bottom, center, center; background-blend-mode: normal, soft-light, overlay; display: flex; align-items: center; position: relative; padding: 5rem 0; overflow: hidden; }
+        .hero-container { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; z-index: 2; position: relative; }
+        .hero-content { text-align: left; }
+        .hero-eyebrow { color: var(--clr-accent); letter-spacing: 0.4em; font-size: 0.8rem; margin-bottom: 1.5rem; font-weight: 600; display: block; text-transform: uppercase; }
+        .hero-title { font-size: clamp(2.5rem, 5vw, 4.2rem); margin-bottom: 2rem; font-weight: 700; }
+        .lotes-progress-block { margin: 2rem 0; width: 100%; max-width: 450px; }
+        .lotes-labels { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem; }
+        .lotes-labels .lote { font-size: 1rem; font-family: var(--font-heading); color: rgba(255, 255, 255, 0.5); text-transform: uppercase; letter-spacing: 0.05em; font-weight: 700; }
+        .lotes-labels .lote.active { border: 2px solid var(--clr-accent); padding: 0.25rem 0.8rem; border-radius: 6px; color: var(--clr-text-light); display: inline-block; }
+        .progress-bar-container { width: 100%; height: 12px; background: rgba(255, 255, 255, 0.1); border-radius: 6px; overflow: hidden; margin-bottom: 0.5rem; }
+        .progress-bar-fill { height: 100%; background: var(--clr-accent); border-radius: 6px; width: 75%; }
+        .progress-text { font-size: 0.85rem; color: rgba(255, 255, 255, 0.8); text-transform: uppercase; letter-spacing: 0.1em; }
+        .hero-description { font-size: 1.1rem; max-width: 480px; margin-bottom: 3rem; opacity: 0.9; font-weight: 300; }
+        .hero-date-highlight { display: inline-block; margin-top: 0.5rem; padding: 0.5rem 1rem; background: rgba(255, 255, 255, 0.1); border: 1px solid var(--clr-accent); border-radius: 8px; font-weight: 700; color: var(--clr-accent); font-size: 0.9rem; letter-spacing: 0.05em; text-transform: uppercase; }
+        .btn { display: inline-block; padding: 1rem 3rem; text-decoration: none; text-transform: uppercase; font-weight: 700; letter-spacing: 0.15em; font-size: 0.8rem; border-radius: 0; border: 1px solid var(--clr-accent); }
+        .btn-primary { background-color: var(--clr-accent); color: var(--clr-primary-dark); }
+        .hero-visual { display: flex; justify-content: flex-end; }
+        .hero-image-charme { position: relative; padding: 2rem; }
+        .mentora-hero-frame { width: 550px; height: 745px; border-radius: 50% 50% 50% 50% / 40% 40% 60% 60%; overflow: hidden; position: relative; z-index: 3; border: 2px dashed rgba(255, 255, 255, 0.3); background: rgba(255, 255, 255, 0.05); }
+        .hero-portrait { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: calc(100% - 30px); height: calc(100% - 30px); object-fit: cover; border-radius: inherit; }
+        @media (max-width: 992px) {
+            .hero { padding: 2rem 0; }
+            .hero-container { grid-template-columns: 1fr; text-align: center; gap: 1.5rem; }
+            .hero-content { order: 1; text-align: center; display: flex; flex-direction: column; align-items: center; }
+            .hero-visual { order: 2; justify-content: center; }
+            .mentora-hero-frame { width: 260px; height: 360px; margin: 0 auto; }
+            .lotes-labels { gap: 0.2rem; flex-wrap: wrap; justify-content: center; }
+            .lotes-labels .lote { font-size: 0.75rem; }
+            .lotes-labels .lote.active { padding: 0.2rem 0.4rem; }
+            .hero-title { font-size: clamp(2rem, 8vw, 2.5rem); margin-bottom: 1rem; }
+            .hero-description { margin: 0 auto 1.5rem; font-size: 1rem; }
+            .lotes-progress-block { margin: 1.5rem auto; }
+        }
+    </style>
+    <link rel="stylesheet" href="/v1/style.css" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="/v1/style.css"></noscript>
     <script src="https://unpkg.com/@phosphor-icons/web" defer></script>
 
     <meta name="description"
@@ -23,47 +71,7 @@
 
     <!-- Hero Section: Refined Split v4 -->
     <header class="hero bg-subtle">
-        <!-- Floating Sparks / Shines v4.1 -->
-        <div class="sparkle s1"></div>
-        <div class="sparkle s2"></div>
-        <div class="sparkle s3"></div>
-        <div class="sparkle s4"></div>
-        <div class="sparkle s5"></div>
-        <div class="sparkle s6"></div>
-        <div class="sparkle s7"></div>
-        <div class="sparkle s8"></div>
-        <div class="sparkle s9"></div>
-        <div class="sparkle s10"></div>
-        <div class="sparkle s11"></div>
-        <div class="sparkle s12"></div>
-        <div class="sparkle s13"></div>
-        <div class="sparkle s14"></div>
-        <div class="sparkle s15"></div>
-        <div class="sparkle s16"></div>
-        <div class="sparkle s17"></div>
-        <div class="sparkle s18"></div>
-        <div class="sparkle s19"></div>
-        <div class="sparkle s20"></div>
-        <div class="sparkle s21"></div>
-        <div class="sparkle s22"></div>
-        <div class="sparkle s23"></div>
-        <div class="sparkle s24"></div>
-        <div class="sparkle s25"></div>
-        <div class="sparkle s26"></div>
-        <div class="sparkle s27"></div>
-        <div class="sparkle s28"></div>
-        <div class="sparkle s29"></div>
-        <div class="sparkle s30"></div>
-        <div class="sparkle s31"></div>
-        <div class="sparkle s32"></div>
-        <div class="sparkle s33"></div>
-        <div class="sparkle s34"></div>
-        <div class="sparkle s35"></div>
-        <div class="sparkle s36"></div>
-        <div class="sparkle s37"></div>
-        <div class="sparkle s38"></div>
-        <div class="sparkle s39"></div>
-        <div class="sparkle s40"></div>
+        <!-- Floating Sparks / Shines v4.1 Removed for Performance -->
 
         <div class="container hero-container">
             <div class="hero-content">
@@ -97,7 +105,7 @@
                 <div class="hero-image-charme mentora-hero-image">
                     <div class="aura-glow-v4"></div>
                     <div class="image-frame-organic mentora-hero-frame">
-                        <img src="/.netlify/images?url=/v1/imagens/palmira01_optimized.png&w=1200&q=90"
+                        <img src="/.netlify/images?url=/v1/imagens/palmira01_optimized.png&w=1200&q=80"
                             alt="Palmira Margarida - Mentora de Perfumaria Natural" width="550" height="745"
                             loading="eager" fetchpriority="high" class="hero-portrait">
                     </div>

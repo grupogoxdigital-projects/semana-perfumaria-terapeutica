@@ -136,7 +136,7 @@ h3 {
 
 /* Progress Bar */
 .lotes-progress-block {
-    margin: 2rem 0;
+    margin: 1rem 0;
     width: 100%;
     max-width: 450px;
 }
@@ -218,15 +218,15 @@ h3 {
 }
 
 .hero-title {
-    font-size: clamp(2.5rem, 5vw, 4.2rem);
-    margin-bottom: 2rem;
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    margin-bottom: 1rem;
     font-weight: 700;
 }
 
 .hero-description {
-    font-size: 1.1rem;
-    max-width: 480px;
-    margin-bottom: 3rem;
+    font-size: 1rem;
+    max-width: 500px;
+    margin-bottom: 1.5rem;
     opacity: 0.9;
     font-weight: 300;
 }
@@ -257,8 +257,8 @@ h3 {
 
 /* Image Frame: Mentora Hero */
 .mentora-hero-frame {
-    width: 550px;
-    height: 745px;
+    width: 450px;
+    height: 600px;
     border-radius: 50% 50% 50% 50% / 40% 40% 60% 60%;
     overflow: hidden;
     position: relative;
@@ -342,7 +342,7 @@ h3 {
 
 /* Challenge Section */
 .challenge-section {
-    padding: 6rem 0;
+    padding: 4rem 0;
     /* Removido barra cinza da challenge */
     background-color: var(--clr-bg);
 }
@@ -350,7 +350,7 @@ h3 {
 .section-title {
     color: var(--clr-primary);
     font-size: clamp(2rem, 4vw, 3rem);
-    margin-bottom: 3.5rem;
+    margin-bottom: 2rem;
 }
 
 .img-aura-v4 {
@@ -409,9 +409,12 @@ h3 {
 }
 
 .horizontal-cards-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
     gap: 1.5rem;
+    max-width: 1000px;
+    margin: 0 auto;
 }
 
 .bento-card {
@@ -424,6 +427,8 @@ h3 {
     border: 1px solid rgba(132, 0, 59, 0.05);
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.02);
     transition: transform 0.5s ease;
+    width: 310px;
+    flex-shrink: 0;
 }
 
 .bento-card:hover {
@@ -464,14 +469,14 @@ h3 {
 }
 
 @media (max-width: 992px) {
-    .horizontal-cards-grid {
-        grid-template-columns: repeat(2, 1fr);
+    .horizontal-cards-grid .bento-card {
+        width: calc(50% - 1.5rem);
     }
 }
 
 @media (max-width: 576px) {
-    .horizontal-cards-grid {
-        grid-template-columns: 1fr;
+    .horizontal-cards-grid .bento-card {
+        width: 100%;
     }
 }
 
@@ -496,9 +501,8 @@ h3 {
     text-align: center;
     border: 1px solid rgba(0, 0, 0, 0.05);
     transition: transform 0.3s ease;
-    flex: 1 1 calc(25% - 1.5rem);
+    flex: 0 1 280px;
     min-width: 250px;
-    max-width: 280px;
 }
 
 .pq-card i {
@@ -546,43 +550,23 @@ h3 {
     padding: 0;
 }
 
-.marquee-container {
-    width: 100%;
-    overflow: hidden;
+.fixed-learning-cards {
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
     margin-top: 4rem;
-    display: flex;
-}
-
-.marquee-track {
-    display: flex;
-    width: max-content;
-    animation: marquee 30s linear infinite;
-}
-
-.marquee-items {
-    display: flex;
-    gap: 1.5rem;
-    padding-right: 1.5rem;
-}
-
-.marquee-container:hover .marquee-track {
-    animation-play-state: paused;
-}
-
-@keyframes marquee {
-    to {
-        transform: translateX(-25%);
-    }
+    flex-wrap: wrap;
 }
 
 .learning-card {
     background: var(--clr-white);
     border-radius: 30px;
-    width: 320px;
-    height: 400px;
+    width: 100%;
+    max-width: 450px;
+    height: 500px;
     position: relative;
     overflow: hidden;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
     flex-shrink: 0;
     display: flex;
     flex-direction: column;
@@ -619,41 +603,62 @@ h3 {
     opacity: 1;
 }
 
-/* Bento Placeholders removed */
-
-/* Benefits Section */
+/* Benefits Checklist Section */
 .benefits-section {
     padding: 100px 0;
 }
 
-.benefits-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 3rem;
-    margin-top: 5rem;
-    text-align: center;
+.benefits-checklist {
+    list-style: none;
+    margin: 2rem auto 0;
+    max-width: 800px;
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
 }
 
-.benefit-card i {
-    font-size: 3rem;
-    color: var(--clr-primary);
-    margin-bottom: 2rem;
-    display: inline-block;
+.benefits-checklist li {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-size: 1.1rem;
+    background: var(--clr-bg);
+    padding: 1rem 1.5rem;
+    border-radius: 12px;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease;
 }
 
-.benefit-card h3 {
-    font-size: 1.5rem;
-    margin-bottom: 1rem;
+.benefits-checklist li:hover {
+    transform: translateX(10px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
 }
 
-.benefit-card p {
+.benefits-checklist i {
+    color: var(--clr-accent);
+    font-size: 1.2rem;
+    flex-shrink: 0;
+    background: var(--clr-primary);
+    border-radius: 50%;
+    padding: 0.3rem;
+    margin-top: 0;
+}
+
+.benefits-checklist span {
     color: var(--clr-text-muted);
+    line-height: 1.4;
+    padding-top: 0;
 }
 
-@media (max-width: 992px) {
-    .benefits-grid {
-        grid-template-columns: 1fr;
-        gap: 4rem;
+@media (max-width: 768px) {
+    .benefits-checklist li {
+        font-size: 1rem;
+        padding: 0.8rem 1rem;
+        gap: 0.8rem;
+    }
+
+    .benefits-checklist i {
+        font-size: 1rem;
     }
 }
 

@@ -33,14 +33,3 @@ function setupImageFallback() {
 // Iniciar fallback imediatamente
 setupImageFallback();
 
-// AOS initialization
-document.addEventListener('DOMContentLoaded', () => {
-    if (typeof AOS !== 'undefined') {
-        AOS.init({
-            duration: 800,
-            easing: 'ease-out-quad',
-            once: true,
-            disableMutationObserver: true
-        });
-    }
-});

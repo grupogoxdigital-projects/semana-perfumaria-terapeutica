@@ -10,12 +10,10 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <!-- Philosopher (Elegant Serif) + Outfit (Modern Sans) -->
     <link
-        href="https://fonts.googleapis.com/css2?family=Philosopher:ital,wght@0,400;0,700;1,400;1,700&family=Outfit:wght@100..900&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Philosopher:ital,wght@0,400;0,700&family=Outfit:wght@300;400;600;700&display=swap"
         rel="stylesheet">
-
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link rel="stylesheet" href="/v1/style.css">
-    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <script src="https://unpkg.com/@phosphor-icons/web" defer></script>
 
     <meta name="description"
         content="Aprenda o segredo das fragrâncias que curam e descubra como criar e lucrar com sua própria linha de perfumes naturais e terapêuticos.">
@@ -101,7 +99,7 @@
                     <div class="image-frame-organic mentora-hero-frame">
                         <img src="/.netlify/images?url=/v1/imagens/palmira01_optimized.png&w=1200&q=90"
                             alt="Palmira Margarida - Mentora de Perfumaria Natural" width="550" height="745"
-                            loading="eager" class="hero-portrait">
+                            loading="eager" fetchpriority="high" class="hero-portrait">
                     </div>
                 </div>
             </div>
@@ -142,7 +140,8 @@
                 <!-- Card 1 -->
                 <div class="bento-card">
                     <img src="/.netlify/images?url=/v1/imagens/card01_v2.png&w=400&q=80"
-                        alt="Perfume de Equilíbrio Emocional" loading="lazy" class="card-image-placeholder">
+                        alt="Perfume de Equilíbrio Emocional" loading="lazy" width="400" height="280"
+                        class="card-image-placeholder">
                     <div class="card-content">
                         <h3>Perfume de Equilíbrio Emocional</h3>
                         <p>Aprenda a combinar notas aromáticas que promovem centramento e bem-estar.</p>
@@ -152,7 +151,8 @@
                 <!-- Card 2 -->
                 <div class="bento-card">
                     <img src="/.netlify/images?url=/v1/imagens/card02_v3.png&w=400&q=80"
-                        alt="Perfume de Prosperidade e Confiança" loading="lazy" class="card-image-placeholder">
+                        alt="Perfume de Prosperidade e Confiança" loading="lazy" width="400" height="280"
+                        class="card-image-placeholder">
                     <div class="card-content">
                         <h3>Perfume de Prosperidade e Confiança</h3>
                         <p>Uma fórmula pensada para ativar autoestima e presença.</p>
@@ -162,7 +162,8 @@
                 <!-- Card 3 -->
                 <div class="bento-card">
                     <img src="/.netlify/images?url=/v1/imagens/card03_v2.png&w=400&q=80"
-                        alt="Fundamentos da Perfumaria Terapêutica" loading="lazy" class="card-image-placeholder">
+                        alt="Fundamentos da Perfumaria Terapêutica" loading="lazy" width="400" height="280"
+                        class="card-image-placeholder">
                     <div class="card-content">
                         <h3>Fundamentos da Perfumaria Terapêutica</h3>
                         <p>Entenda como unir intenção, plantas e técnica.</p>
@@ -172,7 +173,8 @@
                 <!-- Card 4 -->
                 <div class="bento-card">
                     <img src="/.netlify/images?url=/v1/imagens/card04_v2.png&w=400&q=80"
-                        alt="Como Transformar em Renda Extra" loading="lazy" class="card-image-placeholder">
+                        alt="Como Transformar em Renda Extra" loading="lazy" width="400" height="280"
+                        class="card-image-placeholder">
                     <div class="card-content">
                         <h3>Como Transformar em Renda Extra</h3>
                         <p>Possibilidades reais de começar a vender artesanalmente.</p>
@@ -435,15 +437,7 @@
     </footer>
 
     <!-- Scripts -->
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="/v1/script.js" type="module"></script>
-    <script>
-        AOS.init({
-            duration: 1000,
-            once: true,
-            disableMutationObserver: true
-        });
-    </script>
 </body>
 
 </html>

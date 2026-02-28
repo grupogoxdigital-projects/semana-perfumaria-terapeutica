@@ -14,12 +14,7 @@
   status = 301
   force = true
 
-# Redirect root to v1
-[[redirects]]
-  from = "/"
-  to = "/v1/"
-  status = 301
-  force = true
+
 
 
 

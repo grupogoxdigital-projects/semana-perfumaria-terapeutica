@@ -21,11 +21,7 @@
   status = 301
   force = true
 
-[[redirects]]
-  from = "/v1"
-  to = "/v1/"
-  status = 301
-  force = true
+
 
 # Headers de seguranca
 [[headers]]

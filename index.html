@@ -1,2 +1,635 @@
-<h1>Redirecting...</h1><script>window.location.href='/v1/'</script>
- 
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Método Perfect | Perfumaria Natural & Terapêutica</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" href="/.netlify/images?url=/v1/imagens/palmira01_optimized.png&w=1200&q=80" as="image">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Philosopher:ital,wght@0,400;0,700&family=Outfit:wght@400;700&display=swap"
+        rel="stylesheet">
+
+    <style>
+        :root {
+            --clr-primary: #84003b;
+            --clr-primary-dark: #4a0021;
+            --clr-accent: #5febe6;
+            --clr-bg: #FAFAFA;
+            --clr-white: #ffffff;
+            --clr-text-light: #ffffff;
+            --clr-text-dark: #1a1a1a;
+            --clr-text-muted: #4a4a4a;
+            --font-heading: 'Philosopher', serif;
+            --font-body: 'Outfit', sans-serif;
+            --pattern-perfume: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 5c-5 0-9 4-9 9v2c-2 0-4 2-4 4v16c0 6 5 11 11 11s11-5 11-11V20c0-2-2-4-4-4v-2c0-5-4-9-9-9zm0 2c3.9 0 7 3.1 7 7v2H23v-2c0-3.9 3.1-7 7-7zm-9 11h18c1.1 0 2 .9 2 2v16c0 5-4 9-9 9s-9-4-9-9V20c0-1.1.9-2 2-2z' fill='%23ffffff' fill-opacity='0.03' fill-rule='evenodd'/%3E%3C/svg%3E");
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--clr-bg);
+            color: var(--clr-text-dark);
+            font-family: var(--font-body);
+            line-height: 1.6;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        h1,
+        h2,
+        h3 {
+            font-family: var(--font-heading);
+            font-weight: 700;
+            line-height: 1.1;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .text-accent {
+            color: var(--clr-accent);
+        }
+
+        .bg-subtle {
+            background-color: var(--clr-primary) !important;
+            background-image: radial-gradient(at 100% 0%, rgba(95, 235, 230, 0.05) 0%, transparent 40%), radial-gradient(at 0% 100%, var(--clr-primary-dark) 0%, transparent 50%), var(--pattern-perfume) !important;
+            color: var(--clr-text-light) !important;
+        }
+
+        .hero {
+            min-height: 100vh;
+            background-color: var(--clr-primary);
+            background-image: radial-gradient(circle at top, rgba(132, 0, 59, 0.2) 0%, var(--clr-primary-dark) 80%), url('/.netlify/images?url=https://images.unsplash.com/photo-1594035910387-fea47794261f?auto=format%26fit=crop%26q=80%26w=1920&w=1920&q=80'), var(--pattern-perfume);
+            background-size: cover, cover, auto;
+            background-position: center bottom, center, center;
+            background-blend-mode: normal, soft-light, overlay;
+            display: flex;
+            align-items: center;
+            position: relative;
+            padding: 5rem 0;
+            overflow: hidden;
+        }
+
+        .hero-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            z-index: 2;
+            position: relative;
+        }
+
+        .hero-content {
+            text-align: left;
+        }
+
+        .hero-eyebrow {
+            color: var(--clr-accent);
+            letter-spacing: 0.4em;
+            font-size: 0.8rem;
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+            display: block;
+            text-transform: uppercase;
+        }
+
+        .hero-title {
+            font-size: clamp(2rem, 4vw, 3.5rem);
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .lotes-progress-block {
+            margin: 1rem 0;
+            width: 100%;
+            max-width: 450px;
+        }
+
+        .lotes-labels {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+
+        .lotes-labels .lote {
+            font-size: 1rem;
+            font-family: var(--font-heading);
+            color: rgba(255, 255, 255, 0.5);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            font-weight: 700;
+        }
+
+        .lotes-labels .lote.active {
+            border: 2px solid var(--clr-accent);
+            padding: 0.25rem 0.8rem;
+            border-radius: 6px;
+            color: var(--clr-text-light);
+            display: inline-block;
+        }
+
+        .progress-bar-container {
+            width: 100%;
+            height: 12px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 6px;
+            overflow: hidden;
+            margin-bottom: 0.5rem;
+        }
+
+        .progress-bar-fill {
+            height: 100%;
+            background: var(--clr-accent);
+            border-radius: 6px;
+            width: 75%;
+        }
+
+        .progress-text {
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.8);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .hero-description {
+            font-size: 1rem;
+            max-width: 500px;
+            margin-bottom: 1.5rem;
+            opacity: 0.9;
+            font-weight: 300;
+        }
+
+        .hero-date-highlight {
+            display: inline-block;
+            margin-top: 0.5rem;
+            margin-bottom: 0.5rem;
+            padding: 0.5rem 1rem;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid var(--clr-accent);
+            border-radius: 8px;
+            font-weight: 700;
+            color: var(--clr-accent);
+            font-size: 0.9rem;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 1rem 3rem;
+            text-decoration: none;
+            text-transform: uppercase;
+            font-weight: 700;
+            letter-spacing: 0.15em;
+            font-size: 0.8rem;
+            border-radius: 0;
+            border: 1px solid var(--clr-accent);
+        }
+
+        .btn-primary {
+            background-color: var(--clr-accent);
+            color: var(--clr-primary-dark);
+        }
+
+        .hero-visual {
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        .hero-image-charme {
+            position: relative;
+            padding: 2rem;
+        }
+
+        .mentora-hero-frame {
+            width: 450px;
+            height: 600px;
+            border-radius: 50% 50% 50% 50% / 40% 40% 60% 60%;
+            overflow: hidden;
+            position: relative;
+            z-index: 3;
+            border: 2px dashed rgba(255, 255, 255, 0.3);
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .hero-portrait {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: calc(100% - 30px);
+            height: calc(100% - 30px);
+            object-fit: cover;
+            border-radius: inherit;
+        }
+
+        @media (max-width: 992px) {
+            .hero {
+                padding: 2rem 0;
+            }
+
+            .hero-container {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 1.5rem;
+            }
+
+            .hero-content {
+                order: 1;
+                text-align: center;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .hero-visual {
+                order: 2;
+                justify-content: center;
+            }
+
+            .mentora-hero-frame {
+                width: 200px;
+                height: 280px;
+                margin: 0 auto;
+            }
+
+            .lotes-labels {
+                gap: 0.2rem;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .lotes-labels .lote {
+                font-size: 0.75rem;
+            }
+
+            .lotes-labels .lote.active {
+                padding: 0.2rem 0.4rem;
+            }
+
+            .hero-title {
+                font-size: clamp(1.8rem, 6vw, 2.2rem);
+                margin-bottom: 0.5rem;
+            }
+
+            .hero-description {
+                margin: 0 auto 1rem;
+                font-size: 0.95rem;
+            }
+
+            .lotes-progress-block {
+                margin: 1rem auto;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="/v1/style.css" media="print" onload="this.media='all'">
+    <noscript>
+        <link rel="stylesheet" href="/v1/style.css">
+    </noscript>
+    <script src="https://unpkg.com/@phosphor-icons/web" defer></script>
+
+    <meta name="description"
+        content="Aprenda o segredo das fragrâncias que curam e descubra como criar e lucrar com sua própria linha de perfumes naturais e terapêuticos.">
+
+    <!-- Open Graph / WhatsApp Preview -->
+    <meta property="og:title" content="Método Perfect | Perfumaria Natural & Terapêutica">
+    <meta property="og:description"
+        content="Aprenda o segredo das fragrâncias que curam e descubra como criar e lucrar com sua própria linha de perfumes naturais e terapêuticos.">
+    <meta property="og:image"
+        content="https://images.unsplash.com/photo-1594035910387-fea47794261f?auto=format&fit=crop&q=80&w=1200&h=630">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://semana-perfumaria-terapeutica.netlify.app/v1/">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/v1/favicon.svg">
+
+    <!-- Google Tag Manager -->
+    <script>(function (w, d, s, l, i) {
+            w[l] = w[l] || []; w[l].push({
+                'gtm.start':
+                    new Date().getTime(), event: 'gtm.js'
+            }); var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+                    'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-5SGRDC89');</script>
+    <!-- End Google Tag Manager -->
+</head>
+
+<body>
+
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5SGRDC89" height="0" width="0"
+            style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
+    <!-- Hero Section: Refined Split v4 -->
+    <header class="hero bg-subtle">
+        <!-- Floating Sparks / Shines v4.1 Removed for Performance -->
+
+        <div class="container hero-container">
+            <div class="hero-content">
+                <span class="hero-eyebrow">A Arte de Criar Essências</span>
+                <h1 class="hero-title">Transforme o Poder da <span class="text-accent">Natureza</span> em
+                    Autoconhecimento e Renda Extra</h1>
+
+                <!-- PROGRESS BAR LOTE -->
+                <div class="lotes-progress-block">
+                    <div class="lotes-labels">
+                        <span class="lote active">Lote 1 – R$15</span>
+                        <span class="lote">Lote 2 – R$20</span>
+                        <span class="lote">Lote 3 – R$25</span>
+                    </div>
+                    <div class="progress-bar-container">
+                        <div class="progress-bar-fill" style="width: 75%;"></div>
+                    </div>
+                    <div class="progress-text">75% das vagas preenchidas</div>
+                </div>
+
+                <p class="hero-description"><strong>Participe de duas aulas ao vivo e entre definitivamente no universo
+                        da
+                        perfumaria natural e terapêutica.</strong> Aprenda a criar seus próprios perfumes de forma
+                    profissional,
+                    mesmo começando do zero, sem perder a sensibilidade.<br><em>E mais: aprenda na prática duas
+                        receitas
+                        exclusivas, já validadas no mercado de perfumes naturais e terapêuticos.</em><br><span
+                        class="hero-date-highlight">Dias 5
+                        e 7 de abril – Ao vivo</span></p>
+                <div class="hero-actions">
+                    <a href="https://pay.hotmart.com/W103474219V?off=0q7c8583" class="btn btn-primary pulse-loop">Quero
+                        Garantir Minha Vaga</a>
+                </div>
+            </div>
+
+            <div class="hero-visual">
+                <div class="hero-image-charme mentora-hero-image">
+                    <div class="aura-glow-v4"></div>
+                    <div class="image-frame-organic mentora-hero-frame">
+                        <img src="/.netlify/images?url=/v1/imagens/palmira01_optimized.png&w=1200&q=80"
+                            alt="Palmira Margarida - Mentora de Perfumaria Natural" width="550" height="745"
+                            loading="eager" fetchpriority="high" class="hero-portrait">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Divider Bar Removed -->
+
+    <!-- Challenge Section: Soft & Elegant -->
+    <section class="challenge-section bg-white" id="desafio">
+        <div class="container narrow-container">
+            <div class="challenge-content text-center">
+                <h2 class="section-title">Transforme sensibilidade em valor</h2>
+                <div class="challenge-visual text-center" style="margin-bottom: 2rem;">
+                    <i class="ph ph-sparkle text-accent" style="font-size: 3rem;"></i>
+                </div>
+                <p class="section-text">Se você sente um chamado interno para algo inovador, sensível e capaz de
+                    transformar sua
+                    vida real e financeira, este é o seu momento.<br><br>Se você sente o chamado da natureza, das
+                    plantas e dos aromas, mas ainda não sabe por
+                    onde começar. Não se trata de ter um dom. Trata-se de aprender o caminho de forma clara,
+                    aplicável e com confiança.<br><br>Se você busca autoconhecimento e também uma nova forma de gerar
+                    renda com propósito e
+                    sensibilidade, este evento foi criado para você.</p>
+                <div class="quote-wrapper">
+                    <p class="quote">"O saber não se separa do sentir."</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Method Section: Bento Box -->
+    <section class="method-section bg-subtle" id="metodo">
+        <div class="container">
+            <div class="text-center">
+                <h2 class="section-title">O Que Você Vai Aprender na Semana</h2>
+                <p class="section-subtitle">Mergulhar no universo da perfumaria natural e terapêutica de forma prática,
+                    estruturada e profissional.<br>Você vai aprender:
+                </p>
+            </div>
+
+            <div class="horizontal-cards-grid">
+
+                <!-- Card 1 -->
+                <div class="bento-card">
+                    <img src="/.netlify/images?url=/v1/imagens/card03_v2.png&w=400&q=80"
+                        alt="Fundamentos da Perfumaria Terapêutica" loading="lazy" width="400" height="280"
+                        class="card-image-placeholder">
+                    <div class="card-content">
+                        <h3>Fundamentos da Perfumaria Terapêutica</h3>
+                        <p>Entenda como unir intenção, plantas e técnica.</p>
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="bento-card">
+                    <img src="/.netlify/images?url=/v1/imagens/card02_v3.png&w=400&q=80"
+                        alt="Fundamentos da Perfumaria Terapêutica" loading="lazy" width="400" height="280"
+                        class="card-image-placeholder">
+                    <div class="card-content">
+                        <h3>Como criar perfumes naturais e terapêuticos com intenção e técnica</h3>
+                        <p>Entenda as principais famílias olfativas e como escolher as plantas certas para trabalhar
+                            emoções específicas e promover transformação real na vida das pessoas.</p>
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="bento-card">
+                    <img src="/.netlify/images?url=/v1/imagens/card01_v2.png&w=400&q=80"
+                        alt="Perfume de Equilíbrio Emocional" loading="lazy" width="400" height="280"
+                        class="card-image-placeholder">
+                    <div class="card-content">
+                        <h3>Receita 01: Perfume para Amor Próprio</h3>
+                        <p>Aprenda a combinar plantas para estimular magnetismo, centramento e independência afetiva.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Card 4 -->
+                <div class="bento-card">
+                    <img src="/.netlify/images?url=/v1/imagens/card_palm_generated.png&w=400&q=80"
+                        alt="Perfume de Prosperidade e Confiança" loading="lazy" width="400" height="280"
+                        class="card-image-placeholder">
+                    <div class="card-content">
+                        <h3>Receita 02: Perfume da Prosperidade</h3>
+                        <p>Aprenda a manipulação e combinação aromática das plantas que mais trabalham expansão,
+                            prosperidade e alto valor.</p>
+                    </div>
+                </div>
+
+                <!-- Card 5 -->
+                <div class="bento-card">
+                    <img src="/.netlify/images?url=/v1/imagens/card04_v2.png&w=400&q=80"
+                        alt="Como Transformar em Renda Extra" loading="lazy" width="400" height="280"
+                        class="card-image-placeholder">
+                    <div class="card-content">
+                        <h3>Como transformar conhecimento em renda extra</h3>
+                        <p>Possibilidades reais de começar a criar e vender perfumes naturais de forma profissional,
+                            mesmo começando do zero e produzindo em casa.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- For Who Section: List -->
+    <section class="for-who-section bg-white" id="para-quem">
+        <div class="container narrow-container">
+            <div class="text-center">
+                <h2 class="section-title">Essa Semana é Para Você Se…</h2>
+            </div>
+            <div class="para-quem-cards">
+                <div class="pq-card">
+                    <i class="ph ph-heart"></i>
+                    <p>Sente que quer recomeçar e fazer algo com propósito.</p>
+                </div>
+                <div class="pq-card">
+                    <i class="ph ph-plant"></i>
+                    <p>Busca autoconhecimento de forma mais natural</p>
+                </div>
+                <div class="pq-card">
+                    <i class="ph ph-wallet"></i>
+                    <p>Deseja iniciar uma renda extra ou construir um empreendedorismo viável</p>
+                </div>
+                <div class="pq-card">
+                    <i class="ph ph-drop"></i>
+                    <p>Que ama perfumes e aromas, mas nunca produziu nada nesse sentido</p>
+                </div>
+                <div class="pq-card">
+                    <i class="ph ph-magic-wand"></i>
+                    <p>Quer aprender algo novo de forma sensível, eficaz e confiável e com resultado real.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Learning Section: Grid -->
+    <section class="learning-section bg-subtle" id="aprendizado">
+        <div class="container">
+            <div class="text-center">
+                <h2 class="section-title">Da Essência à Primeira Criação</h2>
+                <p class="section-subtitle">Um cronograma enxuto, direto e pensado para gerar resultado real:</p>
+            </div>
+
+            <div class="fixed-learning-cards">
+                <!-- Slide 1 -->
+                <div class="learning-card">
+                    <img src="/.netlify/images?url=/v1/imagens/marquee_fundamentos.png&w=600&q=80"
+                        alt="Fundamentos e Primeira Receita" width="450" height="300"
+                        style="object-fit: cover; width: 100%; height: 60%;" loading="lazy">
+                    <div class="card-overlay">
+                        <h3>Aula 1 – Fundamentos da Perfumaria Natural e Terapêutica</h3>
+                        <p>História da perfumaria natural e terapêutica, fundamentos técnicos, emoções ligadas
+                            aos aromas, famílias olfativas e personalidades, deusas e conexões com os perfumes
+                        </p>
+                    </div>
+                </div>
+                <!-- Slide 2 -->
+                <div class="learning-card">
+                    <img src="/.netlify/images?url=/v1/imagens/marquee_monetizacao.png&w=600&q=80"
+                        alt="Segunda Receita e Monetização" width="450" height="300"
+                        style="object-fit: cover; width: 100%; height: 60%;" loading="lazy">
+                    <div class="card-overlay">
+                        <h3>Aula 2 – Receitas na prática e caminhos da prosperidade</h3>
+                        <p>Você vai aprender duas receitas exclusivas, já validadas no mercado, usadas como
+                            modelo real de criação</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits Section: Icons -->
+    <section class="benefits-section bg-white" id="beneficios">
+        <div class="container">
+            <div class="text-center">
+                <h2 class="section-title">Você sai desse evento com:</h2>
+            </div>
+            <ul class="benefits-checklist">
+                <li><i class="ph-fill ph-check-circle"></i> <span>Dois perfumes prontos</span></li>
+                <li><i class="ph-fill ph-check-circle"></i> <span>Entendimento técnico para repetir o processo</span>
+                </li>
+                <li><i class="ph-fill ph-check-circle"></i> <span>Clareza sobre como iniciar</span></li>
+                <li><i class="ph-fill ph-check-circle"></i> <span>Um caminho traçado para entrar nesse novo
+                        universo</span></li>
+                <li><i class="ph-fill ph-check-circle"></i> <span>Autoconhecimento junto às famílias olfativas e
+                        alquimia das plantas</span></li>
+                <li><i class="ph-fill ph-check-circle"></i> <span>Uma perfumaria para além do aroma, terapêutica e
+                        transformadora.</span></li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Mentora Section -->
+    <section class="mentora-section bg-subtle" id="mentora">
+        <div class="container container-large">
+            <div class="mentora-grid">
+                <div class="mentora-image">
+                    <img src="/.netlify/images?url=/v1/imagens/palmira02_optimized.png&w=800&q=90"
+                        alt="Palmira Margarida" width="800" height="800" loading="lazy">
+                </div>
+                <div class="mentora-content">
+                    <div class="glass-card">
+                        <span class="eyebrow">Quem Guia Você</span>
+                        <h2 class="title">Palmira Margarida</h2>
+                        <p class="bio">Doutora Palmira é PhD em ciências pela UFRJ, mestra em saúde pela FIOCRUZ,
+                            cientista
+                            especialista em aromas e emoções. Historiadora especialista em perfumaria antiga e
+                            mitologias
+                            femininas. É graduanda em Farmácia e é pioneira no ramo da perfumaria natural e terapêutica
+                            no Brasil. Criou o Método Perfumaria Ancestral ® há 20 anos e é uma das autoridades
+                            mundiais no assunto.</p>
+                        <div class="quote-box">
+                            <p>"Toda mulher pode transformar essência em independência."</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Final: Background White -->
+    <section class="cta-final bg-white" id="cadastro">
+        <div class="container narrow-container text-center">
+            <h2 class="cta-title">Sua Primeira Essência Começa Aqui</h2>
+            <p class="cta-text">Duas aulas.<br>Um novo jeito de criar perfumes.<br>Um novo caminho.<br><br>Garanta sua
+                vaga antes da virada de lote.</p>
+            <div class="cta-actions">
+                <a href="https://pay.hotmart.com/W103474219V?off=0q7c8583" class="btn btn-primary pulse-loop">Quero
+                    Participar da Semana Perfumaria
+                    Terapêutica</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer bg-subtle">
+        <div class="container text-center">
+            <h3 class="footer-title">SEMANA PERFUMARIA TERAPÊUTICA</h3>
+            <p class="footer-copy">&copy; 2026 Palmira Margarida. Todos os direitos reservados.</p>
+            <div class="footer-links">
+                <span>Políticas de Privacidade</span>
+                <span>Termos de Uso</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="/v1/script.js" type="module"></script>
+</body>
+
+</html>

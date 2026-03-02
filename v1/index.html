@@ -366,8 +366,8 @@
                     mesmo começando do zero, sem perder a sensibilidade.<br><em>E mais: aprenda na prática duas
                         receitas
                         exclusivas, já validadas no mercado de perfumes naturais e terapêuticos.</em><br><span
-                        class="hero-date-highlight">Dias 5
-                        e 7 de abril – Ao vivo</span></p>
+                        class="hero-date-highlight">Dias 7
+                        e 9 de abril – Ao vivo</span></p>
                 <div class="hero-actions">
                     <a href="https://pay.hotmart.com/W103474219V?off=0q7c8583" class="btn btn-primary pulse-loop">Quero
                         Garantir Minha Vaga</a>
@@ -630,6 +630,27 @@
 
     <!-- Scripts -->
     <script src="/v1/script.js" type="module"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // Captura tudo que vem depois da barra na URL (os parâmetros UTM)
+            var urlParams = window.location.search;
+            // Se houver parâmetros na URL da página, o script entra em ação
+            if (urlParams) {
+                // Seleciona todos os botões/links que levam para o checkout da Hotmart
+                var links = document.querySelectorAll('a[href*="hotmart.com"]');
+
+                links.forEach(function (link) {
+                    if (!link.href.includes(urlParams.substring(1))) {
+                        // Verifica se o link do checkout já tem alguma interrogação (parâmetros próprios da Hotmart)
+                        var separator = link.href.indexOf('?') !== -1 ? '&' : '?';
+                        // Injeta as UTMs do Meta no final do link de pagamento
+                        link.href = link.href + separator + urlParams.substring(1);
+                    }
+                });
+            }
+        });
+    </script>
 </body>
 
 </html>

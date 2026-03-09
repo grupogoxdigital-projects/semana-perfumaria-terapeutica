@@ -1,0 +1,962 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Semana da Perfumaria Terapêutica</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" href="/.netlify/images?url=/v2/imagens/palmira afrodite.png&w=1200&q=80" as="image">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Philosopher:ital,wght@0,400;0,700&family=Outfit:wght@400;700&display=swap"
+        rel="stylesheet">
+
+    <style>
+        :root {
+            --clr-primary: #84003b;
+            --clr-primary-dark: #4a0021;
+            --clr-accent: #5febe6;
+            --clr-bg: #FAFAFA;
+            --clr-white: #ffffff;
+            --clr-text-light: #ffffff;
+            --clr-text-dark: #1a1a1a;
+            --clr-text-muted: #4a4a4a;
+            --font-heading: 'Philosopher', serif;
+            --font-body: 'Outfit', sans-serif;
+            --pattern-perfume: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 5c-5 0-9 4-9 9v2c-2 0-4 2-4 4v16c0 6 5 11 11 11s11-5 11-11V20c0-2-2-4-4-4v-2c0-5-4-9-9-9zm0 2c3.9 0 7 3.1 7 7v2H23v-2c0-3.9 3.1-7 7-7zm-9 11h18c1.1 0 2 .9 2 2v16c0 5-4 9-9 9s-9-4-9-9V20c0-1.1.9-2 2-2z' fill='%23ffffff' fill-opacity='0.03' fill-rule='evenodd'/%3E%3C/svg%3E");
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--clr-bg);
+            color: var(--clr-text-dark);
+            font-family: var(--font-body);
+            line-height: 1.6;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        h1,
+        h2,
+        h3 {
+            font-family: var(--font-heading);
+            font-weight: 700;
+            line-height: 1.1;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .narrow-container {
+            max-width: 800px;
+        }
+
+        .text-accent {
+            color: var(--clr-accent);
+        }
+
+        .bg-subtle {
+            background-color: var(--clr-primary) !important;
+            background-image: radial-gradient(at 100% 0%, rgba(95, 235, 230, 0.05) 0%, transparent 40%), radial-gradient(at 0% 100%, var(--clr-primary-dark) 0%, transparent 50%), var(--pattern-perfume) !important;
+            color: var(--clr-text-light) !important;
+        }
+
+        .hero {
+            min-height: 100vh;
+            background-color: var(--clr-primary);
+            background-image: radial-gradient(circle at top, rgba(132, 0, 59, 0.2) 0%, var(--clr-primary-dark) 80%), url('/.netlify/images?url=https://images.unsplash.com/photo-1594035910387-fea47794261f?auto=format%26fit=crop%26q=80%26w=1920&w=1920&q=80'), var(--pattern-perfume);
+            background-size: cover, cover, auto;
+            background-position: center bottom, center, center;
+            background-blend-mode: normal, soft-light, overlay;
+            display: flex;
+            align-items: center;
+            position: relative;
+            padding: 5rem 0;
+            overflow: hidden;
+        }
+
+        .hero-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            z-index: 2;
+            position: relative;
+        }
+
+        .hero-content {
+            text-align: left;
+            position: relative;
+            z-index: 10;
+        }
+
+        .hero-eyebrow {
+            color: var(--clr-accent);
+            letter-spacing: 0.4em;
+            font-size: 0.8rem;
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+            display: block;
+            text-transform: uppercase;
+        }
+
+        .hero-title {
+            font-size: clamp(2rem, 4vw, 3.5rem);
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+        }
+
+        .lotes-progress-block {
+            margin: 1.5rem 0;
+            width: 100%;
+            max-width: 550px;
+        }
+
+        .lotes-labels {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+
+        .lotes-labels .lote {
+            font-size: 1rem;
+            font-family: var(--font-heading);
+            color: rgba(255, 255, 255, 0.5);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            font-weight: 700;
+        }
+
+        .lotes-labels .lote.active {
+            border: 2px solid var(--clr-accent);
+            padding: 0.25rem 0.8rem;
+            border-radius: 6px;
+            color: var(--clr-text-light);
+            display: inline-block;
+        }
+
+        .progress-bar-container {
+            width: 100%;
+            height: 12px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 6px;
+            overflow: hidden;
+            margin-bottom: 0.5rem;
+        }
+
+        .progress-bar-fill {
+            height: 100%;
+            background: var(--clr-accent);
+            border-radius: 6px;
+            width: 95%;
+            animation: fillProgressV2 1.5s ease-out forwards !important;
+        }
+
+        @keyframes fillProgressV2 {
+            from {
+                width: 0;
+            }
+
+            to {
+                width: 95%;
+            }
+        }
+
+        .progress-text {
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.8);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .hero-date-highlight {
+            display: inline-block;
+            margin-top: 1.5rem;
+            margin-bottom: 1rem;
+            padding: 0.5rem 1rem;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid var(--clr-accent);
+            border-radius: 8px;
+            font-weight: 700;
+            color: var(--clr-accent);
+            font-size: 0.9rem;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+        }
+
+        .hero-description {
+            font-size: 1rem;
+            max-width: 500px;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            font-weight: 300;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 1rem 3rem;
+            text-decoration: none;
+            text-transform: uppercase;
+            font-weight: 700;
+            letter-spacing: 0.15em;
+            font-size: 0.8rem;
+            border-radius: 0;
+            border: 1px solid var(--clr-accent);
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .vip-notice {
+            font-size: 0.8rem;
+            opacity: 0.7;
+            margin-top: 1rem;
+            text-transform: none;
+            letter-spacing: normal;
+            font-weight: 300;
+        }
+
+        .btn-primary {
+            background-color: var(--clr-accent);
+            color: var(--clr-primary-dark);
+        }
+
+        .hero-visual {
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        .mentora-hero-frame {
+            width: 450px;
+            height: 600px;
+            border-radius: 50% 50% 50% 50% / 40% 40% 60% 60%;
+            overflow: hidden;
+            position: relative;
+            z-index: 3;
+            border: 2px dashed rgba(255, 255, 255, 0.3);
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .hero-portrait {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: calc(100% - 30px);
+            height: calc(100% - 30px);
+            object-fit: cover;
+            border-radius: inherit;
+        }
+
+        .section-padding {
+            padding: 6rem 0;
+        }
+
+        .bg-white {
+            background-color: var(--clr-white);
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .section-title {
+            font-size: clamp(2rem, 3vw, 2.8rem);
+            margin-bottom: 1.5rem;
+            color: var(--clr-primary-dark);
+        }
+
+        .bg-subtle .section-title,
+        .bg-subtle .section-subtitle,
+        .bg-subtle h3,
+        .bg-subtle p,
+        .bg-subtle li {
+            color: var(--clr-text-light);
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .section-text {
+            font-size: 1.15rem;
+            margin-bottom: 1.5rem;
+            color: var(--clr-text-muted);
+        }
+
+        .bg-subtle .section-text {
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        /* Learning Blocks (Section 2) */
+        .learning-blocks {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .learning-block {
+            display: grid;
+            grid-template-columns: 350px 1fr;
+            background: var(--clr-bg);
+            border: 1px solid rgba(132, 0, 59, 0.1);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+
+        .learning-block:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        }
+
+        .learning-block-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .learning-block-content {
+            padding: 2.5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .learning-block-content h3 {
+            color: var(--clr-primary-dark);
+            margin-bottom: 1.5rem;
+            font-size: 1.4rem;
+        }
+
+        .learning-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .learning-list li {
+            position: relative;
+            padding-left: 1.8rem;
+            margin-bottom: 0.8rem;
+            color: var(--clr-text-muted);
+        }
+
+        .learning-list li::before {
+            content: '✦';
+            position: absolute;
+            left: 0;
+            color: var(--clr-accent);
+            font-size: 1.2rem;
+        }
+
+        /* Receive Section (Section 3) */
+        .receive-top-text {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 3rem auto;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .receive-top-text h3 {
+            font-size: 1.4rem;
+            margin-bottom: 1.5rem;
+            font-family: var(--font-body);
+            font-weight: 700;
+            color: var(--clr-text-light);
+            line-height: 1.4;
+        }
+
+        .receive-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            align-items: stretch;
+        }
+
+        .receive-block {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 2.5rem 2rem;
+            border-radius: 12px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: transform 0.3s ease, background 0.3s ease;
+        }
+
+        .receive-block:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .receive-block i {
+            color: var(--clr-accent);
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .receive-block p {
+            font-size: 1.1rem;
+            line-height: 1.5;
+            color: var(--clr-text-light);
+        }
+
+        /* Pricing Section (Section 4) */
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 3rem;
+            align-items: start;
+            margin-top: 4rem;
+        }
+
+        .pricing-cols p {
+            font-size: 1.1rem;
+            color: var(--clr-text-muted);
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .pricing-card {
+            background: var(--clr-primary-dark);
+            padding: 4rem 2rem;
+            text-align: center;
+            border-radius: 16px;
+            box-shadow: 0 20px 50px rgba(74, 0, 33, 0.3);
+            position: relative;
+            top: -20px;
+            color: var(--clr-text-light);
+            background-image: radial-gradient(circle at top right, rgba(95, 235, 230, 0.1) 0%, transparent 60%);
+        }
+
+        .pricing-card::before {
+            content: '';
+            position: absolute;
+            top: -12px;
+            left: -12px;
+            right: -12px;
+            bottom: -12px;
+            border: 2px dashed rgba(74, 0, 33, 0.3);
+            border-radius: 24px;
+            pointer-events: none;
+        }
+
+        .pricing-card h3 {
+            color: var(--clr-accent);
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+        }
+
+        .pricing-card .price {
+            font-size: 4rem;
+            font-weight: 700;
+            color: var(--clr-text-light);
+            font-family: var(--font-heading);
+            margin: 0.5rem 0 1rem 0;
+            line-height: 1;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .pricing-card .price-sub {
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 2.5rem;
+            display: block;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .pricing-benefits {
+            list-style: none;
+            padding: 0;
+        }
+
+        .pricing-benefits li {
+            margin-bottom: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            color: var(--clr-text-muted);
+            font-size: 1.05rem;
+        }
+
+        .pricing-benefits li::before {
+            content: '●';
+            color: var(--clr-primary);
+            font-size: 0.8rem;
+        }
+
+        /* Mentora (Section 5) */
+        .mentora-section {
+            padding: 6rem 0;
+        }
+
+        .mentora-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .mentora-image img {
+            width: 100%;
+            height: auto;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .mentora-content .eyebrow {
+            color: var(--clr-accent);
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            font-size: 0.9rem;
+            display: block;
+            margin-bottom: 1rem;
+        }
+
+        .mentora-content .title {
+            font-size: 2.8rem;
+            margin-bottom: 1.5rem;
+        }
+
+        /* CTA Final (Section 6) */
+        .cta-final {
+            padding: 7rem 0;
+            background-color: var(--clr-white);
+        }
+
+        .cta-final-box {
+            background: var(--clr-bg);
+            border: 1px solid rgba(132, 0, 59, 0.1);
+            padding: 4rem 2rem;
+            border-radius: 20px;
+            text-align: center;
+        }
+
+        /* Footer */
+        .footer {
+            padding: 3rem 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer-title {
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+            letter-spacing: 0.1em;
+        }
+
+        .footer-copy {
+            font-size: 0.9rem;
+            opacity: 0.7;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+
+        @media (max-width: 992px) {
+
+            .hero-container,
+            .mentora-grid {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 2rem;
+            }
+
+            .hero-content {
+                order: 1;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .lotes-progress-block {
+                margin: 1.5rem auto;
+            }
+
+            .hero-visual {
+                order: 2;
+                justify-content: center;
+            }
+
+            .mentora-hero-frame {
+                width: 280px;
+                height: 380px;
+                margin: 0 auto;
+            }
+
+            .learning-block {
+                grid-template-columns: 1fr;
+            }
+
+            .learning-block-img {
+                height: 250px;
+            }
+
+            .receive-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .pricing-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .pricing-cols {
+                text-align: center;
+            }
+
+            .pricing-cols p {
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .pricing-benefits li {
+                justify-content: center;
+            }
+
+            .pricing-card {
+                top: 0;
+                order: -1;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="/v2/style.css" media="print" onload="this.media='all'">
+    <noscript>
+        <link rel="stylesheet" href="/v2/style.css">
+    </noscript>
+    <script src="https://unpkg.com/@phosphor-icons/web" defer></script>
+
+    <meta name="description"
+        content="Aprenda a Criar Perfumes Naturais Exclusivos e Transforme Isso em um Negócio Lucrativo.">
+
+    <!-- Open Graph / WhatsApp Preview -->
+    <meta property="og:title" content="Semana da Perfumaria Terapêutica">
+    <meta property="og:description"
+        content="Aprenda a Criar Perfumes Naturais Exclusivos e Transforme Isso em um Negócio Lucrativo.">
+    <meta property="og:image"
+        content="https://semana-perfumaria-terapeutica.netlify.app/.netlify/images?url=/v2/imagens/palmira afrodite.png&w=1200&q=80">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://semana-perfumaria-terapeutica.netlify.app/v2/">
+
+    <link rel="icon" type="image/svg+xml" href="/v2/favicon.svg">
+
+    <!-- Google Tag Manager -->
+    <script>(function (w, d, s, l, i) {
+            w[l] = w[l] || []; w[l].push({
+                'gtm.start':
+                    new Date().getTime(), event: 'gtm.js'
+            }); var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+                    'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-5SGRDC89');</script>
+    <!-- End Google Tag Manager -->
+</head>
+
+<body>
+
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5SGRDC89" height="0" width="0"
+            style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
+    <!-- Hero Section -->
+    <header class="hero bg-subtle">
+        <div class="container hero-container">
+            <div class="hero-content">
+                <span class="hero-eyebrow">A Arte de Criar Essências</span>
+                <h1 class="hero-title">Aprenda a Criar Perfumes Naturais Exclusivos e Transforme Isso em um Negócio
+                    Lucrativo</h1>
+
+                <!-- PROGRESS BAR LOTE RESTORED -->
+                <div class="lotes-progress-block">
+                    <div class="lotes-labels">
+                        <span class="lote active">Lote 1</span>
+                        <span class="lote">Lote 2</span>
+                        <span class="lote">Lote 3</span>
+                    </div>
+                    <div class="progress-bar-container">
+                        <div class="progress-bar-fill" style="width: 95%;"></div>
+                    </div>
+                    <div class="progress-text">95% das vagas preenchidas</div>
+                </div>
+
+                <p class="hero-description">Descubra o método de Perfumaria Ancestral que ensina, do zero, como criar
+                    fragrâncias naturais únicas, despertar sua sensibilidade olfativa e transformar essa habilidade em
+                    uma fonte real de renda.</p>
+
+                <span class="hero-date-highlight">DIA 7 E 9 DE ABRIL - AO VIVO</span>
+
+                <div class="hero-actions">
+                    <a href="https://pay.hotmart.com/W103474219V?off=lkqwnfeq&checkoutMode=10"
+                        class="btn btn-primary pulse-loop">Quero Garantir Minha Vaga</a>
+                    <p class="vip-notice">Evento exclusivamente ao vivo. Entre em contato com a equipe caso queira
+                        adquirir o acesso VIP com direito à gravação.</p>
+                </div>
+            </div>
+
+            <div class="hero-visual">
+                <div class="hero-image-charme mentora-hero-image">
+                    <div class="aura-glow-v4"></div>
+                    <div class="image-frame-organic mentora-hero-frame">
+                        <img src="/.netlify/images?url=/v2/imagens/palmira afrodite.png&w=1200&q=80"
+                            alt="Palmira Margarida - Mentora de Perfumaria Natural" width="550" height="745"
+                            loading="eager" fetchpriority="high" class="hero-portrait">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Seção 2 - O Que Você Vai Aprender -->
+    <section class="section-padding bg-white" id="programa">
+        <div class="container narrow-container text-center">
+            <h2 class="section-title">Um treinamento prático para você aprender a criar e vender perfumes naturais</h2>
+            <p class="section-text">Durante a Semana da Perfumaria Terapêutica você aprenderá, passo a passo, como criar
+                perfumes naturais com propósito emocional e também como transformar essa habilidade em renda.</p>
+        </div>
+
+        <div class="container">
+            <div class="learning-blocks">
+                <!-- Bloco 1 -->
+                <div class="learning-block">
+                    <img src="/.netlify/images?url=/v2/imagens/card03_v2.png&w=400&q=80" alt="Fundamentos"
+                        class="learning-block-img" loading="lazy">
+                    <div class="learning-block-content">
+                        <h3>Bloco 1 — Fundamentos da Perfumaria Terapêutica</h3>
+                        <ul class="learning-list">
+                            <li>O que são famílias olfativas e como utilizá-las na criação de perfumes.</li>
+                            <li>Como identificar notas olfativas e equilibrar fragrâncias.</li>
+                            <li>Como os aromas se conectam com emoções e estados internos.</li>
+                            <li>O método de diagnóstico emocional através dos perfumes.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Bloco 2 -->
+                <div class="learning-block">
+                    <img src="/.netlify/images?url=/v2/imagens/card01_v2.png&w=400&q=80" alt="Prática"
+                        class="learning-block-img" loading="lazy">
+                    <div class="learning-block-content">
+                        <h3>Bloco 2 — Criação de Perfumes na Prática</h3>
+                        <ul class="learning-list">
+                            <li>Como criar perfumes naturais do zero.</li>
+                            <li>Estrutura de um perfume: notas de topo, coração e base.</li>
+                            <li>Combinações aromáticas que despertam emoções específicas.</li>
+                            <li>Como desenvolver perfumes com identidade própria.</li>
+                            <li><strong>Criação guiada de dois perfumes já validados no mercado</strong>, usados como
+                                modelo real de criação.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Bloco 3 -->
+                <div class="learning-block">
+                    <img src="/.netlify/images?url=/v2/imagens/card04_v2.png&w=400&q=80" alt="Renda"
+                        class="learning-block-img" loading="lazy">
+                    <div class="learning-block-content">
+                        <h3>Bloco 3 — Transformando Perfumes em Renda</h3>
+                        <ul class="learning-list">
+                            <li>Como apresentar perfumes terapêuticos para clientes.</li>
+                            <li>Como explicar o valor emocional do perfume.</li>
+                            <li>Como transformar essa habilidade em uma nova fonte de renda.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção 3: O Que Você Vai Receber -->
+    <section class="section-padding bg-subtle" id="receber">
+        <div class="container">
+            <div class="text-center narrow-container" style="margin: 0 auto; margin-bottom: 2rem;">
+                <h2 class="section-title">Ao garantir seu ingresso você recebe</h2>
+            </div>
+
+            <div class="receive-top-text">
+                <h3>Ingresso Semana Perfumaria Terapêutica + Receitas de Perfumes + Guia Completo de Venda</h3>
+                <ul class="learning-list"
+                    style="color: rgba(255,255,255,0.8); text-align: left; display: inline-block;">
+                    <li style="color: inherit;">Passo a passo das receitas dos perfumes da Prosperidade e Afrodisíaco
+                    </li>
+                    <li style="color: inherit;">Passo a passo para fazer a venda dos perfumes</li>
+                    <li style="color: inherit;">Material completo já pronto para impressão para você fazer a venda de
+                        seus dois perfumes</li>
+                </ul>
+            </div>
+
+            <div class="receive-grid">
+                <!-- Card 1 -->
+                <div class="receive-block">
+                    <i class="ph ph-ticket"></i>
+                    <p>Ingresso completo para a <strong>Semana da Perfumaria Terapêutica</strong>.</p>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="receive-block">
+                    <i class="ph ph-flask"></i>
+                    <p>Receitas exclusivas de perfumes terapêuticos.</p>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="receive-block">
+                    <i class="ph ph-book-open"></i>
+                    <p>Guia completo para começar a vender perfumes naturais.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção 4: Quanto Custa Participar -->
+    <section class="section-padding bg-white" id="preco">
+        <div class="container">
+            <div class="text-center">
+                <h2 class="section-title">Um investimento simbólico para um conhecimento transformador</h2>
+            </div>
+
+            <div class="pricing-grid">
+                <div class="pricing-cols">
+                    <p>Entre os dias <strong>07 e 09 de abril</strong>, você terá acesso ao evento online onde vai
+                        aprender a criar perfumes naturais do zero e entender como os aromas podem se conectar com
+                        emoções e experiências humanas.</p>
+                    <p>Você também aprenderá um método simples de identificar emoções através das famílias e notas
+                        olfativas, permitindo aplicar esse conhecimento na criação de perfumes e também no atendimento
+                        às suas clientes.</p>
+                </div>
+
+                <div class="pricing-card">
+                    <h3>LOTE 1</h3>
+                    <span class="price-sub">por apenas</span>
+                    <div class="price">R$15,00</div>
+                    <a href="https://pay.hotmart.com/W103474219V?off=lkqwnfeq&checkoutMode=10" class="btn btn-primary"
+                        style="margin-top: 1rem; width: 100%; text-align: center;">Quero aproveitar o lote 1</a>
+                </div>
+
+                <div class="pricing-cols">
+                    <h3 style="color: var(--clr-primary-dark); margin-bottom: 1.5rem; font-family: var(--font-body);">
+                        Benefícios:</h3>
+                    <ul class="pricing-benefits">
+                        <li>Independência financeira</li>
+                        <li>Possibilidade de renda extra</li>
+                        <li>Resgate do amor próprio</li>
+                        <li>Estado de poder pessoal</li>
+                        <li>Mais confiança pessoal</li>
+                        <li>Sensação de bem-estar</li>
+                        <li>Transformação interior</li>
+                        <li>Conexão com seu propósito de vida</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção 5: Sobre a Mentora -->
+    <section class="mentora-section bg-subtle" id="mentora">
+        <div class="container container-large">
+            <div class="mentora-grid">
+                <div class="mentora-image">
+                    <img src="/.netlify/images?url=/v2/imagens/palmira02_optimized.png&w=800&q=90"
+                        alt="Palmira Margarida" width="800" height="800" loading="lazy">
+                </div>
+                <div class="mentora-content">
+                    <div>
+                        <span class="eyebrow">Quem vai conduzir essa jornada</span>
+                        <h2 class="title">Palmira Margarida</h2>
+                        <p class="section-text">Empresária no ramo da perfumaria há mais de 20 anos e fundadora da
+                            primeira Escola de Perfumaria Natural Online do mundo. Doutora em Ciências pela UFRJ,
+                            Palmira dedica sua vida ao estudo das plantas, dos aromas e da relação entre perfume,
+                            memória e emoções.</p>
+                        <p class="section-text">Seu trabalho une ciência, ancestralidade e sensibilidade feminina para
+                            ensinar mulheres a criarem perfumes naturais com identidade, propósito e valor.</p>
+                        <hr style="border: 0; border-top: 1px solid rgba(255,255,255,0.1); margin: 2rem 0;">
+                        <p class="section-text" style="font-style: italic; font-size: 1.25rem;">"Minha missão é ajudar
+                            mulheres a redescobrirem sua essência através dos aromas. Quando você entende o poder do
+                            perfume, você entende também o poder que existe dentro de você."</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção 6: CTA Final -->
+    <section class="cta-final" id="cadastro">
+        <div class="container narrow-container">
+            <div class="cta-final-box">
+                <h2 class="section-title">Garanta Sua Vaga na Semana da Perfumaria Terapêutica</h2>
+                <p class="section-text" style="font-size: 1.25rem; margin-bottom: 0.5rem;">As vagas são liberadas por
+                    lote e podem encerrar a qualquer momento.</p>
+                <p class="section-text" style="margin-bottom: 2.5rem;">Garanta agora sua participação e comece a
+                    aprender a criar perfumes naturais com significado, emoção e potencial de renda.</p>
+
+                <div class="cta-actions">
+                    <a href="https://pay.hotmart.com/W103474219V?off=lkqwnfeq&checkoutMode=10"
+                        class="btn btn-primary pulse-loop" style="font-size: 1.1rem; padding: 1.2rem 3rem;">Garantir
+                        Minha Vaga Agora</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer bg-subtle">
+        <div class="container text-center">
+            <h3 class="footer-title">SEMANA DA PERFUMARIA TERAPÊUTICA</h3>
+            <p class="footer-copy">&copy; 2026 Palmira Margarida. Todos os direitos reservados.</p>
+            <div class="footer-links">
+                <span>Políticas de Privacidade</span>
+                <span>Termos de Uso</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="/v2/script.js" type="module"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // Captura tudo que vem depois da barra na URL (os parâmetros UTM)
+            var urlParams = window.location.search;
+            // Se houver parâmetros na URL da página, o script entra em ação
+            if (urlParams) {
+                // Seleciona todos os botões/links que levam para o checkout da Hotmart
+                var links = document.querySelectorAll('a[href*="hotmart.com"]');
+
+                links.forEach(function (link) {
+                    if (!link.href.includes(urlParams.substring(1))) {
+                        // Verifica se o link do checkout já tem alguma interrogação (parâmetros próprios da Hotmart)
+                        var separator = link.href.indexOf('?') !== -1 ? '&' : '?';
+                        // Injeta as UTMs do Meta no final do link de pagamento
+                        link.href = link.href + separator + urlParams.substring(1);
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>

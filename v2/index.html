@@ -418,10 +418,14 @@
         /* Pricing Section (Section 4) */
         .pricing-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
-            gap: 3rem;
-            align-items: start;
+            grid-template-columns: 1.15fr 1fr;
+            gap: 4rem;
+            align-items: center;
             margin-top: 4rem;
+            max-width: 1000px;
+            margin-left: auto;
+            margin-right: auto;
+            box-sizing: border-box;
         }
 
         .pricing-cols p {
@@ -490,7 +494,7 @@
         .pricing-benefits li {
             margin-bottom: 0.8rem;
             display: flex;
-            align-items: center;
+            align-items: flex-start;
             gap: 0.8rem;
             color: var(--clr-text-muted);
             font-size: 1.05rem;
@@ -500,6 +504,29 @@
             content: '●';
             color: var(--clr-primary);
             font-size: 0.8rem;
+            margin-top: 0.3rem;
+        }
+
+        .pricing-benefits-light li {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 0.9rem;
+            line-height: 1.4;
+        }
+
+        .pricing-benefits-light li::before {
+            color: var(--clr-accent);
+        }
+
+        .pricing-content-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2.5rem;
+            text-align: left;
+            margin-bottom: 2.5rem;
+            background: rgba(0, 0, 0, 0.15);
+            padding: 2.5rem;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         /* Mentora (Section 5) */
@@ -624,6 +651,12 @@
                 gap: 2rem;
             }
 
+            .pricing-content-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+                padding: 1.5rem;
+            }
+
             .pricing-cols {
                 text-align: center;
             }
@@ -634,7 +667,8 @@
             }
 
             .pricing-benefits li {
-                justify-content: center;
+                justify-content: flex-start;
+                text-align: left;
             }
 
             .pricing-card {
@@ -712,7 +746,7 @@
                 <span class="hero-date-highlight">DIA 7 E 9 DE ABRIL - AO VIVO</span>
 
                 <div class="hero-actions">
-                    <a href="https://pay.hotmart.com/W103474219V?off=lkqwnfeq&checkoutMode=10"
+                    <a href="#preco"
                         class="btn btn-primary pulse-loop">Quero Garantir Minha Vaga</a>
                     <p class="vip-notice">Evento exclusivamente ao vivo. Entre em contato com a equipe caso queira
                         adquirir o acesso VIP com direito à gravação.</p>
@@ -840,37 +874,43 @@
             </div>
 
             <div class="pricing-grid">
-                <div class="pricing-cols">
-                    <p>Entre os dias <strong>07 e 09 de abril</strong>, você terá acesso ao evento online onde vai
-                        aprender a criar perfumes naturais do zero e entender como os aromas podem se conectar com
-                        emoções e experiências humanas.</p>
-                    <p>Você também aprenderá um método simples de identificar emoções através das famílias e notas
-                        olfativas, permitindo aplicar esse conhecimento na criação de perfumes e também no atendimento
-                        às suas clientes.</p>
+                
+                <div class="pricing-card" style="margin: 0; top: 0; padding: 3rem 1.5rem; width: 100%; box-sizing: border-box;">
+                    <div style="text-align: center; margin-bottom: 2rem;">
+                        <h3>LOTE 1</h3>
+                        <span class="price-sub" style="margin-bottom: 1rem;">por apenas</span>
+                        <div class="price" style="margin-bottom: 0.5rem; font-size: clamp(3rem, 10vw, 4rem);">R$15,00</div>
+                        <div style="color: var(--clr-accent); font-weight: 700; text-transform: uppercase; font-size: 0.95rem; letter-spacing: 0.05em; margin-top: 1rem;">07 e 09 de abril - evento online</div>
+                    </div>
+
+                    <div style="text-align: left; background: rgba(0, 0, 0, 0.15); padding: 1.5rem; border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.1); margin-bottom: 2.5rem; width: 100%; box-sizing: border-box;">
+                        <h3 style="color: var(--clr-accent); margin-bottom: 1.5rem; font-family: var(--font-body); font-size: 1.05rem; text-transform: none; letter-spacing: normal;">O que você vai aprender:</h3>
+                        <ul class="pricing-benefits pricing-benefits-light" style="margin-bottom: 0;">
+                            <li>Como criar perfumes naturais do zero</li>
+                            <li>A profunda conexão dos aromas com emoções e experiências humanas</li>
+                            <li>Método simples de identificar emoções através das famílias e notas olfativas</li>
+                            <li>Como aplicar esse conhecimento na criação de perfumes e no atendimento às suas clientes</li>
+                        </ul>
+                    </div>
+
+                    <div style="text-align: center;">
+                        <a href="https://pay.hotmart.com/W103474219V?off=lkqwnfeq&checkoutMode=10" class="btn btn-primary pulse-loop"
+                            style="width: 100%; font-size: 1.1rem; padding: 1.2rem 1rem; box-sizing: border-box; white-space: normal;">Quero aproveitar o lote 1</a>
+                    </div>
                 </div>
 
-                <div class="pricing-card">
-                    <h3>LOTE 1</h3>
-                    <span class="price-sub">por apenas</span>
-                    <div class="price">R$15,00</div>
-                    <a href="https://pay.hotmart.com/W103474219V?off=lkqwnfeq&checkoutMode=10" class="btn btn-primary"
-                        style="margin-top: 1rem; width: 100%; text-align: center;">Quero aproveitar o lote 1</a>
-                </div>
-
-                <div class="pricing-cols">
-                    <h3 style="color: var(--clr-primary-dark); margin-bottom: 1.5rem; font-family: var(--font-body);">
+                <div class="pricing-cols" style="padding: 1rem 0;">
+                    <h3 style="color: var(--clr-primary-dark); margin-bottom: 1.5rem; font-family: var(--font-body); font-size: 1.4rem;">
                         Benefícios:</h3>
                     <ul class="pricing-benefits">
-                        <li>Independência financeira</li>
-                        <li>Possibilidade de renda extra</li>
-                        <li>Resgate do amor próprio</li>
-                        <li>Estado de poder pessoal</li>
-                        <li>Mais confiança pessoal</li>
-                        <li>Sensação de bem-estar</li>
-                        <li>Transformação interior</li>
-                        <li>Conexão com seu propósito de vida</li>
+                        <li>Independência financeira e possibilidade de renda extra</li>
+                        <li>Resgate do amor próprio e estado de poder pessoal</li>
+                        <li>Mais confiança pessoal e sensação de bem-estar</li>
+                        <li>Transformação interior profunda</li>
+                        <li>Conexão direta com seu propósito de vida</li>
                     </ul>
                 </div>
+
             </div>
         </div>
     </section>

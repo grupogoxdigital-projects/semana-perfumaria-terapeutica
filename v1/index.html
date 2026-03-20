@@ -19,7 +19,7 @@
             --clr-primary-dark: #4a0021;
             --clr-accent: #5febe6;
             --clr-bg: #FAFAFA;
-            --clr-white: #ffffff;
+            --clr-white: #f6f2e7;
             --clr-text-light: #ffffff;
             --clr-text-dark: #1a1a1a;
             --clr-text-muted: #4a4a4a;
@@ -196,8 +196,15 @@
             font-weight: 700;
             letter-spacing: 0.15em;
             font-size: 0.8rem;
-            border-radius: 0;
+            border-radius: 50px;
             border: 1px solid var(--clr-accent);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
         }
 
         .vip-notice {
@@ -354,14 +361,13 @@
         <div class="container hero-container">
             <div class="hero-content">
                 <span class="hero-eyebrow">A Arte de Criar Essências</span>
-                <h1 class="hero-title">Transforme o Poder da <span class="text-accent">Natureza</span> em
-                    Autoconhecimento e Renda Extra</h1>
+                <h1 class="hero-title">Transforme sua vida financeira fazendo perfumes em casa</h1>
 
                 <!-- PROGRESS BAR LOTE -->
                 <div class="lotes-progress-block">
                     <div class="lotes-labels">
-                        <span class="lote active">Lote 1</span>
-                        <span class="lote">Lote 2</span>
+                        <span class="lote">Lote 1</span>
+                        <span class="lote active">Lote 2</span>
                         <span class="lote">Lote 3</span>
                     </div>
                     <div class="progress-bar-container">
@@ -370,19 +376,14 @@
                     <div class="progress-text">95% das vagas preenchidas</div>
                 </div>
 
-                <p class="hero-description"><strong>Participe de duas aulas ao vivo e entre definitivamente no universo
-                        da
-                        perfumaria natural e terapêutica.</strong> Aprenda a criar seus próprios perfumes de forma
-                    profissional,
-                    mesmo começando do zero, sem perder a sensibilidade.<br><em>E mais: aprenda na prática duas
-                        receitas
-                        exclusivas, já validadas no mercado de perfumes naturais e terapêuticos.</em><br><span
+                <p class="hero-description">Aprenda duas receitas exclusivas de perfumes naturais simples e eficazes em dois encontros ao vivo com Palmira Margarida que irão transformar sua vida financeira. <em>E mais: aprenda na prática duas receitas exclusivas, já validadas no mercado de perfumes naturais e terapêuticos</em>.<br><span
                         class="hero-date-highlight">Dias 7
                         e 9 de abril – Ao vivo</span></p>
                 <div class="hero-actions">
-                    <a href="https://pay.hotmart.com/W103474219V?off=lkqwnfeq&checkoutMode=10"
+                    <a href="https://pay.hotmart.com/W103474219V?off=rvz8gdbg"
                         class="btn btn-primary pulse-loop">Quero
                         Garantir Minha Vaga</a>
+                    <p class="hero-price" style="font-size: 1.1rem; margin-top: 1rem; color: var(--clr-text-light);">de R$78 por <strong style="font-size: 1.3rem; color: var(--clr-accent);">R$20</strong></p>
                     <p class="vip-notice">Evento exclusivamente ao vivo. Entre em contato com a equipe caso queira
                         adquirir o acesso VIP com direito à gravação.</p>
                 </div>
@@ -616,6 +617,104 @@
         </div>
     </section>
 
+    <!-- FAQ Section -->
+    <section class="faq-section bg-subtle" id="faq" style="padding: 4rem 0;">
+        <div class="container narrow-container">
+            <div class="text-center">
+                <h2 class="section-title" style="color: var(--clr-text-light);">Dúvidas Frequentes</h2>
+            </div>
+            
+            <style>
+                .faq-item {
+                    background: rgba(255,255,255,0.05);
+                    padding: 1.5rem;
+                    border-radius: 12px;
+                    border: 1px solid rgba(255,255,255,0.1);
+                    transition: all 0.3s ease;
+                }
+                .faq-item summary {
+                    font-size: 1.2rem;
+                    margin-bottom: 0;
+                    color: var(--clr-accent);
+                    font-family: var(--font-heading);
+                    font-weight: 700;
+                    cursor: pointer;
+                    list-style: none;
+                    position: relative;
+                    padding-right: 2rem;
+                    outline: none;
+                }
+                .faq-item summary::-webkit-details-marker {
+                    display: none;
+                }
+                .faq-item summary::after {
+                    content: '+';
+                    position: absolute;
+                    right: 0;
+                    top: 50%;
+                    transform: translateY(-50%);
+                    font-size: 1.5rem;
+                    transition: transform 0.3s ease;
+                }
+                .faq-item[open] summary {
+                    margin-bottom: 0.5rem;
+                }
+                .faq-item[open] summary::after {
+                    content: '-';
+                }
+                .faq-item p {
+                    color: rgba(255,255,255,0.9);
+                    font-size: 1rem;
+                    margin-top: 1rem;
+                    animation: fadeIn 0.3s ease;
+                }
+                @keyframes fadeIn {
+                    from { opacity: 0; transform: translateY(-10px); }
+                    to { opacity: 1; transform: translateY(0); }
+                }
+            </style>
+
+            <div class="faq-list" style="margin-top: 2rem; display: flex; flex-direction: column; gap: 1rem;">
+                <details class="faq-item">
+                    <summary>A Imersão serve para qualquer mulher, independente de ser terapeuta ou perfumista?</summary>
+                    <p>Sim. A Imersão foi criada para te ensinar do zero receitas exclusivas com material que você consegue em casa e com muita facilidade.</p>
+                </details>
+                <details class="faq-item">
+                    <summary>Preciso entender de óleo essencial, diluição, perfumaria?</summary>
+                    <p>Não. É tudo explicado de forma simples, prática e acessível. A proposta é justamente tirar a complexidade e te entregar orientações diretas - sem linguagens difíceis.</p>
+                </details>
+                <details class="faq-item">
+                    <summary>Vou conseguir acompanhar mesmo com minha rotina corrida?</summary>
+                    <p>Sim. As aulas serão muito completas, mas dinâmicas. Serão 2 horas de conteúdo direto ao ponto, para mulheres reais.</p>
+                </details>
+                <details class="faq-item">
+                    <summary>Não vou me enrolar para fazer as receitas?</summary>
+                    <p>As receitas são simples e você vai poder salvar e imprimir para fazer depois e com calma, sempre que quiser.</p>
+                </details>
+                <details class="faq-item">
+                    <summary>"O valor do ingresso é tão acessível assim… tem algum motivo especial?"</summary>
+                    <p>A Semana Perfumaria Terapêutica foi criada para alcançar o maior número de mulheres possível, pois sabemos que muitas mulheres sofrem com a falta de autonomia financeira. Por isso, criamos um evento com um valor simbólico e não comercial.</p>
+                </details>
+                <details class="faq-item">
+                    <summary>E se acontecer um imprevisto e eu não conseguir ver tudo?</summary>
+                    <p>Criamos o evento em dias e horários que facilitam a sua participação. Caso perca algum trecho, ainda conseguirá participar e acompanhar o conteúdo.</p>
+                </details>
+                <details class="faq-item">
+                    <summary>Como fazer perfumes vai mudar minha vida financeira?</summary>
+                    <p>Você vai aprender que a margem de lucro na perfumaria natural pode ser muito grande se você fizer os perfumes do jeito certo. E ainda vai aprender a melhor forma de vendê-los. Esse é um mercado que está em constante crescimento e você pode ser uma das pioneiras nesse nicho.</p>
+                </details>
+                <details class="faq-item">
+                    <summary>Eu não conheço nada do mundo holístico ou natural. Isso é um problema?</summary>
+                    <p>Nenhum. A abordagem é humana, prática e acessível. Você só precisa estar aberta a conhecer um novo mundo capaz de transformar muita coisa na sua vida. Vamos te conduzir nesse mundo mágico dos perfumes naturais.</p>
+                </details>
+                <details class="faq-item">
+                    <summary>Por que faz diferença garantir meu ingresso agora?</summary>
+                    <p>A venda dos nossos ingressos é feita por lotes. A qualquer momento podemos ter um aumento no valor do ingresso, então sugiro que você garanta sua vaga o mais rápido possível.</p>
+                </details>
+            </div>
+        </div>
+    </section>
+
     <!-- CTA Final: Background White -->
     <section class="cta-final bg-white" id="cadastro">
         <div class="container narrow-container text-center">
@@ -623,7 +722,7 @@
             <p class="cta-text">Duas aulas.<br>Um novo jeito de criar perfumes.<br>Um novo caminho.<br><br>Garanta sua
                 vaga antes da virada de lote.</p>
             <div class="cta-actions">
-                <a href="https://pay.hotmart.com/W103474219V?off=lkqwnfeq&checkoutMode=10"
+                <a href="https://pay.hotmart.com/W103474219V?off=rvz8gdbg"
                     class="btn btn-primary pulse-loop">Quero
                     Participar da Semana Perfumaria
                     Terapêutica</a>

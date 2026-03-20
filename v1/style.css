@@ -6,7 +6,7 @@
     --clr-accent: #5febe6;
     /* Ciano Glow */
     --clr-bg: #FAFAFA;
-    --clr-white: #ffffff;
+    --clr-white: #f6f2e7;
     --clr-text-light: #ffffff;
     --clr-text-dark: #1a1a1a;
     --clr-text-muted: #4a4a4a;
@@ -302,8 +302,9 @@ h3 {
     letter-spacing: 0.15em;
     font-size: 0.8rem;
     transition: var(--transition-sparkle);
-    border-radius: 0;
+    border-radius: 50px;
     border: 1px solid var(--clr-accent);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
 }
 
 .btn-primary {
@@ -315,6 +316,7 @@ h3 {
     background-color: transparent;
     color: var(--clr-accent);
     box-shadow: 0 0 20px rgba(95, 235, 230, 0.3);
+    transform: translateY(-2px);
 }
 
 .pulse-loop {

@@ -100,7 +100,7 @@
             color: var(--clr-accent);
             letter-spacing: 0.4em;
             font-size: 0.8rem;
-            margin-bottom: 1.5rem;
+            margin-bottom: 0.5rem;
             font-weight: 600;
             display: block;
             text-transform: uppercase;
@@ -255,7 +255,15 @@
 
         @media (max-width: 992px) {
             .hero {
-                padding: 2rem 0;
+                padding: 1rem 0;
+                min-height: auto;
+            }
+            .hero-main-logo {
+                max-width: 280px !important;
+                margin-bottom: 1rem !important;
+            }
+            .learning-card .card-overlay {
+                padding-top: 1.5rem;
             }
 
             .hero-container {
@@ -298,17 +306,17 @@
             }
 
             .hero-title {
-                font-size: clamp(1.8rem, 6vw, 2.2rem);
-                margin-bottom: 0.5rem;
+                font-size: clamp(1.8rem, 6vw, 2rem);
+                margin-bottom: 0;
             }
 
             .hero-description {
-                margin: 0 auto 1rem;
-                font-size: 0.95rem;
+                margin: 0 auto 0.5rem;
+                font-size: 0.9rem;
             }
 
             .lotes-progress-block {
-                margin: 1rem auto;
+                margin: 0.5rem auto;
             }
         }
     </style>
@@ -355,12 +363,13 @@
     <!-- End Google Tag Manager (noscript) -->
 
     <!-- Hero Section: Refined Split v4 -->
-    <header class="hero bg-subtle">
+    <header class="hero">
         <!-- Floating Sparks / Shines v4.1 Removed for Performance -->
 
         <div class="container hero-container">
             <div class="hero-content">
                 <span class="hero-eyebrow">A Arte de Criar Essências</span>
+                <img src="/.netlify/images?url=/v1/imagens/logonova-SPT-menor.png&w=600&q=80" alt="Logo SPT" style="max-width: 450px; margin-top: -1.5rem; margin-bottom: 1rem; display: block;" class="hero-main-logo">
                 <h1 class="hero-title">Transforme sua vida financeira fazendo perfumes em casa</h1>
 
                 <!-- PROGRESS BAR LOTE -->
@@ -383,7 +392,7 @@
                     <a href="https://pay.hotmart.com/W103474219V?off=rvz8gdbg"
                         class="btn btn-primary pulse-loop">Quero
                         Garantir Minha Vaga</a>
-                    <p class="hero-price" style="font-size: 1.1rem; margin-top: 1rem; color: var(--clr-text-light);">de R$78 por <strong style="font-size: 1.3rem; color: var(--clr-accent);">R$20</strong></p>
+                    <p class="hero-price" style="font-size: 1.1rem; margin-top: 1rem; color: var(--clr-text-muted);">de R$78 por <strong style="font-size: 1.3rem; color: var(--clr-primary);">R$20</strong></p>
                     <p class="vip-notice">Evento exclusivamente ao vivo. Entre em contato com a equipe caso queira
                         adquirir o acesso VIP com direito à gravação.</p>
                 </div>
@@ -405,7 +414,7 @@
     <!-- Divider Bar Removed -->
 
     <!-- Challenge Section: Soft & Elegant -->
-    <section class="challenge-section bg-white" id="desafio">
+    <section class="challenge-section bg-subtle" id="desafio">
         <div class="container narrow-container">
             <div class="challenge-content text-center">
                 <h2 class="section-title">Transforme sensibilidade em valor</h2>
@@ -428,7 +437,7 @@
     </section>
 
     <!-- Method Section: Bento Box -->
-    <section class="method-section bg-subtle" id="metodo">
+    <section class="method-section bg-white" id="metodo">
         <div class="container">
             <div class="text-center">
                 <h2 class="section-title">O Que Você Vai Aprender na Semana</h2>
@@ -502,7 +511,7 @@
     </section>
 
     <!-- For Who Section: List -->
-    <section class="for-who-section bg-white" id="para-quem">
+    <section class="for-who-section bg-subtle" id="para-quem">
         <div class="container narrow-container">
             <div class="text-center">
                 <h2 class="section-title">Essa Semana é Para Você Se…</h2>
@@ -533,7 +542,7 @@
     </section>
 
     <!-- Learning Section: Grid -->
-    <section class="learning-section bg-subtle" id="aprendizado">
+    <section class="learning-section bg-white" id="aprendizado">
         <div class="container">
             <div class="text-center">
                 <h2 class="section-title">Da Essência à Primeira Criação</h2>
@@ -569,7 +578,7 @@
     </section>
 
     <!-- Benefits Section: Icons -->
-    <section class="benefits-section bg-white" id="beneficios">
+    <section class="benefits-section bg-subtle" id="beneficios">
         <div class="container">
             <div class="text-center">
                 <h2 class="section-title">Você sai desse evento com:</h2>
@@ -590,7 +599,7 @@
     </section>
 
     <!-- Mentora Section -->
-    <section class="mentora-section bg-subtle" id="mentora">
+    <section class="mentora-section bg-white" id="mentora">
         <div class="container container-large">
             <div class="mentora-grid">
                 <div class="mentora-image">

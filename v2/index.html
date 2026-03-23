@@ -104,7 +104,7 @@
             color: var(--clr-accent);
             letter-spacing: 0.4em;
             font-size: 0.8rem;
-            margin-bottom: 1.5rem;
+            margin-bottom: 0.5rem;
             font-weight: 600;
             display: block;
             text-transform: uppercase;
@@ -419,11 +419,11 @@
         /* Pricing Section (Section 4) */
         .pricing-grid {
             display: grid;
-            grid-template-columns: 1.15fr 1fr;
-            gap: 4rem;
+            grid-template-columns: 1fr 0.8fr;
+            gap: 2.5rem;
             align-items: center;
             margin-top: 4rem;
-            max-width: 1000px;
+            max-width: 900px;
             margin-left: auto;
             margin-right: auto;
             box-sizing: border-box;
@@ -604,6 +604,26 @@
         }
 
         @media (max-width: 992px) {
+            .hero {
+                padding: 1rem 0;
+                min-height: auto;
+            }
+            .hero-main-logo {
+                max-width: 280px !important;
+                margin-bottom: 1rem !important;
+            }
+            .hero-title {
+                font-size: clamp(1.8rem, 6vw, 2rem) !important;
+                margin-bottom: 0 !important;
+            }
+            .hero-description {
+                margin: 0 auto 0.5rem !important;
+                font-size: 0.9rem !important;
+            }
+            .hero-date-highlight {
+                margin-top: 0.5rem !important;
+                margin-bottom: 0.5rem !important;
+            }
 
             .hero-container,
             .mentora-grid {
@@ -620,7 +640,7 @@
             }
 
             .lotes-progress-block {
-                margin: 1.5rem auto;
+                margin: 0.5rem auto;
             }
 
             .hero-visual {
@@ -720,10 +740,11 @@
     <!-- End Google Tag Manager (noscript) -->
 
     <!-- Hero Section -->
-    <header class="hero bg-subtle">
+    <header class="hero">
         <div class="container hero-container">
             <div class="hero-content">
                 <span class="hero-eyebrow">A Arte de Criar Essências</span>
+                <img src="/.netlify/images?url=/v2/imagens/logonova-SPT-menor.png&w=600&q=80" alt="Logo SPT" style="max-width: 450px; margin-top: -1.5rem; margin-bottom: 1rem; display: block;" class="hero-main-logo">
                 <h1 class="hero-title">Aprenda a Criar Perfumes Naturais Exclusivos e Transforme Isso em um Negócio
                     Lucrativo</h1>
 
@@ -748,7 +769,7 @@
 
                 <div class="hero-actions">
                     <a href="#preco" class="btn btn-primary pulse-loop">Quero Garantir Minha Vaga</a>
-                    <p class="hero-price" style="font-size: 1.1rem; margin-top: 1rem; color: var(--clr-text-light);">de R$78 por <strong style="font-size: 1.3rem; color: var(--clr-accent);">R$20</strong></p>
+                    <p class="hero-price" style="font-size: 1.1rem; margin-top: 1rem; color: var(--clr-text-muted);">de R$78 por <strong style="font-size: 1.3rem; color: var(--clr-primary);">R$20</strong></p>
                     <p class="vip-notice">Evento exclusivamente ao vivo. Entre em contato com a equipe caso queira
                         adquirir o acesso VIP com direito à gravação.</p>
                 </div>
@@ -768,7 +789,7 @@
     </header>
 
     <!-- Seção 2 - O Que Você Vai Aprender -->
-    <section class="section-padding bg-white" id="programa">
+    <section class="section-padding bg-subtle" id="programa">
         <div class="container narrow-container text-center">
             <h2 class="section-title">Um treinamento prático para você aprender a criar e vender perfumes naturais</h2>
             <p class="section-text">Durante a Semana da Perfumaria Terapêutica você aprenderá, passo a passo, como criar
@@ -827,16 +848,16 @@
     </section>
 
     <!-- Seção 3: O Que Você Vai Receber -->
-    <section class="section-padding bg-subtle" id="receber">
+    <section class="section-padding bg-white" id="receber">
         <div class="container">
             <div class="text-center narrow-container" style="margin: 0 auto; margin-bottom: 2rem;">
                 <h2 class="section-title">Ao garantir seu ingresso você recebe</h2>
             </div>
 
             <div class="receive-top-text">
-                <h3>Ingresso Semana Perfumaria Terapêutica + Receitas de Perfumes + Guia Completo de Venda</h3>
+                <h3 style="color: var(--clr-primary-dark);">Ingresso Semana Perfumaria Terapêutica + Receitas de Perfumes + Guia Completo de Venda</h3>
                 <ul class="learning-list"
-                    style="color: rgba(255,255,255,0.8); text-align: left; display: inline-block;">
+                    style="color: var(--clr-text-muted); text-align: left; display: inline-block;">
                     <li style="color: inherit;">Passo a passo das receitas dos perfumes da Prosperidade e Afrodisíaco
                     </li>
                     <li style="color: inherit;">Passo a passo para fazer a venda dos perfumes</li>
@@ -847,28 +868,28 @@
 
             <div class="receive-grid">
                 <!-- Card 1 -->
-                <div class="receive-block">
-                    <i class="ph ph-ticket"></i>
-                    <p>Ingresso completo para a <strong>Semana da Perfumaria Terapêutica</strong>.</p>
+                <div class="receive-block" style="background: rgba(132, 0, 59, 0.05); border: 1px solid rgba(132, 0, 59, 0.15);">
+                    <i class="ph ph-ticket" style="color: var(--clr-primary);"></i>
+                    <p style="color: var(--clr-text-muted);">Ingresso completo para a <strong>Semana da Perfumaria Terapêutica</strong>.</p>
                 </div>
 
                 <!-- Card 2 -->
-                <div class="receive-block">
-                    <i class="ph ph-flask"></i>
-                    <p>Receitas exclusivas de perfumes terapêuticos.</p>
+                <div class="receive-block" style="background: rgba(132, 0, 59, 0.05); border: 1px solid rgba(132, 0, 59, 0.15);">
+                    <i class="ph ph-flask" style="color: var(--clr-primary);"></i>
+                    <p style="color: var(--clr-text-muted);">Receitas exclusivas de perfumes terapêuticos.</p>
                 </div>
 
                 <!-- Card 3 -->
-                <div class="receive-block">
-                    <i class="ph ph-book-open"></i>
-                    <p>Guia completo para começar a vender perfumes naturais.</p>
+                <div class="receive-block" style="background: rgba(132, 0, 59, 0.05); border: 1px solid rgba(132, 0, 59, 0.15);">
+                    <i class="ph ph-book-open" style="color: var(--clr-primary);"></i>
+                    <p style="color: var(--clr-text-muted);">Guia completo para começar a vender perfumes naturais.</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Seção 4: Quanto Custa Participar -->
-    <section class="section-padding bg-white" id="preco">
+    <section class="section-padding bg-subtle" id="preco">
         <div class="container">
             <div class="text-center">
                 <h2 class="section-title">Um investimento simbólico para um conhecimento transformador</h2>
@@ -913,9 +934,9 @@
 
                 <div class="pricing-cols" style="padding: 1rem 0;">
                     <h3
-                        style="color: var(--clr-primary-dark); margin-bottom: 1.5rem; font-family: var(--font-body); font-size: 1.4rem;">
+                        style="color: var(--clr-white); margin-bottom: 1.5rem; font-family: var(--font-body); font-size: 1.4rem;">
                         Benefícios:</h3>
-                    <ul class="pricing-benefits">
+                    <ul class="pricing-benefits pricing-benefits-light">
                         <li>Independência financeira e possibilidade de renda extra</li>
                         <li>Resgate do amor próprio e estado de poder pessoal</li>
                         <li>Mais confiança pessoal e sensação de bem-estar</li>
@@ -929,7 +950,7 @@
     </section>
 
     <!-- Seção 5: Sobre a Mentora -->
-    <section class="mentora-section bg-subtle" id="mentora">
+    <section class="mentora-section bg-white" id="mentora">
         <div class="container container-large">
             <div class="mentora-grid">
                 <div class="mentora-image">

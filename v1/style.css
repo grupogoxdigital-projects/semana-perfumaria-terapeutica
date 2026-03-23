@@ -5,7 +5,7 @@
     --clr-primary-dark: #4a0021;
     --clr-accent: #5febe6;
     /* Ciano Glow */
-    --clr-bg: #FAFAFA;
+    --clr-bg: #f6f2e7;
     --clr-white: #f6f2e7;
     --clr-text-light: #ffffff;
     --clr-text-dark: #1a1a1a;
@@ -107,19 +107,16 @@ h3 {
 /* Hero: Refined Split v4 */
 .hero {
     min-height: 100vh;
-    background-color: var(--clr-primary);
-    background-image:
-        radial-gradient(circle at top, rgba(132, 0, 59, 0.2) 0%, var(--clr-primary-dark) 80%),
-        url('/.netlify/images?url=https://images.unsplash.com/photo-1594035910387-fea47794261f?auto=format%26fit=crop%26q=80%26w=1920&w=1920&q=80'),
-        var(--pattern-perfume);
-    background-size: cover, cover, auto;
-    background-position: center bottom, center, center;
-    background-blend-mode: normal, soft-light, overlay;
-    color: var(--clr-text-light);
+    background-color: var(--clr-bg);
+    background-image: var(--pattern-perfume);
+    background-size: auto;
+    background-position: center;
+    background-blend-mode: normal;
+    color: var(--clr-text-dark);
     display: flex;
     align-items: center;
     position: relative;
-    padding: 5rem 0;
+    padding: 6rem 0 3rem 0;
     overflow: hidden;
 }
 
@@ -151,28 +148,28 @@ h3 {
 .lotes-labels .lote {
     font-size: 1rem;
     font-family: var(--font-heading);
-    color: rgba(255, 255, 255, 0.5);
+    color: rgba(0, 0, 0, 0.4);
     text-transform: uppercase;
     letter-spacing: 0.05em;
     font-weight: 700;
 }
 
 .lotes-labels .lote.active {
-    border: 2px solid var(--clr-accent);
+    border: 2px solid var(--clr-primary);
     padding: 0.25rem 0.8rem;
     border-radius: 6px;
-    color: var(--clr-text-light);
+    color: var(--clr-text-dark);
     display: inline-block;
 }
 
 .lotes-labels .lote.current {
-    color: var(--clr-white);
+    color: var(--clr-primary-dark);
 }
 
 .progress-bar-container {
     width: 100%;
     height: 12px;
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(0, 0, 0, 0.1);
     border-radius: 6px;
     overflow: hidden;
     margin-bottom: 0.5rem;
@@ -180,8 +177,8 @@ h3 {
 
 .progress-bar-fill {
     height: 100%;
-    background: var(--clr-accent);
-    box-shadow: 0 0 15px var(--clr-accent);
+    background: var(--clr-primary);
+    box-shadow: 0 0 15px var(--clr-primary);
     border-radius: 6px;
     animation: fillProgress 1.5s ease-out forwards;
 }
@@ -198,7 +195,7 @@ h3 {
 
 .progress-text {
     font-size: 0.85rem;
-    color: rgba(255, 255, 255, 0.8);
+    color: rgba(0, 0, 0, 0.7);
     text-transform: uppercase;
     letter-spacing: 0.1em;
 }
@@ -210,7 +207,7 @@ h3 {
 }
 
 .hero-eyebrow {
-    color: var(--clr-accent);
+    color: var(--clr-primary-dark);
     letter-spacing: 0.4em;
     font-size: 0.8rem;
     margin-bottom: 1.5rem;
@@ -237,11 +234,11 @@ h3 {
     display: inline-block;
     margin-top: 0.5rem;
     padding: 0.5rem 1rem;
-    background: rgba(255, 255, 255, 0.1);
-    border: 1px solid var(--clr-accent);
+    background: rgba(132, 0, 59, 0.05);
+    border: 1px solid var(--clr-primary);
     border-radius: 8px;
     font-weight: 700;
-    color: var(--clr-accent);
+    color: var(--clr-primary);
     font-size: 0.9rem;
     letter-spacing: 0.05em;
     text-transform: uppercase;
@@ -265,8 +262,8 @@ h3 {
     overflow: hidden;
     position: relative;
     z-index: 3;
-    border: 2px dashed rgba(255, 255, 255, 0.3);
-    background: rgba(255, 255, 255, 0.05);
+    border: 2px dashed rgba(132, 0, 59, 0.3);
+    background: rgba(132, 0, 59, 0.05);
 }
 
 .hero-portrait {
@@ -287,7 +284,7 @@ h3 {
     transform: translate(-50%, -50%);
     width: 130%;
     height: 130%;
-    background: radial-gradient(circle, rgba(95, 235, 230, 0.2) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(132, 0, 59, 0.15) 0%, transparent 70%);
     z-index: 1;
     filter: blur(20px);
 }
@@ -303,19 +300,19 @@ h3 {
     font-size: 0.8rem;
     transition: var(--transition-sparkle);
     border-radius: 50px;
-    border: 1px solid var(--clr-accent);
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+    border: 1px solid var(--clr-primary);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
 }
 
 .btn-primary {
-    background-color: var(--clr-accent);
-    color: var(--clr-primary-dark);
+    background-color: var(--clr-primary);
+    color: var(--clr-white);
 }
 
 .btn-primary:hover {
     background-color: transparent;
-    color: var(--clr-accent);
-    box-shadow: 0 0 20px rgba(95, 235, 230, 0.3);
+    color: var(--clr-primary);
+    box-shadow: 0 0 20px rgba(132, 0, 59, 0.2);
     transform: translateY(-2px);
 }
 

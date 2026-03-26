@@ -1,0 +1,213 @@
+:root {
+    --clr-primary: #84003b;
+    --clr-primary-dark: #4a0021;
+    --clr-accent: #5febe6;
+    --clr-bg: #f6f2e7;
+    --clr-white: #ffffff;
+    --clr-text-dark: #1a1a1a;
+    --clr-text-muted: #4a4a4a;
+    --clr-success: #25D366; /* WhatsApp Green */
+    --clr-warning: #ffcc00; /* Attention Yellow */
+    --font-heading: 'Philosopher', serif;
+    --font-body: 'Outfit', sans-serif;
+    --pattern-perfume: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 5c-5 0-9 4-9 9v2c-2 0-4 2-4 4v16c0 6 5 11 11 11s11-5 11-11V20c0-2-2-4-4-4v-2c0-5-4-9-9-9zm0 2c3.9 0 7 3.1 7 7v2H23v-2c0-3.9 3.1-7 7-7zm-9 11h18c1.1 0 2 .9 2 2v16c0 5-4 9-9 9s-9-4-9-9V20c0-1.1.9-2 2-2z' fill='%2384003b' fill-opacity='0.03' fill-rule='evenodd'/%3E%3C/svg%3E");
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--clr-bg);
+    color: var(--clr-text-dark);
+    font-family: var(--font-body);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    background-image: var(--pattern-perfume);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.container {
+    width: 90%;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* Header */
+.header {
+    padding: 0.8rem 0;
+    text-align: center;
+}
+
+.logo {
+    max-width: 180px;
+    height: auto;
+}
+
+/* Main Content */
+.main-content {
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    padding-bottom: 2rem;
+}
+
+.obrigado-box {
+    background: white;
+    padding: 1.8rem 1.5rem;
+    border-radius: 20px;
+    box-shadow: 0 15px 30px rgba(132, 0, 59, 0.08);
+    text-align: center;
+    border: 1px solid rgba(132, 0, 59, 0.05);
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+.obrigado-box::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 6px;
+    background: linear-gradient(90deg, var(--clr-primary), var(--clr-accent));
+}
+
+.headline {
+    font-family: var(--font-heading);
+    font-size: clamp(1.3rem, 4.5vw, 1.8rem);
+    color: var(--clr-text-dark);
+    line-height: 1.25;
+    margin-bottom: 1rem;
+}
+
+.headline mark {
+    background: var(--clr-warning);
+    color: var(--clr-text-dark);
+    padding: 0 0.4rem;
+    border-radius: 4px;
+}
+
+.subheadline {
+    font-size: 1rem;
+    color: var(--clr-text-muted);
+    margin-bottom: 1.8rem;
+    font-weight: 300;
+}
+
+.ebook-promo {
+    background: rgba(132, 0, 59, 0.03);
+    padding: 1.2rem;
+    border-radius: 12px;
+    margin-bottom: 1.8rem;
+    text-align: left;
+}
+
+.ebook-title {
+    font-family: var(--font-heading);
+    font-size: 1.2rem;
+    color: var(--clr-primary);
+    margin-bottom: 0.8rem;
+    text-align: center;
+}
+
+.ebook-list {
+    list-style: none;
+    margin-bottom: 1rem;
+}
+
+.ebook-list li {
+    margin-bottom: 0.5rem;
+    font-size: 0.95rem;
+}
+
+.ebook-mystery {
+    font-weight: 700;
+    color: var(--clr-primary-dark);
+    font-style: italic;
+    text-align: center;
+    display: block;
+    margin-top: 0.8rem;
+    font-size: 0.95rem;
+}
+
+/* Event Reminder */
+.event-info {
+    border-top: 1px solid #eee;
+    padding-top: 1.5rem;
+    margin-bottom: 1.5rem;
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+}
+
+.event-info-item {
+    font-weight: 700;
+    color: var(--clr-text-muted);
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    letter-spacing: 0.05em;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+.event-info-item i {
+    color: var(--clr-primary);
+    font-size: 1.2rem;
+}
+
+/* Button */
+.btn-whatsapp {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    background-color: var(--clr-success);
+    color: white;
+    text-decoration: none;
+    padding: 1rem 1.2rem;
+    border-radius: 50px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    font-size: clamp(0.7rem, 3.2vw, 0.95rem);
+    line-height: 1.2;
+    transition: all 0.3s ease;
+    box-shadow: 0 8px 15px rgba(37, 211, 102, 0.2);
+    width: 100%;
+}
+
+.btn-whatsapp:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 30px rgba(37, 211, 102, 0.3);
+    background-color: #20BA5A;
+}
+
+.btn-whatsapp i {
+    font-size: 1.5rem;
+}
+
+/* Footer */
+.footer {
+    padding: 1.5rem 0;
+    text-align: center;
+    font-size: 0.75rem;
+    opacity: 0.5;
+}
+
+@media (max-width: 600px) {
+    .event-info {
+        flex-direction: column;
+        gap: 0.3rem;
+        align-items: center;
+    }
+    .obrigado-box {
+        padding: 1.5rem 1rem;
+    }
+}

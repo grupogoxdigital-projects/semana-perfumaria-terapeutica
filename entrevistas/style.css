@@ -1,0 +1,127 @@
+:root {
+    --clr-primary: #84003b;
+    --clr-primary-dark: #4a0021;
+    --clr-accent: #5febe6;
+    --clr-bg: #f6f2e7;
+    --clr-white: #f6f2e7;
+    --clr-text-light: #ffffff;
+    --clr-text-dark: #1a1a1a;
+    --font-heading: 'Philosopher', serif;
+    --font-body: 'Outfit', sans-serif;
+    --pattern-perfume: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 5c-5 0-9 4-9 9v2c-2 0-4 2-4 4v16c0 6 5 11 11 11s11-5 11-11V20c0-2-2-4-4-4v-2c0-5-4-9-9-9zm0 2c3.9 0 7 3.1 7 7v2H23v-2c0-3.9 3.1-7 7-7zm-9 11h18c1.1 0 2 .9 2 2v16c0 5-4 9-9 9s-9-4-9-9V20c0-1.1.9-2 2-2z' fill='%2384003b' fill-opacity='0.03' fill-rule='evenodd'/%3E%3C/svg%3E");
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    background-color: var(--clr-bg);
+    color: var(--clr-text-dark);
+    font-family: var(--font-body);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Header */
+.top-header {
+    background-color: var(--clr-bg);
+    padding: 4rem 0 3rem;
+    text-align: center;
+    background-image: var(--pattern-perfume);
+    background-size: auto;
+    background-position: center;
+    border-bottom: 1px solid rgba(132, 0, 59, 0.05);
+}
+
+.header-logo {
+    max-width: 200px;
+    margin-bottom: 1.5rem;
+    display: inline-block;
+}
+
+.page-title {
+    color: var(--clr-primary);
+    font-family: var(--font-heading);
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 700;
+}
+
+/* Videos Section */
+.videos-section {
+    padding: 4rem 0;
+}
+
+.video-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 3rem;
+    margin-top: 2rem;
+}
+
+@media (min-width: 768px) {
+    .video-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 4rem;
+    }
+}
+
+.video-card {
+    background: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    border: 1px solid rgba(0,0,0,0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.video-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+}
+
+.video-wrapper {
+    position: relative;
+    padding-bottom: 56.25%; /* 16:9 ratio */
+    height: 0;
+    overflow: hidden;
+}
+
+.video-wrapper iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
+.video-info {
+    padding: 1.5rem;
+    text-align: center;
+}
+
+.video-title {
+    font-family: var(--font-heading);
+    font-size: 1.25rem;
+    color: var(--clr-primary-dark);
+    font-weight: 700;
+    line-height: 1.4;
+}
+
+/* Footer */
+.footer {
+    background-color: var(--clr-primary-dark);
+    padding: 2rem 0;
+    text-align: center;
+    color: var(--clr-text-light);
+}
+
+.footer-copy {
+    font-size: 0.9rem;
+    opacity: 0.8;
+}

@@ -32,3 +32,4 @@ function setupImageFallback() {
 
 // Iniciar fallback imediatamente
 setupImageFallback();
+

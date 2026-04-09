@@ -4,72 +4,263 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Semana Perfumaria Terapêutica | Palmira Margarida</title>
+    <title>Método Perfumaria Ancestral | Palmira Margarida</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preload" href="/.netlify/images?url=/v3/imagens/palmira01_optimized.png&w=1200&q=80" as="image">
+    <link rel="preload" href="/.netlify/images?url=/v3/imagens/palm.jpg&w=1200&q=80" as="image">
     <link
-        href="https://fonts.googleapis.com/css2?family=Philosopher:ital,wght@0,400;0,700&family=Outfit:wght@300;400;700&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Philosopher:ital,wght@0,400;0,700&family=Outfit:wght@400;700&display=swap"
         rel="stylesheet">
 
-    <link rel="stylesheet" href="/v3/style.css?v=1">
+    <style>
+        :root {
+            --clr-primary: #1F3B2B; /* Dark green for luxury */
+            --clr-primary-dark: #112218;
+            --clr-accent: #C7AE6A; /* Gold/champagne */
+            --clr-bg: #F4F2EE;
+            --clr-white: #ffffff;
+            --clr-text-light: #ffffff;
+            --clr-text-dark: #2C2A26;
+            --clr-text-muted: #55534E;
+            --font-heading: 'Philosopher', serif;
+            --font-body: 'Outfit', sans-serif;
+            --pattern-perfume: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 5c-5 0-9 4-9 9v2c-2 0-4 2-4 4v16c0 6 5 11 11 11s11-5 11-11V20c0-2-2-4-4-4v-2c0-5-4-9-9-9zm0 2c3.9 0 7 3.1 7 7v2H23v-2c0-3.9 3.1-7 7-7zm-9 11h18c1.1 0 2 .9 2 2v16c0 5-4 9-9 9s-9-4-9-9V20c0-1.1.9-2 2-2z' fill='%23ffffff' fill-opacity='0.03' fill-rule='evenodd'/%3E%3C/svg%3E");
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--clr-bg);
+            color: var(--clr-text-dark);
+            font-family: var(--font-body);
+            line-height: 1.6;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        h1,
+        h2,
+        h3 {
+            font-family: var(--font-heading);
+            font-weight: 700;
+            line-height: 1.1;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .text-accent {
+            color: var(--clr-accent);
+        }
+
+        .bg-subtle {
+            background-color: var(--clr-primary) !important;
+            background-image: radial-gradient(at 100% 0%, rgba(199, 174, 106, 0.05) 0%, transparent 40%), radial-gradient(at 0% 100%, var(--clr-primary-dark) 0%, transparent 50%), var(--pattern-perfume) !important;
+            color: var(--clr-text-light) !important;
+        }
+
+        .hero {
+            min-height: 100vh;
+            background-color: var(--clr-primary);
+            background-image: radial-gradient(circle at top, rgba(31, 59, 43, 0.2) 0%, var(--clr-primary-dark) 80%), url('/.netlify/images?url=https://images.unsplash.com/photo-1594035910387-fea47794261f?auto=format%26fit=crop%26q=80%26w=1920&w=1920&q=80'), var(--pattern-perfume);
+            background-size: cover, cover, auto;
+            background-position: center bottom, center, center;
+            background-blend-mode: normal, soft-light, overlay;
+            display: flex;
+            align-items: center;
+            position: relative;
+            padding: 5rem 0;
+            overflow: hidden;
+        }
+
+        .hero-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            z-index: 2;
+            position: relative;
+        }
+
+        .hero-content {
+            text-align: left;
+            position: relative;
+            z-index: 10;
+        }
+
+        .hero-eyebrow {
+            color: var(--clr-accent);
+            letter-spacing: 0.4em;
+            font-size: 0.8rem;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            display: block;
+            text-transform: uppercase;
+        }
+
+        .hero-title {
+            font-size: clamp(2rem, 4vw, 3.5rem);
+            margin-bottom: 1rem;
+            font-weight: 700;
+            color: var(--clr-white);
+        }
+
+        .hero-description {
+            font-size: 1rem;
+            max-width: 500px;
+            margin-bottom: 1.5rem;
+            opacity: 0.9;
+            font-weight: 300;
+            color: var(--clr-white);
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 1rem 3rem;
+            text-decoration: none;
+            text-transform: uppercase;
+            font-weight: 700;
+            letter-spacing: 0.15em;
+            font-size: 0.8rem;
+            border-radius: 50px;
+            border: 1px solid var(--clr-accent);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-primary {
+            background-color: var(--clr-accent);
+            color: var(--clr-primary-dark);
+        }
+
+        .hero-visual {
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        .hero-image-charme {
+            position: relative;
+            padding: 2rem;
+        }
+
+        .mentora-hero-frame {
+            width: 450px;
+            height: 600px;
+            border-radius: 50% 50% 50% 50% / 40% 40% 60% 60%;
+            overflow: hidden;
+            position: relative;
+            z-index: 3;
+            border: 2px dashed rgba(255, 255, 255, 0.3);
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .hero-portrait {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: calc(100% - 30px);
+            height: calc(100% - 30px);
+            object-fit: cover;
+            border-radius: inherit;
+        }
+
+        @media (max-width: 992px) {
+            .hero {
+                padding: 3rem 0;
+                min-height: auto;
+            }
+
+            .hero-container {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 2.5rem;
+            }
+
+            .hero-content {
+                order: 1;
+                text-align: center;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .hero-visual {
+                order: 2;
+                justify-content: center;
+            }
+
+            .mentora-hero-frame {
+                width: 280px;
+                height: 380px;
+                margin: 0 auto;
+            }
+
+            .hero-title {
+                font-size: clamp(2rem, 6vw, 2.5rem);
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="/v3/style.css?v=5" media="print" onload="this.media='all'">
+    <noscript>
+        <link rel="stylesheet" href="/v3/style.css?v=5">
+    </noscript>
     <script src="https://unpkg.com/@phosphor-icons/web" defer></script>
 
     <meta name="description"
-        content="Aprenda o segredo das fragrâncias que curam e descubra como criar e lucrar com sua própria linha de perfumes naturais e terapêuticos.">
+        content="Conquiste sua independência financeira através da Perfumaria Ancestral. Curso completo de formação em perfumaria natural e terapêutica.">
 
-    <!-- Open Graph -->
-    <meta property="og:title" content="Semana Perfumaria Terapêutica | Palmira Margarida">
+    <!-- Open Graph / WhatsApp Preview -->
+    <meta property="og:title" content="Método Perfumaria Ancestral | Palmira Margarida">
     <meta property="og:description"
-        content="Aprenda o segredo das fragrâncias que curam e descubra como criar e lucrar com sua própria linha de perfumes naturais e terapêuticos.">
+        content="Conquiste sua independência financeira através da Perfumaria Ancestral. Curso completo de formação em perfumaria natural e terapêutica.">
     <meta property="og:image"
-        content="https://semana-perfumaria-terapeutica.netlify.app/.netlify/images?url=/v3/imagens/palmira01_optimized.png&w=1200&q=80">
+        content="https://semana-perfumaria-terapeutica.netlify.app/.netlify/images?url=/v3/imagens/palm.jpg&w=1200&q=80">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://semana-perfumaria-terapeutica.netlify.app/v3/">
 
+    <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="/v3/favicon.svg">
-
-    <!-- Google Tag Manager -->
-    <script>(function (w, d, s, l, i) {
-            w[l] = w[l] || []; w[l].push({
-                'gtm.start':
-                    new Date().getTime(), event: 'gtm.js'
-            }); var f = d.getElementsByTagName(s)[0],
-                j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
-                    'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
-        })(window, document, 'script', 'dataLayer', 'GTM-5SGRDC89');</script>
-    <!-- End Google Tag Manager -->
 </head>
 
 <body>
 
-    <!-- Google Tag Manager (noscript) -->
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5SGRDC89" height="0" width="0"
-            style="display:none;visibility:hidden"></iframe></noscript>
-    <!-- End Google Tag Manager (noscript) -->
-
-    <!-- ── HERO ── -->
+    <!-- Hero Section -->
     <header class="hero">
         <div class="container hero-container">
             <div class="hero-content">
-                <span class="hero-eyebrow">Semana Perfumaria Terapêutica</span>
-                <span class="hero-kicker">Lote 3</span>
-                <h1 class="hero-title">Conquiste sua independência financeira através da Perfumaria Terapêutica</h1>
-                <p class="hero-description">Um evento prático completo sobre perfumaria natural e terapêutica,
-                    estruturado passo a passo, mesmo para quem está começando do zero.</p>
-                <div class="hero-cta-wrap">
-                    <a href="#preco" class="btn btn-primary pulse-loop" id="hero-cta">Quero Participar</a>
+                <span class="hero-eyebrow">Formação Completa</span>
+                <img src="/.netlify/images?url=/v3/imagens/logonova-SPT-menor.png&w=600&q=80" alt="Logo Método Perfumaria Ancestral" style="max-width: 450px; margin-top: -1.5rem; margin-bottom: 2rem; display: block;" class="hero-main-logo">
+                <h1 class="hero-title">Conquiste sua independência financeira através da Perfumaria Ancestral</h1>
+
+                <p class="hero-description">O Método Perfumaria Ancestral é um curso completo de formação em perfumaria natural e terapêutica, estruturado passo a passo, mesmo para quem está começando do zero.</p>
+                <div class="hero-actions">
+                    <a href="https://pay.hotmart.com/E103726809H?hotfeature=51"
+                        class="btn btn-primary pulse-loop">Quero Participar</a>
+                    <p class="hero-price" style="font-size: 1.1rem; margin-top: 1.5rem; color: var(--clr-white);">de R$ 899,00 por<br> <strong style="font-size: 1.4rem; color: var(--clr-accent);">12x de R$ 71,16</strong><br> <span style="font-size: 0.9rem; opacity: 0.8;">ou R$ 688,00 à vista</span></p>
                 </div>
             </div>
 
             <div class="hero-visual">
-                <div style="position: relative;">
+                <div class="hero-image-charme mentora-hero-image">
                     <div class="aura-glow-v4"></div>
-                    <div class="mentora-hero-frame">
-                        <img src="/.netlify/images?url=/v3/imagens/palmira01_optimized.png&w=1200&q=80"
+                    <div class="image-frame-organic mentora-hero-frame">
+                        <img src="/.netlify/images?url=/v3/imagens/palm.jpg&w=1200&q=80"
                             alt="Palmira Margarida - Mentora de Perfumaria Natural" width="550" height="745"
                             loading="eager" fetchpriority="high" class="hero-portrait">
                     </div>
@@ -78,180 +269,143 @@
         </div>
     </header>
 
-    <!-- ── O QUE E O METODO ── -->
-    <section class="split-section bg-white" id="metodo">
-        <div class="container">
-            <div class="split-grid">
-                <div class="split-content">
-                    <h2>O que é a Semana Perfumaria Terapêutica?</h2>
-                    <p>Um evento onde você vai mergulhar no universo da perfumaria natural e terapêutica de forma prática, estruturada e profissional.</p>
-                    <p>Aqui você aprende a:</p>
-                    <ul class="bullet-list">
-                        <li>Criar perfumes naturais e terapêuticos com intenção e técnica</li>
-                        <li>Fazer na prática o Perfume para Amor Próprio</li>
-                        <li>Fazer na prática o Perfume da Prosperidade</li>
-                        <li>Entender como o olfato atua no sistema emocional</li>
-                        <li>Transformar conhecimento em renda extra de forma ética</li>
-                    </ul>
-                </div>
-                <div class="split-image">
-                    <img src="/.netlify/images?url=/v3/imagens/card03_v2.png&w=700&q=80"
-                        alt="Perfumaria Natural e Terapêutica" width="700" height="480" loading="lazy">
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ── PRECO ── -->
-    <section class="pricing-section bg-subtle" id="preco">
-        <div class="container">
-            <h2 class="section-title">Não perca esta oportunidade!</h2>
-
-            <div class="pricing-wrap">
-                <div class="pricing-card">
-                    <span class="pricing-badge">Lote 3</span>
-                    <div class="pricing-old">de R$ 78,00</div>
-                    <div class="pricing-price">R$ 25,00</div>
-                    <div class="pricing-note">Acesso imediato</div>
-
-                    <hr class="pricing-divider">
-
-                    <ul class="pricing-includes">
-                        <li>Acesso à Semana Perfumaria Terapêutica</li>
-                        <li>2 aulas exclusivas e práticas</li>
-                        <li>Receitas do Perfume para Amor Próprio e Perfume da Prosperidade</li>
-                        <li>Entendimento técnico para repetir o processo</li>
-                        <li>Estratégias para transformar conhecimento em renda extra</li>
-                    </ul>
-
-                    <a href="https://pay.hotmart.com/W103474219V?off=qwh2ageb&checkoutMode=10&bid=1774984949204"
-                        class="btn btn-accent pulse-loop"
-                        style="width: 100%; text-align: center; padding: 1.1rem 1rem; font-size: 1rem;"
-                        id="preco-cta">Comprar com Desconto</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ── DIFERENCIAIS ── -->
-    <section class="section-pad bg-white" id="diferenciais">
-        <div class="container">
-            <div class="text-center">
-                <h2 class="section-title">A Semana Perfumaria Terapêutica vai transformar sua vida, veja como:
-                </h2>
-            </div>
-
-            <div class="features-grid">
-                <div class="feature-card" data-aos="fade-up">
-                    <i class="ph ph-flask"></i>
-                    <h3>Transformação Real</h3>
-                    <p>Entenda como unir intenção, plantas e técnica para promover transformação verdadeira na vida das pessoas através dos aromas.</p>
-                </div>
-                <div class="feature-card" data-aos="fade-up">
-                    <i class="ph ph-plant"></i>
-                    <h3>Receitas Práticas</h3>
-                    <p>Aprenda na prática a criar o Perfume para Amor Próprio e o Perfume da Prosperidade com métodos simples e acessíveis.</p>
-                </div>
-                <div class="feature-card" data-aos="fade-up">
-                    <i class="ph ph-wallet"></i>
-                    <h3>Nova Fonte de Renda</h3>
-                    <p>Descubra possibilidades reais de começar a criar e vender perfumes naturais de forma profissional, mesmo começando do zero.</p>
-                </div>
-            </div>
-
-            <div class="text-center" style="margin-top: 3rem;">
-                <a href="https://pay.hotmart.com/W103474219V?off=qwh2ageb&checkoutMode=10&bid=1774984949204"
-                    class="btn btn-primary pulse-loop" id="diferenciais-cta">Eu Quero</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- ── MODULOS ── -->
-    <section class="section-pad bg-subtle" id="modulos">
+    <!-- Challenge Section / Benefícios -->
+    <section class="challenge-section bg-subtle" id="desafio">
         <div class="container narrow-container">
-            <div class="text-center">
-                <h2 class="section-title">O que você vai ver na Semana Perfumaria Terapêutica</h2>
-            </div>
-
-            <div class="modules-list" style="margin-top: 2.5rem;">
-
-                <div class="module-item">
-                    <div class="module-num">01</div>
-                    <div>
-                        <h3>Aula 1 – Fundamentos da Perfumaria Natural e Terapêutica</h3>
-                        <ul>
-                            <li>História da perfumaria natural e terapêutica</li>
-                            <li>Fundamentos técnicos e emoções ligadas aos aromas</li>
-                            <li>Famílias olfativas e personalidades</li>
-                            <li>Deusas e conexões com os perfumes</li>
-                        </ul>
-                    </div>
+            <div class="challenge-content text-center">
+                <h2 class="section-title">O Método Perfumaria Ancestral vai revolucionar sua vida financeira</h2>
+                <div class="challenge-visual text-center" style="margin-bottom: 2rem;">
+                    <i class="ph ph-sparkle text-accent" style="font-size: 3rem;"></i>
                 </div>
+                <p class="section-text" style="font-size: 1.2rem;">Aqui você aprende a:<br><br></p>
+                
+                <ul style="text-align: left; max-width: 600px; margin: 0 auto; list-style: none; font-size: 1.1rem; color: rgba(255,255,255,0.9); display: flex; flex-direction: column; gap: 1rem;">
+                    <li><i class="ph-fill ph-check-circle" style="color: var(--clr-accent); margin-right: 10px;"></i> Criar perfumes naturais e terapêuticos</li>
+                    <li><i class="ph-fill ph-check-circle" style="color: var(--clr-accent); margin-right: 10px;"></i> Entender como o olfato atua no sistema emocional</li>
+                    <li><i class="ph-fill ph-check-circle" style="color: var(--clr-accent); margin-right: 10px;"></i> Trabalhar com plantas, óleos essenciais, tinturas e macerados</li>
+                    <li><i class="ph-fill ph-check-circle" style="color: var(--clr-accent); margin-right: 10px;"></i> Desenvolver perfumes bonitos, seguros e vendáveis</li>
+                    <li><i class="ph-fill ph-check-circle" style="color: var(--clr-accent); margin-right: 10px;"></i> Posicionar-se e ganhar dinheiro com ética e clareza</li>
+                </ul>
 
-                <div class="module-item">
-                    <div class="module-num">02</div>
-                    <div>
-                        <h3>Aula 2 – Receitas na prática e caminhos da prosperidade</h3>
-                        <ul>
-                            <li>Criação de duas receitas práticas e exclusivas</li>
-                            <li>Entendimento de receitas já validadas no mercado</li>
-                            <li>A utilização como um modelo real de criação</li>
-                            <li>Como transformar o conhecimento do aroma em renda extra</li>
-                        </ul>
-                    </div>
+                <div class="quote-wrapper" style="margin-top: 3rem;">
+                    <p class="quote">"O saber não se separa do sentir."</p>
                 </div>
-
             </div>
         </div>
     </section>
 
-    <!-- ── MENTORA ── -->
-    <section class="mentora-section bg-white" id="mentora">
+    <!-- Modulos Section: Bento Box -->
+    <section class="method-section bg-white" id="metodo">
         <div class="container">
+            <div class="text-center">
+                <h2 class="section-title">O Que Você Vai Aprender</h2>
+                <p class="section-subtitle">O passo a passo da formação completa.</p>
+            </div>
+
+            <div class="horizontal-cards-grid">
+
+                <!-- Card 1 -->
+                <div class="bento-card">
+                    <img src="/.netlify/images?url=/v3/imagens/card03_v2.png&w=400&q=80"
+                        alt="Módulo 1 e 2" loading="lazy" width="400" height="280"
+                        class="card-image-placeholder">
+                    <div class="card-content">
+                        <h3>Módulo 1 e Módulo 2: Fundamentos e Práticas</h3>
+                        <p>Introdução à perfumaria natural terapêutica, formas de extração (destilação, tinturas), qualidade das matérias-primas e diário olfativo.</p>
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="bento-card">
+                    <img src="/.netlify/images?url=/v3/imagens/card02_v3.png&w=400&q=80"
+                        alt="Famílias Olfativas" loading="lazy" width="400" height="280"
+                        class="card-image-placeholder">
+                    <div class="card-content">
+                        <h3>Módulo 3: Famílias Olfativas e Arquétipos</h3>
+                        <p>Famílias olfativas, sistema emocional e personalidades. Introdução das deusas (arquétipos de poder) e combinações que funcionam.</p>
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="bento-card">
+                    <img src="/.netlify/images?url=/v3/imagens/card01_v2.png&w=400&q=80"
+                        alt="Receitas de Perfumes" loading="lazy" width="400" height="280"
+                        class="card-image-placeholder">
+                    <div class="card-content">
+                        <h3>Módulo 4: Receitas de Perfumes</h3>
+                        <p>Aprenda a fazer o Perfume da Sereia, o Perfume Pachamama (autoconfiança), o Perfume Lakshmi (prosperidade) e o Perfume Ísis.</p>
+                    </div>
+                </div>
+
+                <!-- Card 4 -->
+                <div class="bento-card">
+                    <img src="/.netlify/images?url=/v3/imagens/card_palm_generated.png&w=400&q=80"
+                        alt="Marketing e Vendas" loading="lazy" width="400" height="280"
+                        class="card-image-placeholder">
+                    <div class="card-content">
+                        <h3>Módulo 5: Marketing e Vendas</h3>
+                        <p>Posicionamento de marca, apresentação do produto (presencial e online), e a melhor forma de ganhar dinheiro com perfumes.</p>
+                    </div>
+                </div>
+
+                <!-- Card 5 -->
+                <div class="bento-card">
+                    <img src="/.netlify/images?url=/v3/imagens/card04_v2.png&w=400&q=80"
+                        alt="Receitas Validadas" loading="lazy" width="400" height="280"
+                        class="card-image-placeholder">
+                    <div class="card-content">
+                        <h3>Técnicas Inovadoras e Receitas</h3>
+                        <p>Aprenda receitas exclusivas e inéditas prontas para vender. Aprenda técnicas como Fruit Fire, tinturas e macerações acessíveis.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center" style="margin-top: 3rem;">
+                <a href="https://pay.hotmart.com/E103726809H?hotfeature=51" class="btn btn-primary pulse-loop" style="background-color: var(--clr-primary); border-color: var(--clr-primary); color: var(--clr-white);">Comprar com Desconto</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mentora Section -->
+    <section class="mentora-section bg-white" id="mentora" style="background-color: #E6E1D6 !important;">
+        <div class="container container-large">
             <div class="mentora-grid">
                 <div class="mentora-image">
                     <img src="/.netlify/images?url=/v3/imagens/palmira02_optimized.png&w=800&q=90"
-                        alt="Palmira Margarida" width="800" height="600" loading="lazy">
+                        alt="Palmira Margarida" width="800" height="800" loading="lazy">
                 </div>
                 <div class="mentora-content">
-                    <span class="mentora-eyebrow">Quem é Palmira Margarida</span>
-                    <h2>Palmira Margarida</h2>
-                    <p>Empresária no ramo da perfumaria há mais de 20 anos. Fundadora da primeira Escola de Perfumaria
-                        Natural e Online do mundo.</p>
-                    <p>Criei a metodologia da Perfumaria Ancestral a partir de uma sabedoria escondida a 7 chaves e que
-                        fui revelar, traduzir e compartilhar com você agora!</p>
-                    <p>Toda mulher merece viver em amor próprio, estado de presença e sabendo o seu valor. Quando você
-                        descobre a sua essência você pega a bússola da sua vida e nunca mais se perde de si.</p>
-                    <div class="mentora-quote">
-                        <p>"Aqui, o saber não se separa do sentir."</p>
-                    </div>
-                    <div class="mentora-badges">
-                        <span class="badge">2 livros publicados</span>
-                        <span class="badge">+2.000 perfumistas formadas</span>
-                        <span class="badge">PhD em História das Ciências</span>
-                        <span class="badge">Doutora em Ciências pela UFRJ</span>
+                    <div class="glass-card" style="background: rgba(255, 255, 255, 0.85); box-shadow: 0 10px 30px rgba(0,0,0,0.05); color: #1a1a1a;">
+                        <span class="eyebrow" style="color: var(--clr-primary);">Quem Guia Você</span>
+                        <h2 class="title" style="color: var(--clr-primary-dark);">Palmira Margarida</h2>
+                        <p class="bio" style="color: #444;">Empresária no ramo da perfumaria há mais de 20 anos. Fundadora da primeira Escola de Perfumaria Natural e Online do mundo. Criei a metodologia da Perfumaria Ancestral a partir de uma sabedoria escondida a 7 chaves e que fui revelar, traduzir e compartilhar com você!
+                        <br><br>Sou doutora em Ciências pela UFRJ, uma cientista com pesquisa dedicada a uma sabedoria que nos foi roubada. Toda mulher merece viver em amor próprio, estado de presença e sabendo o seu valor. Quando você descobre a sua essência, você pega a bússola da sua vida e nunca mais se perde de si.</p>
+                        <div class="quote-box" style="border-left-color: var(--clr-primary); background: rgba(31, 59, 43, 0.05);">
+                            <p style="color: var(--clr-primary);">"Aqui é um espaço de transformação real com amor, presença, potência e muito respeito por sua essência."</p>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- ── CTA FINAL ── -->
-    <section class="cta-final" id="cadastro">
-        <div class="container narrow-container">
-            <h2>Comece Agora Sua Jornada na Perfumaria Terapêutica</h2>
-            <p>Um evento incrível e muito prático, com receitas exclusivas, técnicas inovadoras e estratégias
-                reais de venda. Para mulheres que querem mais.</p>
-            <a href="https://pay.hotmart.com/W103474219V?off=qwh2ageb&checkoutMode=10&bid=1774984949204"
-                class="btn btn-accent pulse-loop" style="font-size: 1rem; padding: 1.1rem 3rem;" id="cta-final">Comprar
-                com Desconto</a>
+
+    <!-- CTA Final -->
+    <section class="cta-final bg-subtle" id="cadastro">
+        <div class="container narrow-container text-center">
+            <h2 class="cta-title">A Transformação Começou. Siga o rastro do perfume!</h2>
+            <p class="cta-text">Toda mulher merece viver em amor próprio, estado de presença e sabendo o seu valor.<br><br>Garanta sua vaga na formação mais completa do mercado.</p>
+            <div class="cta-actions">
+                <a href="https://pay.hotmart.com/E103726809H?hotfeature=51"
+                    class="btn btn-primary pulse-loop" style="padding: 1.5rem 3rem; font-size: 1.1rem;">Comprar com Desconto</a>
+            </div>
         </div>
     </section>
 
-    <!-- ── FOOTER ── -->
-    <footer class="footer bg-subtle">
+    <!-- Footer -->
+    <footer class="footer bg-subtle" style="background-image: none !important; background-color: var(--clr-primary-dark) !important;">
         <div class="container text-center">
-            <h3 class="footer-title">SEMANA PERFUMARIA TERAPÊUTICA</h3>
+            <h3 class="footer-title">MÉTODO PERFUMARIA ANCESTRAL</h3>
             <p class="footer-copy">&copy; 2026 Palmira Margarida. Todos os direitos reservados.</p>
             <div class="footer-links">
                 <span>Políticas de Privacidade</span>
@@ -277,7 +431,6 @@
             }
         });
     </script>
-
 </body>
 
 </html>

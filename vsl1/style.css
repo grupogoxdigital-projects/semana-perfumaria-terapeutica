@@ -1,0 +1,439 @@
+:root {
+    --clr-primary: #84003b;
+    --clr-primary-dark: #4a0021;
+    --clr-accent: #D4AF37;
+    --clr-accent-teal: #5febe6;
+    --clr-bg: #fdfbf7;
+    --clr-white: #ffffff;
+    --clr-text-light: #ffffff;
+    --clr-text-dark: #1a1a1a;
+    --clr-text-muted: #4a4a4a;
+    --font-heading: 'Philosopher', serif;
+    --font-body: 'Outfit', sans-serif;
+    --pattern-perfume: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 5c-5 0-9 4-9 9v2c-2 0-4 2-4 4v16c0 6 5 11 11 11s11-5 11-11V20c0-2-2-4-4-4v-2c0-5-4-9-9-9zm0 2c3.9 0 7 3.1 7 7v2H23v-2c0-3.9 3.1-7 7-7zm-9 11h18c1.1 0 2 .9 2 2v16c0 5-4 9-9 9s-9-4-9-9V20c0-1.1.9-2 2-2z' fill='%23ffffff' fill-opacity='0.03' fill-rule='evenodd'/%3E%3C/svg%3E");
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--clr-bg);
+    color: var(--clr-text-dark);
+    font-family: var(--font-body);
+    line-height: 1.6;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3 {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    line-height: 1.1;
+}
+
+.container {
+    width: 90%;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.text-center {
+    text-align: center;
+}
+
+/* ===================== HERO VSL ===================== */
+.hero-vsl {
+    min-height: 100vh;
+    background-color: var(--clr-primary-dark);
+    background-image:
+        linear-gradient(180deg, rgba(74, 0, 33, 0.96) 0%, rgba(132, 0, 59, 0.92) 100%),
+        var(--pattern-perfume);
+    background-size: auto, auto;
+    display: flex;
+    align-items: center;
+    position: relative;
+    padding: 1.5rem 0 1rem;
+    overflow: hidden;
+}
+
+.hero-vsl::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background:
+        radial-gradient(circle at 20% 20%, rgba(212, 175, 55, 0.12) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(95, 235, 230, 0.06) 0%, transparent 50%);
+    pointer-events: none;
+}
+
+.hero-vsl .container {
+    position: relative;
+    z-index: 2;
+}
+
+/* Logo topo */
+.vsl-logo {
+    display: block;
+    max-width: 150px;
+    width: 100%;
+    height: auto;
+    margin: 0 auto 0.5rem;
+}
+
+/* Eyebrow */
+.vsl-eyebrow {
+    display: block;
+    color: var(--clr-accent);
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: 0.65rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    margin-bottom: 0.3rem;
+}
+
+/* Titulo Principal */
+.vsl-title {
+    font-family: var(--font-heading);
+    font-size: clamp(1.6rem, 3.5vw, 2.3rem);
+    color: var(--clr-white);
+    line-height: 1.1;
+    margin-bottom: 0.5rem;
+}
+
+.vsl-title em {
+    color: var(--clr-accent);
+    font-style: italic;
+}
+
+/* Subtitulo */
+.vsl-subtitle {
+    font-size: clamp(0.9rem, 1.5vw, 1rem);
+    color: rgba(255, 255, 255, 0.85);
+    font-weight: 300;
+    max-width: 720px;
+    margin: 0 auto 1rem;
+    line-height: 1.4;
+}
+
+/* Separador dourado */
+.gold-divider {
+    width: 50px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--clr-accent), transparent);
+    margin: 0 auto 1rem;
+}
+
+/* ===================== VIDEO BOX ===================== */
+.video-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto 1rem;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow:
+        0 0 0 1px rgba(212, 175, 55, 0.25),
+        0 4px 6px rgba(0, 0, 0, 0.2),
+        0 20px 60px rgba(0, 0, 0, 0.5),
+        0 0 80px rgba(212, 175, 55, 0.08);
+    background: #000;
+}
+
+.video-ratio {
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0;
+}
+
+.video-ratio iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+    display: block;
+}
+
+/* Borda decorativa do video */
+.video-wrapper::before {
+    content: '';
+    position: absolute;
+    inset: -1px;
+    border-radius: 13px;
+    background: linear-gradient(135deg, rgba(212, 175, 55, 0.4), transparent 40%, rgba(95, 235, 230, 0.15) 100%);
+    z-index: -1;
+}
+
+/* Capa do video */
+.video-cover {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://img.youtube.com/vi/-b5fcuiWJOs/maxresdefault.jpg');
+    background-size: cover;
+    background-position: center;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
+.video-wrapper.is-playing .video-cover {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.play-button-outer {
+    width: 80px;
+    height: 80px;
+    background: rgba(132, 0, 59, 0.9);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid var(--clr-accent);
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.5), 0 0 0 10px rgba(212, 175, 55, 0.1);
+    transition: transform 0.3s ease, background 0.3s ease;
+}
+
+.video-cover:hover .play-button-outer {
+    transform: scale(1.1);
+    background: var(--clr-primary);
+}
+
+.play-button-outer svg {
+    width: 32px;
+    height: 32px;
+    color: var(--clr-white);
+    fill: currentColor;
+    margin-left: 4px;
+    /* Compensar o centro visual do triangulo */
+}
+
+/* ===================== SETA ANIMADA ===================== */
+.arrow-down {
+    display: none;
+}
+
+/* ===================== PRECO + CTA ===================== */
+.cta-block {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(212, 175, 55, 0.25);
+    border-radius: 15px;
+    padding: 1rem 1.5rem;
+    max-width: 500px;
+    margin: 0 auto;
+    backdrop-filter: blur(10px);
+    text-align: center;
+}
+
+.cta-label {
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--clr-accent);
+    font-weight: 600;
+    margin-bottom: 0.2rem;
+    display: block;
+}
+
+.price-main {
+    font-family: var(--font-heading);
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
+    color: var(--clr-white);
+    line-height: 1;
+    margin-bottom: 0.2rem;
+}
+
+.price-installments {
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 0.3rem;
+}
+
+.price-installments strong {
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.price-security {
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.45);
+    margin-bottom: 0.8rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem;
+}
+
+.price-security svg {
+    width: 12px;
+    height: 12px;
+    flex-shrink: 0;
+}
+
+/* Botao Principal */
+.btn-cta {
+    display: inline-block;
+    width: 100%;
+    max-width: 400px;
+    padding: 0.8rem 1.5rem;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    font-size: 0.9rem;
+    border-radius: 8px;
+    border: none;
+    font-family: var(--font-body);
+    cursor: pointer;
+    background-color: #2c7a36;
+    color: var(--clr-white);
+    box-shadow:
+        1px 1px 0px #1a451f,
+        2px 2px 0px #1a451f,
+        3px 3px 0px #1a451f,
+        4px 4px 0px #1a451f,
+        5px 5px 0px #1a451f,
+        6px 6px 15px rgba(0, 0, 0, 0.4);
+    margin-bottom: 5px;
+    margin-right: 5px;
+    transition: all 0.15s ease-out;
+    animation: premiumPulse 2s infinite;
+}
+
+.btn-cta:hover {
+    transform: translate(-1px, -1px);
+    background-color: #389445;
+    box-shadow:
+        1px 1px 0px #1a451f,
+        2px 2px 0px #1a451f,
+        3px 3px 0px #1a451f,
+        4px 4px 0px #1a451f,
+        5px 5px 0px #1a451f,
+        6px 6px 0px #1a451f,
+        7px 7px 20px rgba(0, 0, 0, 0.5);
+    animation-play-state: paused;
+}
+
+.btn-cta:active {
+    transform: translate(4px, 4px);
+    box-shadow:
+        1px 1px 0px #1a451f,
+        2px 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+@keyframes premiumPulse {
+    0% {
+        filter: brightness(1);
+    }
+
+    50% {
+        filter: brightness(1.15);
+    }
+
+    100% {
+        filter: brightness(1);
+    }
+}
+
+/* ===================== VALORES / REFORCO ===================== */
+.valores-block {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    margin-top: 0.8rem;
+}
+
+.valor-item {
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    font-size: 0.7rem;
+    color: rgba(255, 255, 255, 0.65);
+    font-weight: 400;
+}
+
+.valor-item svg {
+    width: 16px;
+    height: 16px;
+    color: var(--clr-accent);
+    flex-shrink: 0;
+}
+
+/* ===================== FOOTER ===================== */
+.footer {
+    padding: 1.5rem 0 1rem;
+    background-color: #111;
+    color: rgba(255, 255, 255, 0.5);
+    text-align: center;
+}
+
+.footer-title {
+    font-size: 1rem;
+    letter-spacing: 0.2em;
+    color: var(--clr-accent);
+    margin-bottom: 0.5rem;
+    font-family: var(--font-heading);
+}
+
+.footer-copy {
+    font-size: 0.8rem;
+}
+
+/* ===================== RESPONSIVE ===================== */
+@media (max-width: 768px) {
+    .vsl-logo {
+        display: none;
+    }
+
+    .hero-vsl {
+        padding: 1.5rem 0 1.5rem;
+        min-height: auto;
+    }
+
+    .vsl-title {
+        font-size: clamp(1.4rem, 6vw, 1.8rem);
+    }
+
+    .cta-block {
+        padding: 1.5rem 1rem;
+    }
+
+    .price-main {
+        font-size: 1.8rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .valores-block {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+    }
+}

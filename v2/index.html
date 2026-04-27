@@ -73,11 +73,11 @@
 
         .hero {
             min-height: 100vh;
-            background-color: var(--clr-primary);
-            background-image: radial-gradient(circle at top, rgba(132, 0, 59, 0.2) 0%, var(--clr-primary-dark) 80%), url('/.netlify/images?url=https://images.unsplash.com/photo-1594035910387-fea47794261f?auto=format%26fit=crop%26q=80%26w=1920&w=1920&q=80'), var(--pattern-perfume);
-            background-size: cover, cover, auto;
-            background-position: center bottom, center, center;
-            background-blend-mode: normal, soft-light, overlay;
+            background-color: var(--clr-bg);
+            background-image: var(--pattern-perfume);
+            background-size: auto;
+            background-position: center;
+            background-blend-mode: normal;
             display: flex;
             align-items: center;
             position: relative;
@@ -159,7 +159,7 @@
             height: 100%;
             background: var(--clr-accent);
             border-radius: 6px;
-            width: 96%;
+            width: 45%;
             animation: fillProgressV2 1.5s ease-out forwards !important;
         }
 
@@ -169,7 +169,7 @@
             }
 
             to {
-                width: 96%;
+                width: 45%;
             }
         }
 
@@ -232,8 +232,9 @@
         }
 
         .btn-primary {
-            background-color: var(--clr-accent);
-            color: var(--clr-primary-dark);
+            background-color: #047857;
+            color: #ffffff;
+            border-color: #047857;
         }
 
         .hero-visual {
@@ -748,29 +749,33 @@
                 <h1 class="hero-title">Aprenda a Criar Perfumes Naturais Exclusivos e Transforme Isso em um Negócio
                     Lucrativo</h1>
 
-                <!-- PROGRESS BAR LOTE RESTORED -->
+                <!-- PROGRESS BAR LOTE 1 -->
                 <div class="lotes-progress-block">
                     <div class="lotes-labels">
-                        <span class="lote">Lote 1</span>
+                        <span class="lote active">Lote 1</span>
                         <span class="lote">Lote 2</span>
-                        <span class="lote active">Lote 3</span>
+                        <span class="lote">Lote 3</span>
                     </div>
                     <div class="progress-bar-container">
-                        <div class="progress-bar-fill" style="width: 96%;"></div>
+                        <div class="progress-bar-fill" style="width: 45%;"></div>
                     </div>
-                    <div class="progress-text">96% das vagas preenchidas</div>
+                    <div class="progress-text">45% das vagas preenchidas</div>
                 </div>
 
                 <p class="hero-description">Descubra o método de Perfumaria Ancestral que ensina, do zero, como criar
                     fragrâncias naturais únicas, despertar sua sensibilidade olfativa e transformar essa habilidade em
                     uma fonte real de renda.</p>
 
+                <div style="display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.5rem;">
+                    <span style="display: inline-flex; align-items: center; gap: 0.4rem; background: rgba(132, 0, 59, 0.05); border: 1px solid var(--clr-primary); border-radius: 6px; padding: 0.4rem 0.8rem; font-size: 0.85rem; color: var(--clr-primary); font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em;">Ao Vivo</span>
+                    <span style="display: inline-flex; align-items: center; gap: 0.4rem; background: rgba(132, 0, 59, 0.05); border: 1px solid var(--clr-primary); border-radius: 6px; padding: 0.4rem 0.8rem; font-size: 0.85rem; color: var(--clr-primary); font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em;">9 e 11 de junho</span>
+                    <span style="display: inline-flex; align-items: center; gap: 0.4rem; background: rgba(132, 0, 59, 0.05); border: 1px solid var(--clr-primary); border-radius: 6px; padding: 0.4rem 0.8rem; font-size: 0.85rem; color: var(--clr-primary); font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em;">Sem Gravacao</span>
+                </div>
 
                 <div class="hero-actions">
                     <a href="#preco" class="btn btn-primary pulse-loop">Quero Garantir Minha Vaga</a>
-                    <p class="hero-price" style="font-size: 1.1rem; margin-top: 1rem; color: var(--clr-text-muted);">de R$78 por <strong style="font-size: 1.3rem; color: var(--clr-primary);">R$25</strong></p>
-                    <p class="vip-notice">Evento exclusivamente ao vivo. Entre em contato com a equipe caso queira
-                        adquirir o acesso VIP com direito à gravação.</p>
+                    <p class="hero-price" style="font-size: 1.1rem; margin-top: 1rem; color: var(--clr-text-muted);">apenas <strong style="font-size: 1.3rem; color: var(--clr-primary);">R$ 15,00</strong> no Lote 1</p>
+                    <p class="vip-notice" style="color: var(--clr-text-muted);">Evento exclusivamente ao vivo. Nao ha gravacao disponivel.</p>
                 </div>
             </div>
 
@@ -899,14 +904,14 @@
                 <div class="pricing-card"
                     style="margin: 0; top: 0; padding: 3rem 1.5rem; width: 100%; box-sizing: border-box;">
                     <div style="text-align: center; margin-bottom: 2rem;">
-                        <h3>LOTE 3</h3>
+                        <h3>LOTE 1</h3>
                         <span class="price-sub" style="margin-bottom: 0.5rem; text-decoration: line-through; opacity: 0.7;">de R$ 78,00</span>
                         <span class="price-sub" style="margin-bottom: 0.5rem;">por apenas</span>
-                        <div class="price" style="margin-bottom: 0.5rem; font-size: clamp(3rem, 10vw, 4rem);">R$ 25,00
+                        <div class="price" style="margin-bottom: 0.5rem; font-size: clamp(3rem, 10vw, 4rem);">R$ 15,00
                         </div>
                         <div
                             style="color: var(--clr-accent); font-weight: 700; text-transform: uppercase; font-size: 0.95rem; letter-spacing: 0.05em; margin-top: 1rem;">
-                            07 e 09 de abril - evento online</div>
+                            9 e 11 de junho - evento ao vivo</div>
                     </div>
 
                     <div
@@ -927,7 +932,7 @@
                         <a href="https://pay.hotmart.com/W103474219V?off=qwh2ageb&checkoutMode=10&bid=1774984949204"
                             class="btn btn-primary pulse-loop"
                             style="width: 100%; font-size: 1.1rem; padding: 1.2rem 1rem; box-sizing: border-box; white-space: normal;">Quero
-                            aproveitar o lote 3</a>
+                            aproveitar o lote 1</a>
                     </div>
                 </div>
 
@@ -1069,6 +1074,10 @@
                 <details class="faq-item">
                     <summary>Por que faz diferença garantir meu ingresso agora?</summary>
                     <p>A venda dos nossos ingressos é feita por lotes. A qualquer momento podemos ter um aumento no valor do ingresso, então sugiro que você garanta sua vaga o mais rápido possível.</p>
+                </details>
+                <details class="faq-item">
+                    <summary>O evento tera gravacao disponivel?</summary>
+                    <p>Nao. O evento e exclusivamente ao vivo e nao havera gravacao disponibilizada. Para aproveitar todo o conteudo, e importante que voce esteja presente nos dias 9 e 11 de junho. Reserve ja o seu horario!</p>
                 </details>
             </div>
         </div>

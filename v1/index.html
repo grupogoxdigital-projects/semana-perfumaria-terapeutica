@@ -155,7 +155,13 @@
             height: 100%;
             background: var(--clr-accent);
             border-radius: 6px;
-            width: 96%;
+            width: 45%;
+            animation: fillProgressV1 1.5s ease-out forwards !important;
+        }
+
+        @keyframes fillProgressV1 {
+            from { width: 0; }
+            to { width: 45%; }
         }
 
         .progress-text {
@@ -217,8 +223,9 @@
         }
 
         .btn-primary {
-            background-color: var(--clr-accent);
-            color: var(--clr-primary-dark);
+            background-color: #047857;
+            color: #ffffff;
+            border-color: #047857;
         }
 
         .hero-visual {
@@ -372,27 +379,33 @@
                 <img src="/.netlify/images?url=/v1/imagens/logonova-SPT-menor.png&w=600&q=80" alt="Logo SPT" style="max-width: 450px; margin-top: -1.5rem; margin-bottom: 1rem; display: block;" class="hero-main-logo">
                 <h1 class="hero-title">Transforme sua vida financeira fazendo perfumes em casa</h1>
 
-                <!-- PROGRESS BAR LOTE -->
+                <!-- PROGRESS BAR LOTE 1 -->
                 <div class="lotes-progress-block">
                     <div class="lotes-labels">
-                        <span class="lote">Lote 1</span>
+                        <span class="lote active">Lote 1</span>
                         <span class="lote">Lote 2</span>
-                        <span class="lote active">Lote 3</span>
+                        <span class="lote">Lote 3</span>
                     </div>
                     <div class="progress-bar-container">
-                        <div class="progress-bar-fill" style="width: 96%;"></div>
+                        <div class="progress-bar-fill" style="width: 45%;"></div>
                     </div>
-                    <div class="progress-text">96% das vagas preenchidas</div>
+                    <div class="progress-text">45% das vagas preenchidas</div>
                 </div>
 
                 <p class="hero-description">Aprenda duas receitas exclusivas de perfumes naturais simples e eficazes em dois encontros ao vivo com Palmira Margarida que irão transformar sua vida financeira. <em>E mais: aprenda na prática duas receitas exclusivas, já validadas no mercado de perfumes naturais e terapêuticos</em>.</p>
+
+                <div style="display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.5rem;">
+                    <span style="display: inline-flex; align-items: center; gap: 0.4rem; background: rgba(132, 0, 59, 0.05); border: 1px solid var(--clr-primary); border-radius: 6px; padding: 0.4rem 0.8rem; font-size: 0.85rem; color: var(--clr-primary); font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em;">Ao Vivo</span>
+                    <span style="display: inline-flex; align-items: center; gap: 0.4rem; background: rgba(132, 0, 59, 0.05); border: 1px solid var(--clr-primary); border-radius: 6px; padding: 0.4rem 0.8rem; font-size: 0.85rem; color: var(--clr-primary); font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em;">9 e 11 de junho</span>
+                    <span style="display: inline-flex; align-items: center; gap: 0.4rem; background: rgba(132, 0, 59, 0.05); border: 1px solid var(--clr-primary); border-radius: 6px; padding: 0.4rem 0.8rem; font-size: 0.85rem; color: var(--clr-primary); font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em;">Sem Gravacao</span>
+                </div>
+
                 <div class="hero-actions">
                     <a href="https://pay.hotmart.com/W103474219V?off=qwh2ageb&checkoutMode=10&bid=1774984949204"
                         class="btn btn-primary pulse-loop">Quero
                         Garantir Minha Vaga</a>
-                    <p class="hero-price" style="font-size: 1.1rem; margin-top: 1rem; color: var(--clr-text-muted);">de R$78 por <strong style="font-size: 1.3rem; color: var(--clr-primary);">R$25</strong></p>
-                    <p class="vip-notice">Evento exclusivamente ao vivo. Entre em contato com a equipe caso queira
-                        adquirir o acesso VIP com direito à gravação.</p>
+                    <p class="hero-price" style="font-size: 1.1rem; margin-top: 1rem; color: var(--clr-text-muted);">apenas <strong style="font-size: 1.3rem; color: var(--clr-primary);">R$ 15,00</strong> no Lote 1</p>
+                    <p class="vip-notice" style="color: var(--clr-text-muted);">Evento exclusivamente ao vivo. Nao ha gravacao disponivel.</p>
                 </div>
             </div>
 
@@ -718,6 +731,10 @@
                     <summary>Por que faz diferença garantir meu ingresso agora?</summary>
                     <p>A venda dos nossos ingressos é feita por lotes. A qualquer momento podemos ter um aumento no valor do ingresso, então sugiro que você garanta sua vaga o mais rápido possível.</p>
                 </details>
+                <details class="faq-item">
+                    <summary>O evento tera gravacao disponivel?</summary>
+                    <p>Nao. O evento e exclusivamente ao vivo e nao havera gravacao disponibilizada. Para aproveitar todo o conteudo, e importante que voce esteja presente nos dias 9 e 11 de junho. Reserve ja o seu horario!</p>
+                </details>
             </div>
         </div>
     </section>
@@ -733,8 +750,7 @@
                     class="btn btn-primary pulse-loop">Quero
                     Participar da Semana Perfumaria
                     Terapêutica</a>
-                <p class="vip-notice">Evento exclusivamente ao vivo. Entre em contato com a equipe caso queira adquirir
-                    o acesso VIP com direito à gravação.</p>
+                <p class="vip-notice">Evento exclusivamente ao vivo. Nao ha gravacao disponivel.</p>
             </div>
         </div>
     </section>

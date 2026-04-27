@@ -189,7 +189,7 @@ h3 {
     }
 
     to {
-        width: 95%;
+        width: 45%;
     }
 }
 
@@ -305,14 +305,16 @@ h3 {
 }
 
 .btn-primary {
-    background-color: var(--clr-primary);
-    color: var(--clr-white);
+    background-color: #047857;
+    color: #ffffff;
+    border-color: #047857;
 }
 
 .btn-primary:hover {
     background-color: transparent;
-    color: var(--clr-primary);
-    box-shadow: 0 0 20px rgba(132, 0, 59, 0.2);
+    color: #047857;
+    border-color: #047857;
+    box-shadow: 0 0 20px rgba(4, 120, 87, 0.4);
     transform: translateY(-2px);
 }
 
@@ -762,9 +764,9 @@ h3 {
 }
 
 .btn-accent {
-    background-color: var(--clr-accent);
-    color: var(--clr-primary-dark);
-    border-color: var(--clr-accent);
+    background-color: #047857;
+    color: #ffffff;
+    border-color: #047857;
 }
 
 /* Footer */

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Semana da Perfumaria Terapêutica | VSL</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Philosopher:ital,wght@0,400;0,700&family=Outfit:wght@400;700&display=swap"
+        rel="stylesheet">
+    
+    <link rel="stylesheet" href="/vsl3/style.css">
+    
+    <link rel="icon" type="image/svg+xml" href="/vsl3/favicon.svg">
+
+    <!-- SEO -->
+    <meta name="description" content="Aprenda a transformar essência em independência com a Dra. Palmira Margarida.">
+    <meta property="og:title" content="Semana da Perfumaria Terapêutica">
+    <meta property="og:image" content="/.netlify/images?url=/vsl3/imagens/palmira01_optimized.png&w=1200&q=80">
+    <meta property="og:type" content="website">
+
+    <!-- Google Tag Manager -->
+    <script>(function (w, d, s, l, i) {
+            w[l] = w[l] || []; w[l].push({
+                'gtm.start':
+                    new Date().getTime(), event: 'gtm.js'
+            }); var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+                    'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-5SGRDC89');</script>
+    <!-- End Google Tag Manager -->
+</head>
+
+<body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5SGRDC89" height="0" width="0"
+            style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
+    <main class="main-vsl">
+        <div class="aura aura-1"></div>
+        <div class="aura aura-2"></div>
+
+        <div class="vsl-content-wrapper">
+            <div class="logo-container">
+                <img src="/.netlify/images?url=/vsl3/imagens/logonova-SPT-menor.png&w=600&q=80" alt="Logo SPT">
+            </div>
+
+            <h1 class="headline">Descubra a arte da Perfumaria Ancestral e transforme sua vida financeira fazendo <span>perfumes em casa</span></h1>
+            <p class="subtitle">Aprenda o método exclusivo para criar essências terapêuticas e gerar uma nova fonte de renda real e duradoura.</p>
+
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/PEvqCbwoQuI?autoplay=0&rel=0&modestbranding=1" 
+                        title="Semana da Perfumaria Terapêutica" 
+                        frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                        allowfullscreen></iframe>
+            </div>
+
+            <div class="cta-container">
+                <p class="price-info">Apenas <strong>R$ 20,00</strong> no Lote 2</p>
+                <a href="https://pay.hotmart.com/W103474219V?off=rvz8gdbg&checkoutMode=10" class="btn">
+                    Quero Garantir Minha Vaga
+                </a>
+                <p class="vip-notice">Evento exclusivamente ao vivo nos dias 9 e 11 de junho. Não há gravação disponível.</p>
+            </div>
+        </div>
+
+        <footer class="vsl-footer">
+            <h3 class="footer-title">SEMANA PERFUMARIA TERAPÊUTICA</h3>
+            <p class="footer-copy">&copy; 2026 Palmira Margarida. Todos os direitos reservados.</p>
+        </footer>
+    </main>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // UTM Forwarding
+            var urlParams = window.location.search;
+            if (urlParams) {
+                var links = document.querySelectorAll('a[href*="hotmart.com"]');
+                links.forEach(function (link) {
+                    if (!link.href.includes(urlParams.substring(1))) {
+                        var separator = link.href.indexOf('?') !== -1 ? '&' : '?';
+                        link.href = link.href + separator + urlParams.substring(1);
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>

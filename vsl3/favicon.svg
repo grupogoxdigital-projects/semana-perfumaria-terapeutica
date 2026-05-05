@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <defs>
+    <linearGradient id="glass" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#84003b" />
+      <stop offset="100%" stop-color="#4a0021" />
+    </linearGradient>
+  </defs>
+  <!-- Bottle body -->
+  <path d="M 25 45 C 25 30, 40 25, 50 25 C 60 25, 75 30, 75 45 L 80 85 Q 80 95, 70 95 L 30 95 Q 20 95, 20 85 Z" fill="url(#glass)"/>
+  <!-- Cap base -->
+  <rect x="42" y="15" width="16" height="10" fill="#CCA876"/>
+  <!-- Cap top -->
+  <circle cx="50" cy="10" r="8" fill="#5febe6"/>
+  <!-- Label -->
+  <rect x="35" y="55" width="30" height="20" fill="#FAFAFA" rx="2"/>
+  <line x1="40" y1="65" x2="60" y2="65" stroke="#4a0021" stroke-width="2" stroke-linecap="round"/>
+  <!-- Reflection -->
+  <path d="M 30 45 C 30 35, 40 30, 50 28 L 50 90 L 30 90 Z" fill="#ffffff" opacity="0.15"/>
+</svg>

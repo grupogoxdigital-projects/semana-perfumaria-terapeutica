@@ -1,0 +1,300 @@
+:root {
+    --clr-primary: #84003b;
+    --clr-primary-dark: #4a0021;
+    --clr-accent: #84003b;
+    --clr-bg: #f6f2e7;
+    --clr-white: #ffffff;
+    --clr-text-light: #ffffff;
+    --clr-text-dark: #1a1a1a;
+    --clr-text-muted: #4a4a4a;
+    --font-heading: 'Philosopher', serif;
+    --font-body: 'Outfit', sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    height: 100%;
+}
+
+body {
+    min-height: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+    background-color: var(--clr-bg);
+    color: var(--clr-text-dark);
+    font-family: var(--font-body);
+    -webkit-font-smoothing: antialiased;
+}
+
+.main-vsl {
+    min-height: 100vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start; /* Alinhado ao topo conforme solicitado */
+    padding: 4rem 1rem 2rem; /* Espaçamento superior generoso */
+    position: relative;
+    background-color: var(--clr-bg);
+    /* Removidas todas as imagens de fundo e padrões */
+}
+
+.vsl-content-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 900px;
+    z-index: 10;
+    gap: 1.5rem;
+}
+
+.logo-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 0.5rem;
+}
+
+.logo-container img {
+    max-width: 180px;
+    height: auto;
+}
+
+.headline {
+    font-family: var(--font-heading);
+    font-size: 2.2rem;
+    line-height: 1.1;
+    font-weight: 700;
+    text-align: center;
+    width: 100%;
+    color: var(--clr-primary);
+    margin: 0;
+}
+
+.headline span {
+    color: var(--clr-primary-dark);
+    font-style: italic;
+}
+
+.subtitle {
+    font-size: 1.1rem;
+    color: var(--clr-text-muted);
+    font-weight: 400;
+    text-align: center;
+    max-width: 750px;
+    line-height: 1.4;
+}
+
+.video-container {
+    width: 100%;
+    max-width: 800px;
+    aspect-ratio: 16/9;
+    background: #000;
+    border-radius: 12px;
+    overflow: hidden;
+    position: relative;
+    box-shadow:
+        0 0 0 1px rgba(132, 0, 59, 0.1),
+        0 10px 30px rgba(0, 0, 0, 0.1),
+        0 20px 60px rgba(132, 0, 59, 0.05);
+}
+
+.video-container::before {
+    content: '';
+    position: absolute;
+    inset: -1px;
+    border-radius: 13px;
+    background: linear-gradient(135deg, rgba(132, 0, 59, 0.2), transparent 40%, rgba(132, 0, 59, 0.05) 100%);
+    z-index: -1;
+}
+
+.video-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.cta-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    gap: 0.8rem;
+    background: rgba(132, 0, 59, 0.03);
+    padding: 1.5rem;
+    border-radius: 15px;
+    border: 1px solid rgba(132, 0, 59, 0.1);
+    backdrop-filter: blur(5px);
+    max-width: 550px;
+}
+
+.price-info {
+    font-size: 1.1rem;
+    color: var(--clr-text-dark);
+    margin: 0;
+}
+
+.price-info strong {
+    color: var(--clr-primary);
+    font-size: 1.4rem;
+    font-family: var(--font-heading);
+}
+
+.btn {
+    display: inline-block;
+    width: 100%;
+    max-width: 400px;
+    padding: 1.2rem 2rem;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    font-size: 1rem;
+    border-radius: 10px;
+    border: none;
+    font-family: var(--font-body);
+    cursor: pointer;
+    background-color: #047857;
+    color: var(--clr-white);
+    text-align: center;
+    box-shadow:
+        0 1px 0px #035a41,
+        0 2px 0px #035a41,
+        0 3px 0px #035a41,
+        0 4px 0px #035a41,
+        0 5px 0px #035a41,
+        0 10px 20px rgba(4, 120, 87, 0.2);
+    transition: all 0.2s ease;
+    animation: premiumPulse 2s infinite;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    background-color: #059669;
+    box-shadow:
+        0 1px 0px #035a41,
+        0 2px 0px #035a41,
+        0 3px 0px #035a41,
+        0 4px 0px #035a41,
+        0 5px 0px #035a41,
+        0 6px 0px #035a41,
+        0 15px 25px rgba(4, 120, 87, 0.3);
+    animation-play-state: paused;
+}
+
+.btn:active {
+    transform: translateY(3px);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+@keyframes premiumPulse {
+    0% { filter: brightness(1); }
+    50% { filter: brightness(1.1); }
+    100% { filter: brightness(1); }
+}
+
+.vip-notice {
+    font-size: 0.85rem;
+    color: var(--clr-text-muted);
+    font-weight: 400;
+    text-align: center;
+    margin: 0;
+}
+
+.aura {
+    position: absolute;
+    width: 60vh;
+    height: 60vh;
+    border-radius: 50%;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.aura-1 { 
+    top: -15%; 
+    left: -15%; 
+    background: radial-gradient(circle, rgba(132, 0, 59, 0.08) 0%, transparent 70%);
+}
+.aura-2 { 
+    bottom: -15%; 
+    right: -15%; 
+    background: radial-gradient(circle, rgba(132, 0, 59, 0.05) 0%, transparent 70%);
+}
+
+.vsl-footer {
+    width: 100%;
+    padding: 3rem 1rem 2rem;
+    text-align: center;
+    z-index: 10;
+    margin-top: 2rem;
+}
+
+.footer-title {
+    font-family: var(--font-heading);
+    font-size: 1.1rem;
+    letter-spacing: 0.15em;
+    color: var(--clr-primary);
+    margin-bottom: 0.5rem;
+}
+
+.footer-copy {
+    font-size: 0.8rem;
+    color: var(--clr-text-muted);
+    opacity: 0.7;
+}
+
+@media (max-width: 768px) {
+    .main-vsl {
+        padding: 2.5rem 1rem 1rem; /* Padding mobile ajustado */
+        justify-content: flex-start;
+    }
+    
+    .vsl-content-wrapper {
+        gap: 1.2rem;
+    }
+
+    .logo-container img {
+        max-width: 140px;
+    }
+    
+    .headline {
+        font-size: 1.6rem;
+    }
+
+    .subtitle {
+        font-size: 0.95rem;
+    }
+
+    .cta-container {
+        padding: 1.2rem;
+        background: rgba(132, 0, 59, 0.03);
+        border: 1px solid rgba(132, 0, 59, 0.1);
+        backdrop-filter: blur(5px);
+    }
+    
+    .video-container {
+        max-height: none;
+    }
+    
+    .btn {
+        padding: 1rem 1.5rem;
+        font-size: 0.9rem;
+    }
+
+    .vsl-footer {
+        padding: 2rem 1rem 1rem;
+        margin-top: 1rem;
+    }
+    
+    .footer-title {
+        font-size: 0.9rem;
+    }
+}

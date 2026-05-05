@@ -55,16 +55,8 @@ h3 {
     margin: 0 auto;
 }
 
-.narrow-container {
-    max-width: 850px;
-}
-
 .text-center {
     text-align: center;
-}
-
-.text-accent {
-    color: var(--clr-accent);
 }
 
 .bg-white {
@@ -84,18 +76,8 @@ h3 {
 
 .bg-subtle .section-title,
 .bg-subtle .section-text,
-.bg-subtle .section-subtitle,
-.bg-subtle .quote,
 .bg-subtle h3 {
     color: var(--clr-text-light) !important;
-}
-
-.bg-subtle .bento-card h3 {
-    color: var(--clr-primary) !important;
-}
-
-.bg-subtle .bento-card p {
-    color: var(--clr-text-muted) !important;
 }
 
 .bg-white .section-title {
@@ -119,6 +101,16 @@ h3 {
     position: relative;
     padding: 3rem 0 2rem 0;
     overflow: hidden;
+}
+
+@media (max-width: 768px) {
+    .hero {
+        background-image: 
+            linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+            radial-gradient(circle at top, rgba(132, 0, 59, 0.2) 0%, var(--clr-primary-dark) 85%), 
+            url('/.netlify/images?url=/v3/imagens/backgroundperfumepalmira.webp&w=800&q=70'), 
+            var(--pattern-perfume);
+    }
 }
 
 .hero-container {
@@ -473,21 +465,6 @@ h3 {
 }
 
 @media (max-width: 992px) {
-    .challenge-grid {
-        grid-template-columns: 1fr;
-        gap: 3rem;
-    }
-    
-    .challenge-image {
-        order: 2; /* Image below items on mobile */
-        max-width: 500px;
-        margin: 0 auto;
-    }
-
-    .challenge-content {
-        text-align: center;
-    }
-
     .challenge-checklist {
         margin: 2rem auto;
         max-width: 500px;
@@ -627,6 +604,13 @@ h3 {
     line-height: 1.8;
     margin-bottom: 2rem;
     color: var(--clr-text-muted);
+}
+
+/* Optimized Sections */
+.modules-section,
+.mentora-section {
+    content-visibility: auto;
+    contain-intrinsic-size: 0 800px;
 }
 
 /* CTA Final */

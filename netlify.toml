@@ -17,6 +17,18 @@
   status = 301
   force = true
 
+[[redirects]]
+  from = "/dash-palmira/*"
+  to = "/dashboard-palmira/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/dash-palmira"
+  to = "/dashboard-palmira"
+  status = 301
+  force = true
+
 
 
 

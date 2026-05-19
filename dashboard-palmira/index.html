@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Digital · Dashboard Palmira Margarida · T3 JUN26</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --brand-red: #ea4128;
+    --brand-red-soft: rgba(234, 65, 40, 0.12);
+    --brand-white: #d7ddda;
+    --brand-black: #1a1a1a;
+    --bg: #0e0e10;
+    --bg-card: #1a1a1d;
+    --bg-elevated: #25252a;
+    --text: #f5f5f7;
+    --text-2: #a1a1aa;
+    --text-3: #6b6b70;
+    --border: #2a2a2f;
+    --border-2: #3a3a40;
+    --success: #1d9e75;
+    --warning: #ba7517;
+    --danger: #a32d2d;
+    --info: #185fa5;
+    --radius-sm: 6px;
+    --radius-md: 10px;
+    --radius-lg: 14px;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Sora', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+    background: var(--bg); color: var(--text); line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+  .app { max-width: 1280px; margin: 0 auto; padding: 16px 16px 60px; }
+  .header {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 16px 0 20px; border-bottom: 1px solid var(--border); margin-bottom: 20px;
+    flex-wrap: wrap; gap: 12px;
+  }
+  .brand { display: flex; align-items: center; gap: 12px; }
+  .logo-mark {
+    width: 38px; height: 38px; border-radius: 50%;
+    background: var(--brand-red); display: flex; align-items: center; justify-content: center;
+    color: #fff; font-weight: 800;
+  }
+  .brand-text { display: flex; flex-direction: column; line-height: 1; }
+  .brand-name { font-weight: 800; font-size: 18px; letter-spacing: -0.02em; }
+  .brand-sub { font-size: 11px; color: var(--text-3); margin-top: 4px; letter-spacing: 0.04em; text-transform: uppercase; }
+  .header-actions { display: flex; align-items: center; gap: 10px; }
+  .live-badge {
+    display: inline-flex; align-items: center; gap: 6px; padding: 6px 10px;
+    background: var(--brand-red-soft); color: var(--brand-red);
+    border-radius: 999px; font-size: 11px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;
+  }
+  .live-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--brand-red); box-shadow: 0 0 0 0 rgba(234,65,40,0.6); animation: pulse 1.6s infinite; }
+  @keyframes pulse {
+    0%   { box-shadow: 0 0 0 0 rgba(234,65,40,0.6); }
+    70%  { box-shadow: 0 0 0 10px rgba(234,65,40,0); }
+    100% { box-shadow: 0 0 0 0 rgba(234,65,40,0); }
+  }
+  .btn {
+    border: 1px solid var(--border-2); background: var(--bg-card);
+    color: var(--text); padding: 8px 14px; border-radius: 8px; font-family: inherit;
+    font-size: 13px; font-weight: 600; cursor: pointer; transition: all 0.15s;
+  }
+  .btn:hover { background: var(--bg-elevated); border-color: var(--brand-red); }
+
+  .page-title { margin-bottom: 6px; font-size: 26px; font-weight: 800; letter-spacing: -0.02em; }
+  .page-sub { color: var(--text-2); font-size: 13px; margin-bottom: 20px; }
+
+  .section-title {
+    margin: 28px 0 12px; font-size: 11px; font-weight: 700; color: var(--text-3);
+    letter-spacing: 0.12em; text-transform: uppercase;
+  }
+
+  .kpi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; }
+  .kpi {
+    background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg);
+    padding: 16px 18px;
+  }
+  .kpi-label { font-size: 11px; color: var(--text-3); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 8px; }
+  .kpi-value { font-size: 28px; font-weight: 800; letter-spacing: -0.02em; line-height: 1.1; }
+  .kpi-sub { font-size: 12px; color: var(--text-2); margin-top: 6px; }
+  .kpi.alert { border-color: var(--danger); background: rgba(163, 45, 45, 0.12); }
+  .kpi.alert .kpi-value { color: #ef6868; }
+  .kpi.good { border-color: var(--success); background: rgba(29, 158, 117, 0.08); }
+  .kpi.brand-strong { border-color: var(--brand-red); background: var(--brand-red-soft); }
+  .kpi.brand-strong .kpi-value { color: var(--brand-red); }
+
+  .card {
+    background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg);
+    padding: 20px;
+  }
+  .card-title { font-size: 16px; font-weight: 700; margin-bottom: 4px; letter-spacing: -0.01em; }
+  .card-sub { font-size: 12px; color: var(--text-2); margin-bottom: 16px; }
+
+  /* gráfico ingressos + faturamento por dia */
+  .chart-wrap { overflow-x: auto; padding-bottom: 8px; }
+  .chart {
+    display: grid; gap: 4px; min-width: 100%;
+    align-items: end;
+  }
+  .day-col {
+    display: flex; flex-direction: column; gap: 6px; align-items: center; min-width: 50px;
+  }
+  .bars { display: flex; gap: 3px; align-items: end; height: 160px; }
+  .bar {
+    width: 14px; border-radius: 3px 3px 0 0; min-height: 2px;
+    transition: opacity 0.2s;
+  }
+  .bar.ingressos { background: var(--brand-red); }
+  .bar.faturamento { background: var(--brand-white); }
+  .bar:hover { opacity: 0.7; }
+  .day-col.today .bars { padding-top: 4px; border-top: 2px dashed var(--brand-red); }
+  .day-col.today .day-label { color: var(--brand-red); font-weight: 700; }
+  .day-label { font-size: 10px; color: var(--text-3); }
+  .day-value { font-size: 10px; color: var(--text-2); font-weight: 600; }
+  .chart-legend { display: flex; gap: 16px; margin-top: 12px; font-size: 12px; color: var(--text-2); }
+  .legend-dot { display: inline-block; width: 10px; height: 10px; border-radius: 2px; margin-right: 6px; vertical-align: middle; }
+
+  /* tabela comparativo */
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th, td { padding: 10px 12px; text-align: left; border-bottom: 1px solid var(--border); }
+  th { font-size: 11px; color: var(--text-3); text-transform: uppercase; letter-spacing: 0.06em; font-weight: 600; }
+  td.num { text-align: right; font-variant-numeric: tabular-nums; font-weight: 600; }
+  .delta-up { color: var(--success); font-size: 11px; }
+  .delta-down { color: var(--danger); font-size: 11px; }
+  .delta-flat { color: var(--text-3); font-size: 11px; }
+
+  /* mix de tickets */
+  .ticket-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 10px; }
+  .ticket {
+    background: var(--bg-elevated); border-radius: var(--radius-md); padding: 14px;
+    border: 1px solid var(--border);
+  }
+  .ticket-lote { font-size: 10px; color: var(--text-3); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 4px; }
+  .ticket-price { font-size: 18px; font-weight: 800; color: var(--brand-red); margin-bottom: 8px; }
+  .ticket-row { display: flex; justify-content: space-between; font-size: 12px; color: var(--text-2); margin-top: 4px; }
+  .ticket-row .v { color: var(--text); font-weight: 600; }
+
+  /* Meta Ads tabela */
+  .meta-table td.num.alert-cpl { color: #ef6868; }
+  .meta-table td.day-cell { font-weight: 600; }
+  .meta-table tr.today-row { background: var(--brand-red-soft); }
+
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  @media (max-width: 900px) { .grid-2 { grid-template-columns: 1fr; } }
+
+  .footer {
+    margin-top: 32px; padding-top: 20px; border-top: 1px solid var(--border);
+    display: flex; justify-content: space-between; align-items: center;
+    font-size: 11px; color: var(--text-3); flex-wrap: wrap; gap: 8px;
+  }
+  .footer .gox { color: var(--brand-red); font-weight: 700; }
+
+  .loading {
+    text-align: center; padding: 60px 20px; color: var(--text-2);
+  }
+  .error {
+    background: rgba(163, 45, 45, 0.12); border: 1px solid var(--danger);
+    color: #ef6868; padding: 16px; border-radius: var(--radius-md); margin: 20px 0;
+    font-size: 13px;
+  }
+</style>
+</head>
+<body>
+<div class="app">
+
+  <div class="header">
+    <div class="brand">
+      <div class="logo-mark">D</div>
+      <div class="brand-text">
+        <div class="brand-name">Digital</div>
+        <div class="brand-sub">Empresa do Grupo GoX</div>
+      </div>
+    </div>
+    <div class="header-actions">
+      <span class="live-badge"><span class="live-dot"></span> Ao vivo</span>
+      <button class="btn" onclick="loadAll(true)">↻ Atualizar</button>
+    </div>
+  </div>
+
+  <h1 class="page-title">Palmira Margarida · T3 JUN26</h1>
+  <p class="page-sub">Captação MPA N1 — SPT (Semana Perfumaria Terapêutica) · atualiza a cada 5 minutos</p>
+
+  <div id="content">
+    <div class="loading">Carregando dados da planilha…</div>
+  </div>
+
+  <div class="footer">
+    <div>Última atualização: <span id="last-update">—</span></div>
+    <div class="gox">DIGITAL · Operação Palmira Margarida</div>
+  </div>
+
+</div>
+
+<script>
+/* ───────── CONFIG ───────── */
+const SHEET_PUB_ID = '2PACX-1vTL92tbwQmF3jTydrL6BQm3j1RQk4GUt4e-vrWvA8Wm-9pu0ZakbwUpMJwFXY3IVHbEhcuko2t8Sc6o';
+const TABS = {
+  geral:        '1494691800',
+  leadsFb:      '2051502992',
+  faturamento:  '1628836529'
+};
+const tabUrl = (gid) => `https://docs.google.com/spreadsheets/d/e/${SHEET_PUB_ID}/pub?gid=${gid}&single=true&output=csv`;
+const REFRESH_MS = 5 * 60 * 1000;
+const TODAY = new Date();
+const todayStr = `${String(TODAY.getDate()).padStart(2,'0')}/${String(TODAY.getMonth()+1).padStart(2,'0')}`;
+
+/* ───────── CSV PARSER (handles quoted fields with commas) ───────── */
+function parseCSV(text) {
+  const rows = [];
+  let row = [], field = '', inQuotes = false;
+  for (let i = 0; i < text.length; i++) {
+    const c = text[i], n = text[i+1];
+    if (inQuotes) {
+      if (c === '"' && n === '"') { field += '"'; i++; }
+      else if (c === '"') { inQuotes = false; }
+      else { field += c; }
+    } else {
+      if (c === '"') { inQuotes = true; }
+      else if (c === ',') { row.push(field); field = ''; }
+      else if (c === '\n') { row.push(field); rows.push(row); row = []; field = ''; }
+      else if (c === '\r') { /* skip */ }
+      else { field += c; }
+    }
+  }
+  if (field.length || row.length) { row.push(field); rows.push(row); }
+  return rows;
+}
+
+/* ───────── HELPERS ───────── */
+const norm = (s) => (s || '').toString().trim().toLowerCase().replace(/\s+/g, ' ');
+function toNumber(v) {
+  if (v == null) return 0;
+  let s = v.toString().trim();
+  if (!s || s === '—' || s.startsWith('#')) return 0;
+  s = s.replace(/R\$\s*/g, '').replace(/%/g, '').trim();
+  // BR format: 1.234,56 → JS 1234.56
+  if (s.includes(',') && s.includes('.')) {
+    s = s.replace(/\./g, '').replace(',', '.');
+  } else if (s.includes(',')) {
+    s = s.replace(',', '.');
+  }
+  const n = parseFloat(s);
+  return isNaN(n) ? 0 : n;
+}
+const fmtBRL = (n) => 'R$ ' + (n || 0).toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+const fmtBRL0 = (n) => 'R$ ' + Math.round(n || 0).toLocaleString('pt-BR');
+const fmtInt = (n) => Math.round(n || 0).toLocaleString('pt-BR');
+const fmtPct = (n) => (n || 0).toFixed(1) + '%';
+
+/* ───────── PARSE: aba Geral (T2 vs T3) ───────── */
+function parseGeral(rows) {
+  // formato: col0=label T2, col1=valor T2, col3=label T3, col4=valor T3
+  const data = { T2: {}, T3: {} };
+  const keyMap = {
+    'organicas':                 'organicas',
+    'inscritas facebook':        'inscritosFb',
+    'inscritas total':           'inscritosTotal',
+    'grupo whatsapp':            'grupoWhats',
+    'conversão whatsapp':        'convWhats',
+    'cliques ebook':             'cliquesEbook',
+    'comparecimento ao vivo':    'comparecimento',
+    'compras vip':               'comprasVip',
+    'conversão vip':             'convVip',
+    'dias de captação':          'diasCap',
+    'vendas por dia':            'vendasDia',
+    'custo por lead':            'cpl',
+    'conversão (13 a 20%)':      'convFinal',
+    'valor curso':               'valorCurso',
+    'total geral':               'totalVendas',
+    'investimento em captação':  'investCap',
+    'faturado spt':              'fatSpt',
+    'faturamento':               'faturamento',
+    'roas':                      'roas'
+  };
+  for (const r of rows) {
+    const lblT2 = norm(r[0]), valT2 = r[1];
+    const lblT3 = norm(r[3]), valT3 = r[4];
+    if (keyMap[lblT2]) data.T2[keyMap[lblT2]] = valT2;
+    if (keyMap[lblT3]) data.T3[keyMap[lblT3]] = valT3;
+  }
+  return data;
+}
+
+/* ───────── PARSE: aba Leads FB (Meta Ads dia-a-dia) ───────── */
+function parseLeadsFb(rows) {
+  // header row 0: Dia, In. Checkout, Custo por In.Checkout, Cliques no link, Compras, Custo por compra, Vis. página, Valor usado, CTR, CPM, ...
+  const days = [];
+  for (let i = 1; i < rows.length; i++) {
+    const r = rows[i];
+    const dia = (r[0] || '').toString().trim();
+    if (!dia || !/^\d{1,2}\/\d{1,2}/.test(dia)) continue; // ignora linhas de total/vazias
+    const checkout = toNumber(r[1]);
+    if (!checkout) continue; // ignora dias futuros vazios
+    days.push({
+      dia,
+      checkout,
+      cpl: toNumber(r[2]),
+      cliques: toNumber(r[3]),
+      compras: toNumber(r[4]),
+      custoCompra: toNumber(r[5]),
+      visPagina: toNumber(r[6]),
+      gasto: toNumber(r[7]),
+      ctr: toNumber(r[8]),
+      cpm: toNumber(r[9])
+    });
+  }
+  return days;
+}
+
+/* ───────── PARSE: aba Faturamento SPT ───────── */
+function parseFaturamento(rows) {
+  // estrutura: linha 0 = títulos grupos (INGRESSOS SPT 3, ORDERBUMB, ORGÂNICO/PAGO, LOTE 1/2/3, GRAVAÇÕES, JMP)
+  // linha 1 = headers de cada bloco
+  // a partir da linha 2 = dados diários
+  // col 0-4: DIA, INGRESSOS, CONV., FAT.BRUTO, FAT.LÍQUIDO
+  // col 6-8: DIA, GRAVAÇÃO, JMP
+  // col 10-13: DIA, INGRESSOS, FACEBOOK, ORGÂNICO
+  // col 15-17: LOTES (estrutura diferente - blocos de 4 linhas)
+
+  const days = [];
+  for (let i = 2; i < rows.length; i++) {
+    const r = rows[i];
+    const dia = (r[0] || '').toString().trim();
+    if (!dia || !/^\d{1,2}\/\d{1,2}/.test(dia)) continue;
+    const ingressos = toNumber(r[1]);
+    const fatBruto = toNumber(r[3]);
+    const fatLiquido = toNumber(r[4]);
+    if (!ingressos && !fatBruto) continue;
+    days.push({ dia, ingressos, fatBruto, fatLiquido, conv: toNumber(r[2]) });
+  }
+
+  // Mix de lotes — vou parsear procurando padrões na coluna 15-17
+  const lotes = [];
+  let currentLote = null;
+  for (let i = 0; i < rows.length; i++) {
+    const r = rows[i];
+    const c15 = (r[15] || '').toString().trim();
+    const c16 = (r[16] || '').toString().trim();
+    const c17 = (r[17] || '').toString().trim();
+
+    if (/^(LOTE \d|GRAVA|JMP)/i.test(c15)) {
+      if (currentLote) lotes.push(currentLote);
+      currentLote = { nome: c15, ticket: 0, vendas: 0, bruto: 0, liquido: 0, conv: '' };
+      continue;
+    }
+    if (currentLote) {
+      const label = norm(c15);
+      if (label === '' && c16.toString().includes('R$')) {
+        currentLote.ticket = toNumber(c16);
+      } else if (label === 'vendas') {
+        currentLote.vendas = toNumber(c16);
+      } else if (label === 'conversão') {
+        currentLote.conv = c16;
+      } else if (label === 'faturamento total') {
+        currentLote.bruto = toNumber(c16);
+        currentLote.liquido = toNumber(c17);
+      }
+    }
+  }
+  if (currentLote) lotes.push(currentLote);
+
+  // Total bruto/líquido = soma de dias
+  const totalBruto = days.reduce((s,d) => s + d.fatBruto, 0);
+  const totalLiquido = days.reduce((s,d) => s + d.fatLiquido, 0);
+  const totalIngressos = days.reduce((s,d) => s + d.ingressos, 0);
+
+  return { days, lotes, totalBruto, totalLiquido, totalIngressos };
+}
+
+/* ───────── RENDER ───────── */
+function renderKpis(geral, leadsFb, fat) {
+  const T3 = geral.T3, T2 = geral.T2;
+  const insT3 = toNumber(T3.inscritosTotal);
+  const insT2 = toNumber(T2.inscritosTotal);
+  const grupoT3 = toNumber(T3.grupoWhats);
+  const convW = insT3 > 0 ? Math.round((grupoT3 / insT3) * 100) : 0;
+  const isLowConv = convW < 70;
+
+  const totalCompras = leadsFb.reduce((s,d) => s + d.compras, 0);
+  const gastoTotal = leadsFb.reduce((s,d) => s + d.gasto, 0);
+  const cplMedio = totalCompras > 0 ? gastoTotal / totalCompras : 0;
+  const isCplHigh = cplMedio > 30;
+
+  // dia de hoje em leadsFb
+  const todayLead = leadsFb.find(d => d.dia.startsWith(todayStr));
+  const ingHoje = todayLead ? todayLead.compras : 0;
+  const todayFat = fat.days.find(d => d.dia === todayStr);
+  const fatHoje = todayFat ? todayFat.fatBruto : 0;
+
+  const diasCap = leadsFb.length;
+  const pace = diasCap > 0 ? Math.round(fat.totalIngressos / diasCap) : 0;
+  const ticketMedio = fat.totalIngressos > 0 ? fat.totalBruto / fat.totalIngressos : 0;
+
+  const html = `
+    <div class="section-title">Operação · T3 ao vivo</div>
+    <div class="kpi-grid">
+      <div class="kpi"><div class="kpi-label">Ingressos hoje</div><div class="kpi-value">${fmtInt(ingHoje)}</div><div class="kpi-sub">${todayStr}</div></div>
+      <div class="kpi brand-strong"><div class="kpi-label">Ingressos T3 (total)</div><div class="kpi-value">${fmtInt(fat.totalIngressos)}</div><div class="kpi-sub">vs T2: ${fmtInt(insT2)}</div></div>
+      <div class="kpi"><div class="kpi-label">Pace (ingressos/dia)</div><div class="kpi-value">${fmtInt(pace)}</div><div class="kpi-sub">${diasCap} dias rodando</div></div>
+      <div class="kpi ${isLowConv ? 'alert' : 'good'}">
+        <div class="kpi-label">Conv. WhatsApp</div>
+        <div class="kpi-value">${convW}%</div>
+        <div class="kpi-sub">${isLowConv ? '⚠ Abaixo de 70% — investigar Letalk' : 'OK'} · T2: 99%</div>
+      </div>
+    </div>
+
+    <div class="section-title">Financeiro · T3</div>
+    <div class="kpi-grid">
+      <div class="kpi"><div class="kpi-label">Faturamento hoje</div><div class="kpi-value">${fmtBRL0(fatHoje)}</div><div class="kpi-sub">${todayStr}</div></div>
+      <div class="kpi brand-strong"><div class="kpi-label">Faturamento SPT (bruto)</div><div class="kpi-value">${fmtBRL0(fat.totalBruto)}</div><div class="kpi-sub">Líquido: ${fmtBRL0(fat.totalLiquido)}</div></div>
+      <div class="kpi"><div class="kpi-label">Ticket médio</div><div class="kpi-value">${fmtBRL(ticketMedio)}</div><div class="kpi-sub">Total ingressos / Receita</div></div>
+      <div class="kpi ${isCplHigh ? 'alert' : ''}"><div class="kpi-label">CPL médio</div><div class="kpi-value">${fmtBRL(cplMedio)}</div><div class="kpi-sub">${isCplHigh ? '⚠ Acima de R$ 30' : 'Investido: ' + fmtBRL0(gastoTotal)}</div></div>
+    </div>
+  `;
+  return html;
+}
+
+function renderDailyChart(fat) {
+  if (!fat.days.length) return '';
+  const maxIng = Math.max(...fat.days.map(d => d.ingressos), 1);
+  const maxFat = Math.max(...fat.days.map(d => d.fatBruto), 1);
+
+  const cols = fat.days.map(d => {
+    const isToday = d.dia === todayStr;
+    const hIng = (d.ingressos / maxIng) * 100;
+    const hFat = (d.fatBruto / maxFat) * 100;
+    return `
+      <div class="day-col ${isToday ? 'today' : ''}">
+        <div class="day-value">${d.ingressos || '·'}</div>
+        <div class="bars">
+          <div class="bar ingressos" style="height: ${hIng}%" title="${d.dia}: ${d.ingressos} ingressos"></div>
+          <div class="bar faturamento" style="height: ${hFat}%" title="${d.dia}: ${fmtBRL0(d.fatBruto)}"></div>
+        </div>
+        <div class="day-label">${d.dia}</div>
+      </div>
+    `;
+  }).join('');
+
+  return `
+    <div class="section-title">Vendas por dia · T3</div>
+    <div class="card">
+      <div class="card-title">Ingressos vendidos + faturamento bruto</div>
+      <div class="card-sub">${fat.days.length} dias com movimento · ${todayStr === fat.days[fat.days.length-1]?.dia ? 'hoje destacado' : 'último dia: ' + fat.days[fat.days.length-1]?.dia}</div>
+      <div class="chart-wrap">
+        <div class="chart" style="grid-template-columns: repeat(${fat.days.length}, minmax(50px, 1fr))">
+          ${cols}
+        </div>
+      </div>
+      <div class="chart-legend">
+        <span><span class="legend-dot" style="background: var(--brand-red)"></span>Ingressos</span>
+        <span><span class="legend-dot" style="background: var(--brand-white)"></span>Faturamento bruto</span>
+      </div>
+    </div>
+  `;
+}
+
+function renderComparativo(geral, fat, leadsFb) {
+  const T2 = geral.T2, T3 = geral.T3;
+  const insT3 = fat.totalIngressos || toNumber(T3.inscritosTotal);
+  const insT2 = toNumber(T2.inscritosTotal);
+  const grupoT3 = toNumber(T3.grupoWhats);
+  const convW3 = insT3 > 0 ? Math.round((grupoT3 / insT3) * 100) : 0;
+  const gastoTotal = leadsFb.reduce((s,d) => s + d.gasto, 0);
+  const totalCompras = leadsFb.reduce((s,d) => s + d.compras, 0);
+  const cplT3 = totalCompras > 0 ? gastoTotal / totalCompras : 0;
+
+  const deltaPct = (a, b) => {
+    if (!b) return '';
+    const pct = ((a - b) / b) * 100;
+    const sign = pct >= 0 ? '+' : '';
+    const cls = Math.abs(pct) < 1 ? 'delta-flat' : (pct > 0 ? 'delta-up' : 'delta-down');
+    return `<span class="${cls}">${sign}${pct.toFixed(0)}%</span>`;
+  };
+  const deltaInv = (a, b) => {
+    // delta invertido (menor = melhor, como CPL)
+    if (!b) return '';
+    const pct = ((a - b) / b) * 100;
+    const sign = pct >= 0 ? '+' : '';
+    const cls = Math.abs(pct) < 1 ? 'delta-flat' : (pct > 0 ? 'delta-down' : 'delta-up');
+    return `<span class="${cls}">${sign}${pct.toFixed(0)}%</span>`;
+  };
+
+  return `
+    <div class="section-title">Comparativo T2 vs T3</div>
+    <div class="card">
+      <table>
+        <thead>
+          <tr><th>Métrica</th><th class="num">T1 (Jan/26)</th><th class="num">T2 (Mar-Abr)</th><th class="num">T3 (atual)</th><th class="num">Δ T2→T3</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Inscritos total</td><td class="num">1.906</td><td class="num">${fmtInt(insT2)}</td><td class="num">${fmtInt(insT3)}</td><td class="num">${deltaPct(insT3, insT2)}</td></tr>
+          <tr><td>Grupo WhatsApp</td><td class="num">1.807</td><td class="num">${fmtInt(toNumber(T2.grupoWhats))}</td><td class="num">${fmtInt(grupoT3)}</td><td class="num">${deltaPct(grupoT3, toNumber(T2.grupoWhats))}</td></tr>
+          <tr><td>Conv. WhatsApp</td><td class="num">95%</td><td class="num">${T2.convWhats || '—'}</td><td class="num" style="color:#ef6868">${convW3}%</td><td class="num"><span class="delta-down">−41pp</span></td></tr>
+          <tr><td>CPL médio</td><td class="num">R$ 13,14</td><td class="num">${T2.cpl || '—'}</td><td class="num">${fmtBRL(cplT3)}</td><td class="num">${deltaInv(cplT3, toNumber(T2.cpl))}</td></tr>
+          <tr><td>Vendas/dia</td><td class="num">73</td><td class="num">${T2.vendasDia || '—'}</td><td class="num">${fmtInt(fat.totalIngressos / leadsFb.length || 0)}</td><td class="num">—</td></tr>
+          <tr><td>Total vendas SPT</td><td class="num">381</td><td class="num">${T2.totalVendas || '—'}</td><td class="num">${fmtInt(fat.totalIngressos)}</td><td class="num">${deltaPct(fat.totalIngressos, toNumber(T2.totalVendas))}</td></tr>
+          <tr><td>Faturamento SPT (bruto)</td><td class="num">R$ 36.748</td><td class="num">${T2.fatSpt || '—'}</td><td class="num">${fmtBRL0(fat.totalBruto)}</td><td class="num">${deltaPct(fat.totalBruto, toNumber(T2.fatSpt))}</td></tr>
+          <tr><td>Investimento ads</td><td class="num">R$ 24.840</td><td class="num">${T2.investCap || '—'}</td><td class="num">${fmtBRL0(gastoTotal)}</td><td class="num">${deltaInv(gastoTotal, toNumber(T2.investCap))}</td></tr>
+        </tbody>
+      </table>
+    </div>
+  `;
+}
+
+function renderLotes(fat) {
+  if (!fat.lotes || !fat.lotes.length) return '';
+  const lotes = fat.lotes.filter(l => l.vendas > 0);
+  if (!lotes.length) return '';
+  const total = lotes.reduce((s,l) => s + l.vendas, 0);
+  return `
+    <div class="section-title">Mix de tickets · T3</div>
+    <div class="ticket-grid">
+      ${lotes.map(l => `
+        <div class="ticket">
+          <div class="ticket-lote">${l.nome}</div>
+          <div class="ticket-price">${l.ticket ? fmtBRL(l.ticket) : '—'}</div>
+          <div class="ticket-row"><span>Vendas</span><span class="v">${fmtInt(l.vendas)}</span></div>
+          <div class="ticket-row"><span>Bruto</span><span class="v">${fmtBRL0(l.bruto)}</span></div>
+          <div class="ticket-row"><span>% do total</span><span class="v">${total > 0 ? Math.round((l.vendas/total)*100) : 0}%</span></div>
+        </div>
+      `).join('')}
+    </div>
+  `;
+}
+
+function renderMetaAds(leadsFb) {
+  if (!leadsFb.length) return '';
+  const last7 = leadsFb.slice(-7);
+  return `
+    <div class="section-title">Meta Ads · últimos 7 dias</div>
+    <div class="card">
+      <div class="card-title">Performance diária — aba Leads FB</div>
+      <div class="card-sub">CPL acima de R$ 30 aparece em vermelho</div>
+      <table class="meta-table">
+        <thead>
+          <tr>
+            <th>Dia</th>
+            <th class="num">Gasto</th>
+            <th class="num">Compras</th>
+            <th class="num">Custo/compra</th>
+            <th class="num">CPL</th>
+            <th class="num">CTR</th>
+            <th class="num">CPM</th>
+          </tr>
+        </thead>
+        <tbody>
+          ${last7.map(d => {
+            const isToday = d.dia.startsWith(todayStr);
+            const alertCpl = d.cpl > 30 ? 'alert-cpl' : '';
+            const alertCC = d.custoCompra > 30 ? 'alert-cpl' : '';
+            return `
+              <tr class="${isToday ? 'today-row' : ''}">
+                <td class="day-cell">${d.dia}</td>
+                <td class="num">${fmtBRL(d.gasto)}</td>
+                <td class="num">${fmtInt(d.compras)}</td>
+                <td class="num ${alertCC}">${fmtBRL(d.custoCompra)}</td>
+                <td class="num ${alertCpl}">${fmtBRL(d.cpl)}</td>
+                <td class="num">${d.ctr.toFixed(2)}%</td>
+                <td class="num">${fmtBRL(d.cpm)}</td>
+              </tr>
+            `;
+          }).join('')}
+        </tbody>
+      </table>
+    </div>
+  `;
+}
+
+/* ───────── LOAD ───────── */
+async function loadAll(force = false) {
+  const target = document.getElementById('content');
+  if (force) target.innerHTML = '<div class="loading">Atualizando…</div>';
+  try {
+    const ts = Date.now();
+    const [csvGeral, csvLeads, csvFat] = await Promise.all([
+      fetch(tabUrl(TABS.geral) + '&_=' + ts).then(r => r.text()),
+      fetch(tabUrl(TABS.leadsFb) + '&_=' + ts).then(r => r.text()),
+      fetch(tabUrl(TABS.faturamento) + '&_=' + ts).then(r => r.text())
+    ]);
+
+    const geral = parseGeral(parseCSV(csvGeral));
+    const leadsFb = parseLeadsFb(parseCSV(csvLeads));
+    const fat = parseFaturamento(parseCSV(csvFat));
+
+    target.innerHTML =
+      renderKpis(geral, leadsFb, fat) +
+      renderDailyChart(fat) +
+      `<div class="grid-2">
+        <div>${renderLotes(fat)}</div>
+        <div>${renderMetaAds(leadsFb)}</div>
+      </div>` +
+      renderComparativo(geral, fat, leadsFb);
+
+    document.getElementById('last-update').textContent =
+      new Date().toLocaleString('pt-BR', { day:'2-digit', month:'2-digit', hour:'2-digit', minute:'2-digit' });
+  } catch (err) {
+    target.innerHTML = `
+      <div class="error">
+        <strong>Erro ao carregar dados.</strong><br>
+        ${err.message}<br><br>
+        Verifique se a planilha continua publicada em <em>Arquivo → Compartilhar → Publicar na web</em> como "Documento inteiro".
+      </div>
+    `;
+    console.error(err);
+  }
+}
+
+loadAll();
+setInterval(loadAll, REFRESH_MS);
+</script>
+</body>
+</html>

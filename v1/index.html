@@ -331,6 +331,159 @@
     <noscript>
         <link rel="stylesheet" href="/v1/style.css?v=5">
     </noscript>
+
+    <style>
+        /* Deliverables Section v1 */
+        .deliverables-section {
+            padding: 5rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .deliverables-grid {
+            display: grid;
+            grid-template-columns: 1.05fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .deliverables-content {
+            color: var(--clr-text-light);
+        }
+
+        .deliverables-eyebrow {
+            color: var(--clr-accent);
+            letter-spacing: 0.4em;
+            font-size: 0.78rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            display: block;
+            margin-bottom: 1rem;
+        }
+
+        .deliverables-title {
+            font-family: var(--font-heading);
+            color: var(--clr-text-light);
+            font-size: clamp(1.6rem, 2.6vw, 2.3rem);
+            line-height: 1.2;
+            margin-bottom: 1.25rem;
+        }
+
+        .deliverables-title .text-accent {
+            color: var(--clr-accent);
+        }
+
+        .deliverables-lead {
+            color: rgba(255, 255, 255, 0.92);
+            font-size: 1.05rem;
+            margin-bottom: 1.5rem;
+            max-width: 540px;
+        }
+
+        .deliverables-lead strong {
+            color: var(--clr-accent);
+        }
+
+        .deliverables-list {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 2rem 0;
+            display: flex;
+            flex-direction: column;
+            gap: 0.85rem;
+        }
+
+        .deliverables-list li {
+            display: flex;
+            gap: 0.8rem;
+            align-items: flex-start;
+            color: rgba(255, 255, 255, 0.95);
+            font-size: 1rem;
+            line-height: 1.45;
+        }
+
+        .deliverables-list li i {
+            color: var(--clr-accent);
+            font-size: 1.4rem;
+            flex-shrink: 0;
+            margin-top: 0.05rem;
+        }
+
+        .deliverables-list strong {
+            color: #ffffff;
+            font-weight: 700;
+        }
+
+        .deliverables-cta {
+            margin-top: 0.5rem;
+        }
+
+        .deliverables-note {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.85rem;
+            margin-top: 0.75rem;
+        }
+
+        /* Ebooks Visual Image */
+        .deliverables-visual {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        .deliverables-img {
+            max-width: 100%;
+            width: 100%;
+            max-width: 520px;
+            height: auto;
+            filter: drop-shadow(0 24px 40px rgba(0, 0, 0, 0.45));
+        }
+
+        @media (max-width: 992px) {
+            .deliverables-section {
+                padding: 3rem 0;
+            }
+
+            .deliverables-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+                text-align: center;
+            }
+
+            .deliverables-content {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .deliverables-lead {
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .deliverables-list {
+                text-align: left;
+                max-width: 480px;
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .deliverables-visual {
+                order: -1;
+            }
+
+            .deliverables-img {
+                max-width: 360px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .deliverables-img {
+                max-width: 300px;
+            }
+        }
+    </style>
     <script src="https://unpkg.com/@phosphor-icons/web" defer></script>
 
     <meta name="description"
@@ -423,6 +576,33 @@
     </header>
 
     <!-- Divider Bar Removed -->
+
+    <!-- Deliverables Section: Visual Ebooks + Receitas -->
+    <section class="deliverables-section bg-subtle" id="entrega">
+        <div class="container">
+            <div class="deliverables-grid">
+                <div class="deliverables-content">
+                    <span class="deliverables-eyebrow">O que você leva para casa</span>
+                    <h2 class="deliverables-title">Ingresso da Semana + <span class="text-accent">12 Receitas de Perfumes</span> + Guia Completo de Venda</h2>
+                    <p class="deliverables-lead">O grande chamariz do evento é a entrega das <strong>12 receitas exclusivas de perfumes naturais e terapêuticos</strong> — prontas para você fazer em casa, usar e revender.</p>
+                    <ul class="deliverables-list">
+                        <li><i class="ph-fill ph-check-circle"></i><span><strong>Passo a passo das 12 receitas</strong> de perfumes da linha Prosperidade e Afrodisíaco</span></li>
+                        <li><i class="ph-fill ph-check-circle"></i><span>Passo a passo para fazer <strong>a venda dos perfumes</strong> com lucro real</span></li>
+                        <li><i class="ph-fill ph-check-circle"></i><span><strong>Material completo já pronto para impressão</strong> para você começar a vender seus perfumes</span></li>
+                    </ul>
+                    <a href="https://pay.hotmart.com/W103474219V?off=qwh2ageb&checkoutMode=10"
+                        class="btn btn-primary pulse-loop deliverables-cta">Quero Participar</a>
+                    <p class="deliverables-note">Preço pode ser alterado conforme vagas disponíveis</p>
+                </div>
+
+                <div class="deliverables-visual">
+                    <img src="/.netlify/images?url=/v1/imagens/ebooks-pack.png&w=900&q=85"
+                        alt="Pacote de Ebooks: Guia de Venda + Receitas de Perfumes da Prosperidade + Perfumes Afrodisíacos + Ingresso da Semana Perfumaria Terapêutica"
+                        class="deliverables-img" width="900" height="697" loading="lazy">
+                </div>
+            </div>
+        </div>
+    </section>
 
     <!-- Challenge Section: Soft & Elegant -->
     <section class="challenge-section bg-subtle" id="desafio">

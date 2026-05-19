@@ -698,6 +698,156 @@
                 order: -1;
             }
         }
+
+        /* Deliverables Section v2 */
+        .deliverables-grid {
+            display: grid;
+            grid-template-columns: 1.05fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .deliverables-content {
+            color: var(--clr-text-light);
+        }
+
+        .deliverables-eyebrow {
+            color: var(--clr-accent);
+            letter-spacing: 0.4em;
+            font-size: 0.78rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            display: block;
+            margin-bottom: 1rem;
+        }
+
+        .deliverables-title {
+            font-family: var(--font-heading);
+            color: var(--clr-text-light) !important;
+            font-size: clamp(1.6rem, 2.6vw, 2.3rem);
+            line-height: 1.2;
+            margin-bottom: 1.25rem;
+        }
+
+        .bg-subtle .deliverables-title {
+            color: var(--clr-text-light) !important;
+        }
+
+        .deliverables-title .text-accent {
+            color: var(--clr-accent) !important;
+        }
+
+        .deliverables-lead {
+            color: rgba(255, 255, 255, 0.92);
+            font-size: 1.05rem;
+            margin-bottom: 1.5rem;
+            max-width: 540px;
+        }
+
+        .deliverables-lead strong {
+            color: var(--clr-accent);
+        }
+
+        .deliverables-list {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 2rem 0;
+            display: flex;
+            flex-direction: column;
+            gap: 0.85rem;
+        }
+
+        .deliverables-list li {
+            display: flex;
+            gap: 0.8rem;
+            align-items: flex-start;
+            color: rgba(255, 255, 255, 0.95);
+            font-size: 1rem;
+            line-height: 1.45;
+            padding-left: 0;
+        }
+
+        .deliverables-list li::before {
+            content: none;
+        }
+
+        .deliverables-list li i {
+            color: var(--clr-accent);
+            font-size: 1.4rem;
+            flex-shrink: 0;
+            margin-top: 0.05rem;
+        }
+
+        .deliverables-list strong {
+            color: #ffffff;
+            font-weight: 700;
+        }
+
+        .deliverables-cta {
+            margin-top: 0.5rem;
+        }
+
+        .deliverables-note {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.85rem;
+            margin-top: 0.75rem;
+        }
+
+        /* Ebooks Visual Image */
+        .deliverables-visual {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        .deliverables-img {
+            max-width: 100%;
+            width: 100%;
+            max-width: 520px;
+            height: auto;
+            filter: drop-shadow(0 24px 40px rgba(0, 0, 0, 0.45));
+        }
+
+        @media (max-width: 992px) {
+            .deliverables-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+                text-align: center;
+            }
+
+            .deliverables-content {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .deliverables-lead {
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .deliverables-list {
+                text-align: left;
+                max-width: 480px;
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .deliverables-visual {
+                order: -1;
+            }
+
+            .deliverables-img {
+                max-width: 360px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .deliverables-img {
+                max-width: 300px;
+            }
+        }
     </style>
     <link rel="stylesheet" href="/v2/style.css?v=4" media="print" onload="this.media='all'">
     <noscript>
@@ -792,8 +942,34 @@
         </div>
     </header>
 
-    <!-- Seção 2 - O Que Você Vai Aprender -->
-    <section class="section-padding bg-subtle" id="programa">
+    <!-- Seção 2: O Que Você Vai Receber (Ebooks + Receitas) -->
+    <section class="section-padding bg-subtle" id="receber">
+        <div class="container">
+            <div class="deliverables-grid">
+                <div class="deliverables-content">
+                    <span class="deliverables-eyebrow">O que você leva para casa</span>
+                    <h2 class="deliverables-title">Ingresso da Semana + <span class="text-accent">12 Receitas de Perfumes</span> + Guia Completo de Venda</h2>
+                    <p class="deliverables-lead">O grande chamariz do evento é a entrega das <strong>12 receitas exclusivas de perfumes naturais e terapêuticos</strong> — prontas para você fazer em casa, usar e revender.</p>
+                    <ul class="deliverables-list">
+                        <li><i class="ph-fill ph-check-circle"></i><span><strong>Passo a passo das 12 receitas</strong> de perfumes da linha Prosperidade e Afrodisíaco</span></li>
+                        <li><i class="ph-fill ph-check-circle"></i><span>Passo a passo para fazer <strong>a venda dos perfumes</strong> com lucro real</span></li>
+                        <li><i class="ph-fill ph-check-circle"></i><span><strong>Material completo já pronto para impressão</strong> para você começar a vender seus perfumes</span></li>
+                    </ul>
+                    <a href="#preco" class="btn btn-primary pulse-loop deliverables-cta">Quero Participar</a>
+                    <p class="deliverables-note">Preço pode ser alterado conforme vagas disponíveis</p>
+                </div>
+
+                <div class="deliverables-visual">
+                    <img src="/.netlify/images?url=/v2/imagens/ebooks-pack.png&w=900&q=85"
+                        alt="Pacote de Ebooks: Guia de Venda + Receitas de Perfumes da Prosperidade + Perfumes Afrodisíacos + Ingresso da Semana Perfumaria Terapêutica"
+                        class="deliverables-img" width="900" height="697" loading="lazy">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção 3 - O Que Você Vai Aprender -->
+    <section class="section-padding bg-white" id="programa">
         <div class="container narrow-container text-center">
             <h2 class="section-title">Um treinamento prático para você aprender a criar e vender perfumes naturais</h2>
             <p class="section-text">Durante a Semana da Perfumaria Terapêutica você aprenderá, passo a passo, como criar
@@ -828,8 +1004,7 @@
                             <li>Estrutura de um perfume: notas de topo, coração e base.</li>
                             <li>Combinações aromáticas que despertam emoções específicas.</li>
                             <li>Como desenvolver perfumes com identidade própria.</li>
-                            <li><strong>Criação guiada de dois perfumes já validados no mercado</strong>, usados como
-                                modelo real de criação.</li>
+                            <li><strong>Criação guiada de dois perfumes ao vivo</strong>, usados como modelo real — e você ainda recebe o caderno com as <strong>12 receitas exclusivas</strong> de perfumes terapêuticos.</li>
                         </ul>
                     </div>
                 </div>
@@ -851,46 +1026,6 @@
         </div>
     </section>
 
-    <!-- Seção 3: O Que Você Vai Receber -->
-    <section class="section-padding bg-white" id="receber">
-        <div class="container">
-            <div class="text-center narrow-container" style="margin: 0 auto; margin-bottom: 2rem;">
-                <h2 class="section-title">Ao garantir seu ingresso você recebe</h2>
-            </div>
-
-            <div class="receive-top-text">
-                <h3 style="color: var(--clr-primary-dark);">Ingresso Semana Perfumaria Terapêutica + Receitas de Perfumes + Guia Completo de Venda</h3>
-                <ul class="learning-list"
-                    style="color: var(--clr-text-muted); text-align: left; display: inline-block;">
-                    <li style="color: inherit;">Passo a passo das receitas dos perfumes da Prosperidade e Afrodisíaco
-                    </li>
-                    <li style="color: inherit;">Passo a passo para fazer a venda dos perfumes</li>
-                    <li style="color: inherit;">Material completo já pronto para impressão para você fazer a venda de
-                        seus dois perfumes</li>
-                </ul>
-            </div>
-
-            <div class="receive-grid">
-                <!-- Card 1 -->
-                <div class="receive-block" style="background: rgba(132, 0, 59, 0.05); border: 1px solid rgba(132, 0, 59, 0.15);">
-                    <i class="ph ph-ticket" style="color: var(--clr-primary);"></i>
-                    <p style="color: var(--clr-text-muted);">Ingresso completo para a <strong>Semana da Perfumaria Terapêutica</strong>.</p>
-                </div>
-
-                <!-- Card 2 -->
-                <div class="receive-block" style="background: rgba(132, 0, 59, 0.05); border: 1px solid rgba(132, 0, 59, 0.15);">
-                    <i class="ph ph-flask" style="color: var(--clr-primary);"></i>
-                    <p style="color: var(--clr-text-muted);">Receitas exclusivas de perfumes terapêuticos.</p>
-                </div>
-
-                <!-- Card 3 -->
-                <div class="receive-block" style="background: rgba(132, 0, 59, 0.05); border: 1px solid rgba(132, 0, 59, 0.15);">
-                    <i class="ph ph-book-open" style="color: var(--clr-primary);"></i>
-                    <p style="color: var(--clr-text-muted);">Guia completo para começar a vender perfumes naturais.</p>
-                </div>
-            </div>
-        </div>
-    </section>
 
     <!-- Seção 4: Quanto Custa Participar -->
     <section class="section-padding bg-subtle" id="preco">

@@ -29,8 +29,56 @@
   status = 301
   force = true
 
+# Rewrites para manter as URLs originais após renomeação das pastas
+[[redirects]]
+  from = "/v1/*"
+  to = "/spt-v1/:splat"
+  status = 200
 
+[[redirects]]
+  from = "/v1"
+  to = "/spt-v1"
+  status = 200
 
+[[redirects]]
+  from = "/v2/*"
+  to = "/spt-v2/:splat"
+  status = 200
+
+[[redirects]]
+  from = "/v2"
+  to = "/spt-v2"
+  status = 200
+
+[[redirects]]
+  from = "/vsl3/*"
+  to = "/spt-vsl3/:splat"
+  status = 200
+
+[[redirects]]
+  from = "/vsl3"
+  to = "/spt-vsl3"
+  status = 200
+
+[[redirects]]
+  from = "/v3/*"
+  to = "/mpa-n1-v3/:splat"
+  status = 200
+
+[[redirects]]
+  from = "/v3"
+  to = "/mpa-n1-v3"
+  status = 200
+
+[[redirects]]
+  from = "/vsl1/*"
+  to = "/mpa-n1-ev-vsl1/:splat"
+  status = 200
+
+[[redirects]]
+  from = "/vsl1"
+  to = "/mpa-n1-ev-vsl1"
+  status = 200
 
 
 # Headers de seguranca

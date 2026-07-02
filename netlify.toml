@@ -80,6 +80,13 @@
   to = "/mpa-n1-ev-vsl1"
   status = 200
 
+# Coleção Pombagira - Aula aberta (jul/26)
+# Pagina de obrigado com URL curta na raiz
+[[redirects]]
+  from = "/obrigado-cp-jul26.html"
+  to = "/cp-jul26/obrigado-cp-jul26.html"
+  status = 200
+
 
 # Headers de seguranca
 [[headers]]

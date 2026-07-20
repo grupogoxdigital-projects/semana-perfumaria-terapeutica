@@ -199,6 +199,12 @@ a {
     align-items: center;
 }
 
+.hero__visual picture {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
 .hero__logo {
     width: 100%;
     max-width: 440px;

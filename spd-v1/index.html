@@ -117,7 +117,10 @@
             </div>
 
             <div class="hero__visual">
-                <img src="/.netlify/images?url=/spd-v1/logo-spd.webp&w=600&q=85" alt="Logo Semana Perfumaria das Deusas" class="hero__logo">
+                <picture>
+                    <source media="(max-width: 768px)" srcset="/.netlify/images?url=/spd-v1/spd-mob.webp&w=450&q=85">
+                    <img src="/.netlify/images?url=/spd-v1/spd-desk.webp&w=800&q=85" alt="Semana Perfumaria das Deusas" class="hero__logo" loading="eager" fetchpriority="high">
+                </picture>
             </div>
 
         </div>

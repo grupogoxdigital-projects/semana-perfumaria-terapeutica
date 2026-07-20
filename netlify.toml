@@ -80,6 +80,17 @@
   to = "/mpa-n1-ev-vsl1"
   status = 200
 
+# Semana Perfumaria das Deusas (SPD v1)
+[[redirects]]
+  from = "/spd-v1/*"
+  to = "/spd-v1/:splat"
+  status = 200
+
+[[redirects]]
+  from = "/spd-v1"
+  to = "/spd-v1/"
+  status = 200
+
 # Coleção Pombagira - Aula aberta (jul/26)
 # Pagina de obrigado com URL curta na raiz
 [[redirects]]

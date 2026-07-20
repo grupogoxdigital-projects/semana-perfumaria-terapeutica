@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Semana Perfumaria das Deusas | Palmira Margarida</title>
+    <meta name="description"
+        content="Descubra a deusa e o perfume do seu momento. Primeira Semana de Perfumes e Deusas do Brasil com Palmira Margarida.">
+    <meta name="author" content="Palmira Margarida">
+
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Semana Perfumaria das Deusas | Palmira Margarida">
+    <meta property="og:description"
+        content="Descubra a deusa e o perfume do seu momento. Primeira Semana de Perfumes e Deusas do Brasil.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Philosopher:wght@400;700&family=Outfit:wght@400;600;700&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="/spd-v1/style.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css">
+</head>
+
+<body>
+
+    <!-- ============================
+         1. COUNTDOWN HEADER BAR
+         ============================ -->
+    <div class="countdown-bar" id="countdown-bar">
+        <div class="countdown-bar__inner">
+            <span class="countdown-bar__label">A Semana comeca em:</span>
+            <div class="countdown-bar__timer" id="countdown-timer">
+                <div class="countdown-bar__block">
+                    <span class="countdown-bar__number" id="cd-days">00</span>
+                    <span class="countdown-bar__unit">Dias</span>
+                </div>
+                <span class="countdown-bar__sep">:</span>
+                <div class="countdown-bar__block">
+                    <span class="countdown-bar__number" id="cd-hours">00</span>
+                    <span class="countdown-bar__unit">Horas</span>
+                </div>
+                <span class="countdown-bar__sep">:</span>
+                <div class="countdown-bar__block">
+                    <span class="countdown-bar__number" id="cd-mins">00</span>
+                    <span class="countdown-bar__unit">Min</span>
+                </div>
+                <span class="countdown-bar__sep">:</span>
+                <div class="countdown-bar__block">
+                    <span class="countdown-bar__number" id="cd-secs">00</span>
+                    <span class="countdown-bar__unit">Seg</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================
+         2. HERO / CTA INICIAL
+         ============================ -->
+    <header class="hero" id="hero">
+        <div class="container hero__container">
+
+            <div class="hero__content">
+                <span class="hero__eyebrow">Perfumaria Ancestral</span>
+
+                <h1 class="hero__title">Inedito! Primeira Semana de Perfumes e Deusas do Brasil</h1>
+
+                <h2 class="hero__subtitle">Em apenas duas aulas, descubra a <strong>deusa e o perfume do seu
+                        momento</strong> para:</h2>
+
+                <ul class="hero__bullets">
+                    <li>Descobrir qual e o melhor perfume para o momento que voce esta vivendo</li>
+                    <li>Se libertar dos sentimentos de medo, vergonha e culpa -- a triade que mais aprisiona a vida feminina
+                    </li>
+                    <li>Conhecer perfumes ritualisticos e como eles podem se tornar portais para transformacao</li>
+                    <li>Tornar-se uma mulher mais potente, livre e insubmissa, capaz de construir a vida que deseja sem
+                        abrir mao da propria essencia</li>
+                </ul>
+
+                <div class="hero__tags">
+                    <span class="hero__tag">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10" />
+                            <polygon points="10 8 16 12 10 16 10 8" fill="currentColor" stroke="none" />
+                        </svg>
+                        Ao Vivo
+                    </span>
+                    <span class="hero__tag">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M4 19.5A2.5 2.5 0 016.5 17H20" />
+                            <path d="M4 19.5V4.5A2.5 2.5 0 016.5 2H20v20H6.5A2.5 2.5 0 014 19.5z" />
+                        </svg>
+                        2 Aulas
+                    </span>
+                    <span class="hero__tag">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" />
+                            <circle cx="9" cy="7" r="4" />
+                            <path d="M23 21v-2a4 4 0 00-3-3.87" />
+                            <path d="M16 3.13a4 4 0 010 7.75" />
+                        </svg>
+                        Vagas Limitadas
+                    </span>
+                </div>
+
+                <div class="hero__price-block">
+                    <div class="hero__price-numbers">
+                        <span class="hero__price-from">De R$197</span>
+                        <div class="hero__price-to">R$19,90</div>
+                    </div>
+                    <span class="hero__vagas">Vagas Limitadas</span>
+                </div>
+
+                <a href="#checkout" class="btn btn--verde btn--lg pulse-loop" id="hero-cta">Quero Entrar Agora</a>
+            </div>
+
+            <div class="hero__visual">
+                <img src="/.netlify/images?url=/spd-v1/logo-spd.webp&w=600&q=85" alt="Logo Semana Perfumaria das Deusas" class="hero__logo">
+            </div>
+
+        </div>
+    </header>
+
+
+    <!-- ============================
+         3. FAIXA DE CREDENCIAIS
+         ============================ -->
+    <section class="credentials" data-aos="fade-up">
+        <div class="container">
+            <div class="credentials__grid">
+                <div class="credentials__item">
+                    <div class="credentials__icon">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M4 19.5A2.5 2.5 0 016.5 17H20" />
+                            <path d="M4 19.5V4.5A2.5 2.5 0 016.5 2H20v20H6.5A2.5 2.5 0 014 19.5z" />
+                        </svg>
+                    </div>
+                    <span class="credentials__number">2 Livros</span>
+                    <span class="credentials__label">de perfumaria e feminino publicados</span>
+                </div>
+                <div class="credentials__item">
+                    <div class="credentials__icon">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" />
+                            <circle cx="9" cy="7" r="4" />
+                            <path d="M23 21v-2a4 4 0 00-3-3.87" />
+                            <path d="M16 3.13a4 4 0 010 7.75" />
+                        </svg>
+                    </div>
+                    <span class="credentials__number">+2.000</span>
+                    <span class="credentials__label">perfumistas formadas</span>
+                </div>
+                <div class="credentials__item">
+                    <div class="credentials__icon">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M22 10v6M2 10l10-5 10 5-10 5z" />
+                            <path d="M6 12v5c0 2 3 4 6 4s6-2 6-4v-5" />
+                        </svg>
+                    </div>
+                    <span class="credentials__number">PhD</span>
+                    <span class="credentials__label">em Historia das Ciencias</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ============================
+         5. DOBRA DORES
+         ============================ -->
+    <section class="section-padding dores" id="dores" data-aos="fade-up">
+        <div class="container text-center">
+            <h2 class="section-title" style="color: var(--clr-vinho);">Voce ja se perguntou...</h2>
+        </div>
+        <div class="container">
+            <div class="dores__questions">
+                <div class="dores__question">
+                    <div class="dores__question-icon">
+                        <svg viewBox="0 0 24 24">
+                            <circle cx="12" cy="12" r="10" />
+                            <path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3" />
+                            <line x1="12" y1="17" x2="12.01" y2="17" />
+                        </svg>
+                    </div>
+                    <p>Por que nenhuma das promessas de cura infinita funcionam?</p>
+                </div>
+                <div class="dores__question">
+                    <div class="dores__question-icon">
+                        <svg viewBox="0 0 24 24">
+                            <circle cx="12" cy="12" r="10" />
+                            <path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3" />
+                            <line x1="12" y1="17" x2="12.01" y2="17" />
+                        </svg>
+                    </div>
+                    <p>Por que voce tenta caber em padroes impostos?</p>
+                </div>
+                <div class="dores__question">
+                    <div class="dores__question-icon">
+                        <svg viewBox="0 0 24 24">
+                            <circle cx="12" cy="12" r="10" />
+                            <path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3" />
+                            <line x1="12" y1="17" x2="12.01" y2="17" />
+                        </svg>
+                    </div>
+                    <p>Voce se sente culpada e com medo mesmo quando esta fazendo tudo "certo"?</p>
+                </div>
+                <div class="dores__question">
+                    <div class="dores__question-icon">
+                        <svg viewBox="0 0 24 24">
+                            <circle cx="12" cy="12" r="10" />
+                            <path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3" />
+                            <line x1="12" y1="17" x2="12.01" y2="17" />
+                        </svg>
+                    </div>
+                    <p>Voce tem medo de brilhar?</p>
+                </div>
+                <div class="dores__question">
+                    <div class="dores__question-icon">
+                        <svg viewBox="0 0 24 24">
+                            <circle cx="12" cy="12" r="10" />
+                            <path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3" />
+                            <line x1="12" y1="17" x2="12.01" y2="17" />
+                        </svg>
+                    </div>
+                    <p>Voce sente sua vida travada por discursos machistas?</p>
+                </div>
+            </div>
+
+            <div class="dores__resolution" data-aos="fade-up">
+                <h3>Nao e culpa sua!</h3>
+                <p>Muitas mulheres nao sabem como os perfumes e rituais das deusas podem liberta-las de muitas amarras
+                    afetivas, financeiras e emocionais. O problema e estrutural, mas voce pode ter uma vida mais livre
+                    acessando sabedorias ancestrais.</p>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ============================
+         6. DOBRA GANHOS
+         ============================ -->
+    <section class="section-padding ganhos" id="ganhos" data-aos="fade-up">
+        <div class="container text-center">
+            <h2 class="section-title">Imagine sua nova vida:</h2>
+        </div>
+        <div class="container">
+            <div class="ganhos__grid">
+                <div class="ganhos__card">
+                    <div class="ganhos__card-icon">
+                        <svg viewBox="0 0 24 24">
+                            <line x1="12" y1="1" x2="12" y2="23" />
+                            <path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6" />
+                        </svg>
+                    </div>
+                    <h3>Liberdade financeira</h3>
+                    <p>Voce sente que esta sempre dependendo de alguem? Conheca um metodo que vai te libertar do medo de
+                        prosperar.</p>
+                </div>
+                <div class="ganhos__card">
+                    <div class="ganhos__card-icon">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z" />
+                        </svg>
+                    </div>
+                    <h3>Viva sem medo de nao agradar</h3>
+                    <p>Comece a viver de acordo com quem voce realmente e! Liberte-se da culpa, medo e vergonha que
+                        aprisionam a vida feminina.</p>
+                </div>
+                <div class="ganhos__card">
+                    <div class="ganhos__card-icon">
+                        <svg viewBox="0 0 24 24">
+                            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                        </svg>
+                    </div>
+                    <h3>Mais conhecimento</h3>
+                    <p>Voce vai descobrir deusas das mitologias femininas por uma perspectiva historica e revolucionaria
+                        e despertar seus atributos, simbolos e potencias.</p>
+                </div>
+                <div class="ganhos__card">
+                    <div class="ganhos__card-icon">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M18 8h1a4 4 0 010 8h-1" />
+                            <path d="M2 8h16v9a4 4 0 01-4 4H6a4 4 0 01-4-4V8z" />
+                            <line x1="6" y1="1" x2="6" y2="4" />
+                            <line x1="10" y1="1" x2="10" y2="4" />
+                            <line x1="14" y1="1" x2="14" y2="4" />
+                        </svg>
+                    </div>
+                    <h3>Libertacao feminina</h3>
+                    <p>Voce vai parar de tentar se encaixar em estruturas e discursos machistas que limitam sua
+                        prosperidade, seus relacionamentos e sua liberdade.</p>
+                </div>
+                <div class="ganhos__card">
+                    <div class="ganhos__card-icon">
+                        <svg viewBox="0 0 24 24">
+                            <circle cx="12" cy="12" r="5" />
+                            <line x1="12" y1="1" x2="12" y2="3" />
+                            <line x1="12" y1="21" x2="12" y2="23" />
+                            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+                            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+                            <line x1="1" y1="12" x2="3" y2="12" />
+                            <line x1="21" y1="12" x2="23" y2="12" />
+                            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
+                            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
+                        </svg>
+                    </div>
+                    <h3>Mais alegria e vitalidade</h3>
+                    <p>Pare de sentir medo de brilhar! Aprenda a amar a sua autenticidade, em vez de tentar caber em
+                        padroes impostos.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ============================
+         7. BONUS
+         ============================ -->
+    <section class="section-padding bonus" id="bonus" data-aos="fade-up">
+        <div class="container text-center">
+            <h2 class="section-title" style="color: var(--clr-vinho);">O que voce recebe na Semana Perfumaria das Deusas
+            </h2>
+        </div>
+        <div class="container">
+            <div class="bonus__grid">
+                <div class="bonus__card">
+                    <span class="bonus__card-number">1</span>
+                    <h3>2 Aulas ao vivo com Palmira Margarida</h3>
+                    <p>Passo a passo completo para voce conhecer sua deusa e perfume, destravar sua vida pessoal e
+                        ajudar outras mulheres atraves da Perfumaria Ancestral.</p>
+                </div>
+                <div class="bonus__card">
+                    <span class="bonus__card-number">2</span>
+                    <h3>E-book exclusivo</h3>
+                    <p>E-book com todos os detalhes do evento e o que voce precisa saber para chegar preparada para a
+                        nossa Semana.</p>
+                </div>
+                <div class="bonus__card">
+                    <span class="bonus__card-number">3</span>
+                    <h3>Teste das Deusas e Perfumes</h3>
+                    <p>Teste rapido para voce descobrir a deusa que vai mudar sua jornada e o perfume que a representa.
+                    </p>
+                </div>
+                <div class="bonus__card">
+                    <span class="bonus__card-number">4</span>
+                    <h3>Grupo Exclusivo</h3>
+                    <p>Grupo exclusivo de participantes, com audios e videos exclusivos e interacao direta com a Palmira.
+                    </p>
+                </div>
+            </div>
+
+            <div class="bonus__quote" data-aos="fade-up">
+                <p>"Eu vou abrir o metodo que me fez transformar a vida de mais de 2 mil pessoas e te colocar no caminho
+                    para se tornar uma perfumista cheia de confianca."</p>
+                <span class="bonus__quote-days">Serao 2 dias para ensinar tudo que levei anos para desenvolver.</span>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ============================
+         8. ANCORAGEM DE PRECO
+         ============================ -->
+    <section class="section-padding pricing" id="preco" data-aos="fade-up">
+        <div class="container">
+            <div class="text-center" style="margin-bottom: 3rem;">
+                <h2 class="section-title" style="color: var(--clr-text-light);">Veja tudo que voce recebe:</h2>
+            </div>
+            <div class="pricing__content">
+                <div class="pricing__anchors">
+                    <div class="pricing__anchor-item">
+                        <span>Aulas ao vivo com Palmira Margarida</span>
+                        <span>R$113</span>
+                    </div>
+                    <div class="pricing__anchor-item">
+                        <span>Teste das Deusas</span>
+                        <span>R$45</span>
+                    </div>
+                    <div class="pricing__anchor-item">
+                        <span>E-book exclusivo</span>
+                        <span>R$25</span>
+                    </div>
+                    <div class="pricing__anchor-item">
+                        <span>Grupo exclusivo</span>
+                        <span>R$15</span>
+                    </div>
+                </div>
+
+                <div class="pricing__box">
+                    <div class="pricing__box-label">Tudo isso junto</div>
+                    <div class="pricing__box-from">de R$197</div>
+                    <div class="pricing__box-label">por apenas</div>
+                    <div class="pricing__box-price">R$19,90</div>
+                    <a href="#checkout" class="btn btn--verde btn--full pulse-loop">Quero Entrar Agora</a>
+                    <p class="pricing__box-note">Pagamento unico. Acesso imediato.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ============================
+         9. GARANTIA
+         ============================ -->
+    <section class="section-padding guarantee" id="garantia" data-aos="fade-up">
+        <div class="container">
+            <div class="guarantee__box">
+                <div class="guarantee__seal">
+                    <span class="guarantee__seal-days">7</span>
+                    <span class="guarantee__seal-text">dias de<br>garantia</span>
+                </div>
+                <div class="guarantee__content">
+                    <h3>Garantia incondicional de 7 dias</h3>
+                    <p>Se voce participar da Semana Perfumaria das Deusas e sentir que o conteudo nao fez sentido para
+                        voce, basta enviar um e-mail dentro de 7 dias e devolvemos 100% do seu investimento. Sem
+                        perguntas, sem burocracia.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ============================
+         10. SOBRE A MENTORA
+         ============================ -->
+    <section class="section-padding mentora" id="mentora" data-aos="fade-up">
+        <div class="container">
+            <div class="mentora__grid">
+                <div class="mentora__image">
+                    <img src="/.netlify/images?url=/images/palmira02.jpg&w=700&q=85" alt="Palmira Margarida"
+                        width="700" height="700" loading="lazy">
+                </div>
+                <div class="mentora__text">
+                    <span class="mentora__eyebrow">Quem vai conduzir essa jornada</span>
+                    <h2 class="mentora__name">Palmira Margarida</h2>
+                    <p class="mentora__bio">Empresaria no ramo da perfumaria ha mais de 20 anos. Fundadora da primeira
+                        Escola de Perfumaria Natural e Online do mundo. Criei a metodologia da Perfumaria Ancestral a
+                        partir de uma sabedoria escondida a 7 chaves e que fui revelar, traduzir e compartilhar com voce
+                        agora!</p>
+                    <p class="mentora__bio">Toda mulher merece viver em amor proprio, estado de presenca e sabendo o seu
+                        valor. Quando voce descobre a sua essencia voce pega a bussola da sua vida e nunca mais se perde
+                        de si. Atraves da linguagem invisivel dos perfumes das plantas e de algo poderoso que voce tem no
+                        seu corpo, te prometo te fazer voltar para quem voce e!</p>
+                    <p class="mentora__bio">Sou doutora em Ciencias pela UFRJ, uma cientista com pesquisa dedicada a uma
+                        sabedoria que nos foi roubada. Aqui e um espaco de transformacao real com amor, presenca,
+                        potencia e muito respeito por sua essencia.</p>
+                    <div class="mentora__quote">
+                        <p>"Minha missao e ajudar mulheres a redescobrirem sua essencia atraves dos aromas e da
+                            sabedoria das deusas."</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ============================
+         11. FAQ
+         ============================ -->
+    <section class="section-padding faq" id="faq" data-aos="fade-up">
+        <div class="container text-center">
+            <h2 class="section-title">Duvidas Frequentes</h2>
+        </div>
+        <div class="container">
+            <div class="faq__list">
+                <details class="faq__item">
+                    <summary>A Semana serve para qualquer mulher, independente de ser terapeuta ou perfumista?</summary>
+                    <p>Sim. A Semana foi criada para te ensinar do zero. Voce nao precisa ter nenhum conhecimento previo
+                        sobre perfumaria, deusas ou terapias. Basta estar aberta a uma jornada de autoconhecimento.</p>
+                </details>
+                <details class="faq__item">
+                    <summary>Preciso entender de oleo essencial, diluicao, perfumaria?</summary>
+                    <p>Nao. E tudo explicado de forma simples, pratica e acessivel. A proposta e justamente tirar a
+                        complexidade e te entregar orientacoes diretas - sem linguagens dificeis.</p>
+                </details>
+                <details class="faq__item">
+                    <summary>Vou conseguir acompanhar mesmo com minha rotina corrida?</summary>
+                    <p>Sim. As aulas serao muito completas, mas dinamicas. Serao 2 aulas de conteudo direto ao ponto,
+                        para mulheres reais.</p>
+                </details>
+                <details class="faq__item">
+                    <summary>O que exatamente vou aprender na Semana?</summary>
+                    <p>Voce vai descobrir qual deusa esta conectada ao seu momento de vida, qual perfume a representa e
+                        como usar essa sabedoria ancestral para se libertar de amarras emocionais, financeiras e
+                        afetivas.</p>
+                </details>
+                <details class="faq__item">
+                    <summary>O valor do ingresso e tao acessivel assim... tem algum motivo especial?</summary>
+                    <p>A Semana Perfumaria das Deusas foi criada para alcancar o maior numero de mulheres possivel. Por
+                        isso, o valor e simbolico e acessivel. Queremos que toda mulher tenha acesso a essa
+                        transformacao.</p>
+                </details>
+                <details class="faq__item">
+                    <summary>E se acontecer um imprevisto e eu nao conseguir ver tudo?</summary>
+                    <p>Criamos o evento em dias e horarios que facilitam a sua participacao. Caso perca algum trecho,
+                        ainda conseguira acompanhar o conteudo.</p>
+                </details>
+                <details class="faq__item">
+                    <summary>Eu nao conheco nada do mundo holistico ou ancestral. Isso e um problema?</summary>
+                    <p>Nenhum. A abordagem e humana, pratica e acessivel. Voce so precisa estar aberta a conhecer um
+                        novo mundo capaz de transformar muita coisa na sua vida.</p>
+                </details>
+                <details class="faq__item">
+                    <summary>Como perfumes e deusas podem mudar minha vida?</summary>
+                    <p>Os perfumes ritualisticos agem como portais de transformacao, conectando voce a arquetipos
+                        femininos poderosos. Quando voce descobre sua deusa e seu perfume, voce acessa uma sabedoria
+                        ancestral que liberta e transforma.</p>
+                </details>
+                <details class="faq__item">
+                    <summary>Por que faz diferenca garantir meu ingresso agora?</summary>
+                    <p>As vagas sao limitadas e o valor pode ser alterado a qualquer momento. Garantindo agora, voce
+                        assegura o melhor preco e sua participacao na Semana.</p>
+                </details>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ============================
+         CTA FINAL
+         ============================ -->
+    <section class="cta-final" id="cadastro">
+        <div class="container">
+            <div class="cta-final__box">
+                <h2 class="section-title">Garanta Sua Vaga na Semana Perfumaria das Deusas</h2>
+                <p>As vagas sao limitadas e podem encerrar a qualquer momento.</p>
+                <div class="cta-final__price">
+                    <span class="pricing__box-from">de R$197</span>
+                    <div class="pricing__box-price">R$19,90</div>
+                </div>
+                <a href="#checkout" class="btn btn--verde btn--lg pulse-loop">Quero Entrar Agora</a>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ============================
+         FOOTER
+         ============================ -->
+    <footer class="footer">
+        <div class="container text-center">
+            <h3 class="footer__title">Semana Perfumaria das Deusas</h3>
+            <p class="footer__copy">&copy; 2026 Palmira Margarida. Todos os direitos reservados.</p>
+            <div class="footer__links">
+                <span>Politicas de Privacidade</span>
+                <span>Termos de Uso</span>
+            </div>
+        </div>
+    </footer>
+
+
+    <!-- ============================
+         SCRIPTS
+         ============================ -->
+
+    <!-- AOS (Animate on Scroll) -->
+    <script>
+        function loadAOS() {
+            var s = document.createElement('script');
+            s.src = 'https://unpkg.com/aos@2.3.4/dist/aos.js';
+            s.onload = function () {
+                AOS.init({
+                    duration: 800,
+                    easing: 'ease-out-cubic',
+                    once: true,
+                    offset: 80,
+                    disableMutationObserver: true
+                });
+            };
+            document.body.appendChild(s);
+        }
+
+        if ('IntersectionObserver' in window) {
+            var observer = new IntersectionObserver(function (entries) {
+                entries.forEach(function (entry) {
+                    if (entry.isIntersecting) {
+                        loadAOS();
+                        observer.disconnect();
+                    }
+                });
+            }, { rootMargin: '200px' });
+            var firstAos = document.querySelector('[data-aos]');
+            if (firstAos) observer.observe(firstAos);
+        } else {
+            loadAOS();
+        }
+    </script>
+
+    <!-- Countdown Timer -->
+    <script>
+        (function () {
+            // CONFIGURAR DATA DO EVENTO AQUI (formato: ano, mes-1, dia, hora, minuto)
+            var eventDate = new Date(2026, 7, 1, 20, 0, 0); // 1 de Agosto de 2026, 20h
+
+            var daysEl = document.getElementById('cd-days');
+            var hoursEl = document.getElementById('cd-hours');
+            var minsEl = document.getElementById('cd-mins');
+            var secsEl = document.getElementById('cd-secs');
+
+            function pad(n) { return n < 10 ? '0' + n : n; }
+
+            function updateCountdown() {
+                var now = new Date();
+                var diff = eventDate - now;
+
+                if (diff <= 0) {
+                    daysEl.textContent = '00';
+                    hoursEl.textContent = '00';
+                    minsEl.textContent = '00';
+                    secsEl.textContent = '00';
+                    var bar = document.getElementById('countdown-bar');
+                    if (bar) {
+                        bar.querySelector('.countdown-bar__label').textContent = 'A Semana ja comecou!';
+                    }
+                    return;
+                }
+
+                var days = Math.floor(diff / (1000 * 60 * 60 * 24));
+                var hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                var mins = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+                var secs = Math.floor((diff % (1000 * 60)) / 1000);
+
+                daysEl.textContent = pad(days);
+                hoursEl.textContent = pad(hours);
+                minsEl.textContent = pad(mins);
+                secsEl.textContent = pad(secs);
+            }
+
+            updateCountdown();
+            setInterval(updateCountdown, 1000);
+        })();
+    </script>
+
+    <!-- UTM Pass-through -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var urlParams = window.location.search;
+            if (urlParams) {
+                var links = document.querySelectorAll('a[href*="hotmart.com"], a[href*="checkout"]');
+                links.forEach(function (link) {
+                    if (!link.href.includes(urlParams.substring(1))) {
+                        var separator = link.href.indexOf('?') !== -1 ? '&' : '?';
+                        link.href = link.href + separator + urlParams.substring(1);
+                    }
+                });
+            }
+        });
+    </script>
+
+</body>
+
+</html>

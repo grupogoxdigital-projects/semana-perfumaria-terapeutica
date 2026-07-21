@@ -153,16 +153,18 @@ a {
    =========================== */
 .hero {
     min-height: auto;
-    background-color: var(--clr-bg);
-    background-image: linear-gradient(rgba(255, 255, 255, 0.80), rgba(255, 255, 255, 0.80)), url('/.netlify/images?url=/spd-v1/palmira-spd-2.webp&w=1200&q=80');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+    background-color: #ffffff;
     display: flex;
     align-items: center;
     padding: 1.5rem 0 1.5rem;
     position: relative;
     overflow: hidden;
+}
+
+.hero__logo-small {
+    max-width: 140px;
+    height: auto;
+    margin-bottom: 1rem;
 }
 
 .hero::before {
@@ -1150,6 +1152,104 @@ a {
 }
 
 /* ===========================
+   DOBRA EXTRA - AULAS
+   =========================== */
+.aulas {
+    background: var(--clr-bg-cream);
+}
+
+.aulas .section-title {
+    color: var(--clr-vinho);
+}
+
+.aulas__grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2.5rem;
+    margin-top: 2rem;
+}
+
+.aulas__card {
+    background: var(--clr-bg);
+    border-radius: var(--radius);
+    border: 1px solid rgba(141, 26, 71, 0.1);
+    padding: 2.5rem 2rem;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.04);
+    transition: var(--transition);
+}
+
+.aulas__card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.08);
+}
+
+.aulas__card-tag {
+    display: inline-block;
+    background: linear-gradient(135deg, var(--clr-vinho) 0%, var(--clr-vinho-dark) 100%);
+    color: var(--clr-text-light);
+    font-family: var(--font-heading);
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.4rem 1.2rem;
+    border-radius: 50px;
+    margin-bottom: 1.5rem;
+}
+
+.aulas__card-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 1.5rem;
+}
+
+.aulas__card-list li {
+    position: relative;
+    padding-left: 1.8rem;
+    margin-bottom: 0.8rem;
+    font-size: 1rem;
+    color: var(--clr-text);
+    line-height: 1.5;
+}
+
+.aulas__card-list li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.45rem;
+    width: 8px;
+    height: 8px;
+    background: var(--clr-dourado);
+    border-radius: 50%;
+    box-shadow: 0 0 0 3px rgba(212, 160, 49, 0.2);
+}
+
+.aulas__card-image {
+    width: 100%;
+    margin-top: 1rem;
+    border-radius: calc(var(--radius) - 4px);
+    overflow: hidden;
+}
+
+.aulas__card-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: calc(var(--radius) - 4px);
+}
+
+@media (max-width: 768px) {
+    .aulas__grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .aulas__card {
+        padding: 2rem 1.5rem;
+    }
+}
+
+/* ===========================
    CTA FINAL
    =========================== */
 .cta-final {
@@ -1200,6 +1300,28 @@ a {
     color: var(--clr-text-light);
     padding: 2.5rem 0;
     text-align: center;
+}
+
+.footer__manifesto {
+    max-width: 650px;
+    margin: 0 auto 2rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.footer__manifesto-headline {
+    font-family: var(--font-heading);
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--clr-dourado-light);
+    margin-bottom: 0.8rem;
+}
+
+.footer__manifesto-text {
+    font-size: 0.9rem;
+    line-height: 1.7;
+    opacity: 0.75;
+    font-style: italic;
 }
 
 .footer__title {

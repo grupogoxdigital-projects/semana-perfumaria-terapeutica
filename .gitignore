@@ -1,2 +1,6 @@
 # Local Netlify folder
 .netlify
+
+# Backups
+_backup_*/
+**/_backup_*/

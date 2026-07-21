@@ -162,7 +162,7 @@ a {
 }
 
 .hero__logo-small {
-    max-width: 140px;
+    max-width: 260px;
     height: auto;
     margin-bottom: 1rem;
 }
@@ -1422,6 +1422,11 @@ a {
     .hero__logo {
         max-width: 220px;
         margin: 0 auto;
+    }
+
+    .hero__logo-small {
+        max-width: 230px;
+        margin: 0 auto 0.8rem auto;
     }
 
     .hero__palmira-mobile {

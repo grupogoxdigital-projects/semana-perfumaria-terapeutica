@@ -14,42 +14,1212 @@
     <meta property="og:description"
         content="Descubra a deusa e o perfume do seu momento. Primeira Semana de Perfumes e Deusas do Brasil.">
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Philosopher:wght@400;700&family=Outfit:wght@400;600;700&display=swap"
-        rel="stylesheet">
+    <!-- Preload dos recursos criticos (fontes self-hosted + imagem LCP) -->
+    <link rel="preload" href="/spd-v1/fonts/outfit.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/spd-v1/fonts/philosopher-700.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/spd-v1/images/opt-hero-logo.webp" as="image" fetchpriority="high">
 
-    <link rel="stylesheet" href="/spd-v1/style.css?v=2">
-    
-    <!-- Google Tag Manager Optimized -->
-    <script>
-        window.addEventListener('load', function () {
-            setTimeout(function () {
-                (function (w, d, s, l, i) {
-                    w[l] = w[l] || []; w[l].push({
-                        'gtm.start': new Date().getTime(), event: 'gtm.js'
-                    }); var f = d.getElementsByTagName(s)[0],
-                        j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
-                            'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
-                })(window, document, 'script', 'dataLayer', 'GTM-5SGRDC89');
-            }, 3500);
-        });
-    </script>
+    <!-- CSS 100% inline: zero requisicao bloqueante de renderizacao -->
+    <style>
+        @font-face {
+            font-family: 'Outfit';
+            font-style: normal;
+            font-weight: 400 700;
+            font-display: swap;
+            src: url(/spd-v1/fonts/outfit.woff2) format('woff2');
+        }
+
+        @font-face {
+            font-family: 'Philosopher';
+            font-style: normal;
+            font-weight: 700;
+            font-display: swap;
+            src: url(/spd-v1/fonts/philosopher-700.woff2) format('woff2');
+        }
+
+        :root {
+            --clr-vinho: #8d1a47;
+            --clr-vinho-dark: #5c0e2f;
+            --clr-verde: #397d7f;
+            --clr-verde-dark: #2a5e60;
+            --clr-dourado: #d4a031;
+            --clr-dourado-dark: #b8891a;
+            --clr-dourado-light: #e6b84a;
+            --clr-bg: #fff;
+            --clr-bg-cream: #fdf8f0;
+            --clr-text: #1a1a1a;
+            --clr-text-muted: #555;
+            --clr-text-light: #fff;
+            --font-heading: 'Philosopher', Georgia, serif;
+            --font-body: 'Outfit', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+            --radius: 12px;
+        }
+
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--clr-bg);
+            color: var(--clr-text);
+            font-family: var(--font-body);
+            line-height: 1.6;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4 {
+            font-family: var(--font-heading);
+            font-weight: 700;
+            line-height: 1.15;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        /* 1. COUNTDOWN BAR */
+        .countdown-bar {
+            background: var(--clr-vinho);
+            padding: .6rem 1rem;
+            text-align: center;
+            color: var(--clr-text-light);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            contain: layout paint;
+        }
+
+        .countdown-bar__inner {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .countdown-bar__label {
+            font-weight: 600;
+            font-size: .85rem;
+            text-transform: uppercase;
+            letter-spacing: .12em;
+        }
+
+        .countdown-bar__timer {
+            display: flex;
+            gap: .5rem;
+            align-items: center;
+        }
+
+        .countdown-bar__block {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-width: 48px;
+        }
+
+        .countdown-bar__number {
+            background: rgba(255, 255, 255, .15);
+            border: 1px solid rgba(255, 255, 255, .2);
+            border-radius: 6px;
+            padding: .25rem .5rem;
+            font-size: 1.2rem;
+            font-weight: 700;
+            min-width: 40px;
+            text-align: center;
+            line-height: 1.3;
+            font-variant-numeric: tabular-nums;
+        }
+
+        .countdown-bar__unit {
+            font-size: .6rem;
+            text-transform: uppercase;
+            letter-spacing: .1em;
+            margin-top: .15rem;
+            opacity: .8;
+        }
+
+        .countdown-bar__sep {
+            font-size: 1.2rem;
+            font-weight: 700;
+            opacity: .5;
+            align-self: flex-start;
+            margin-top: .25rem;
+        }
+
+        /* 2. HERO */
+        .hero {
+            background-color: #fff;
+            padding: 1.5rem 0;
+        }
+
+        .hero__container {
+            display: grid;
+            grid-template-columns: 1.1fr .9fr;
+            gap: 3.5rem;
+            align-items: center;
+        }
+
+        .hero__logo-small {
+            max-width: 260px;
+            height: auto;
+            margin-bottom: 1rem;
+        }
+
+        .hero__visual {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hero__palmira img {
+            width: 100%;
+            max-width: 380px;
+            height: auto;
+            border-radius: var(--radius);
+            border: 3px solid var(--clr-dourado);
+        }
+
+        .hero__title {
+            font-size: clamp(1.6rem, 3vw, 2.2rem);
+            color: var(--clr-vinho);
+            margin-bottom: .75rem;
+            max-width: 700px;
+            text-transform: uppercase;
+        }
+
+        .hero__subtitle {
+            font-size: clamp(1rem, 1.8vw, 1.15rem);
+            color: var(--clr-text);
+            margin-bottom: 1rem;
+            font-weight: 400;
+            max-width: 650px;
+        }
+
+        .hero__bullets {
+            list-style: none;
+            margin-bottom: 1.2rem;
+            max-width: 650px;
+        }
+
+        .hero__bullets li {
+            position: relative;
+            padding-left: 1.8rem;
+            margin-bottom: .5rem;
+            font-size: .95rem;
+            color: var(--clr-text-muted);
+            line-height: 1.4;
+        }
+
+        .hero__bullets li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: .35rem;
+            width: 8px;
+            height: 8px;
+            background: var(--clr-dourado);
+            border-radius: 50%;
+        }
+
+        .hero__dates {
+            margin-bottom: 1.2rem;
+        }
+
+        .hero__date-tag {
+            display: inline-block;
+            border: 1px solid var(--clr-vinho);
+            border-radius: 6px;
+            padding: .4rem 1rem;
+            font-size: .85rem;
+            color: var(--clr-vinho);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: .08em;
+        }
+
+        .hero__price-block {
+            background: var(--clr-bg-cream);
+            border: 1px solid rgba(141, 26, 71, .12);
+            border-radius: var(--radius);
+            padding: 1rem 1.5rem;
+            margin-bottom: 1.2rem;
+            max-width: 350px;
+        }
+
+        .hero__price-from {
+            font-size: 1rem;
+            color: var(--clr-text-muted);
+            text-decoration: line-through;
+        }
+
+        .hero__price-to {
+            font-size: clamp(2rem, 3.5vw, 2.4rem);
+            font-weight: 700;
+            color: var(--clr-vinho);
+            font-family: var(--font-heading);
+            line-height: 1.1;
+        }
+
+        .hero__vagas {
+            display: inline-block;
+            margin-top: .5rem;
+            font-size: .85rem;
+            font-weight: 700;
+            color: var(--clr-vinho);
+            text-transform: uppercase;
+            letter-spacing: .1em;
+        }
+
+        /* BOTOES */
+        .btn {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            font-family: var(--font-body);
+            font-weight: 700;
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: .1em;
+            border-radius: 50px;
+            border: none;
+            cursor: pointer;
+            text-align: center;
+        }
+
+        .btn--verde {
+            background: var(--clr-verde);
+            color: var(--clr-text-light);
+        }
+
+        .btn--vinho {
+            background: var(--clr-vinho);
+            color: var(--clr-text-light);
+        }
+
+        .btn--full {
+            width: 100%;
+            max-width: 420px;
+        }
+
+        .btn--lg {
+            padding: 1.2rem 3rem;
+            font-size: 1.1rem;
+        }
+
+        /* 3. CREDENCIAIS */
+        .credentials {
+            background: var(--clr-vinho);
+            padding: 1.5rem 0;
+            color: var(--clr-text-light);
+        }
+
+        .credentials__grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .credentials__item {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: .5rem;
+        }
+
+        .credentials__icon {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, .15);
+            border: 1px solid rgba(255, 255, 255, .25);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: .5rem;
+        }
+
+        .credentials__icon svg {
+            width: 28px;
+            height: 28px;
+            fill: none;
+            stroke: var(--clr-text-light);
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        .credentials__number {
+            font-family: var(--font-heading);
+            font-size: 1.4rem;
+            font-weight: 700;
+        }
+
+        .credentials__label {
+            font-size: .9rem;
+            opacity: .9;
+            max-width: 180px;
+        }
+
+        /* SECOES */
+        .section-cta {
+            text-align: center;
+            margin-top: 2.5rem;
+        }
+
+        .section-padding {
+            padding: 5rem 0;
+        }
+
+        .section-title {
+            font-size: clamp(1.8rem, 3.5vw, 2.5rem);
+            margin-bottom: 1.5rem;
+        }
+
+        /* 5. DORES */
+        .dores {
+            background-color: var(--clr-bg-cream);
+        }
+
+        .dores__questions {
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 3rem;
+        }
+
+        .dores__question {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            padding: 1.2rem 1.5rem;
+            background: var(--clr-bg);
+            border-radius: var(--radius);
+            border-left: 4px solid var(--clr-vinho);
+        }
+
+        .dores__question-icon {
+            flex-shrink: 0;
+            font-size: 1.6rem;
+            line-height: 1;
+            margin-top: .1rem;
+        }
+
+        .dores__question p {
+            font-size: 1.05rem;
+            color: var(--clr-text);
+            line-height: 1.5;
+            font-weight: 500;
+        }
+
+        .dores__resolution {
+            max-width: 700px;
+            margin: 0 auto;
+            text-align: center;
+            padding: 1.5rem 2rem;
+            background: var(--clr-bg);
+            border-radius: var(--radius);
+            border: 1px solid rgba(141, 26, 71, .1);
+        }
+
+        .dores__resolution h3 {
+            font-size: 1.6rem;
+            color: var(--clr-vinho);
+            margin-bottom: 1rem;
+        }
+
+        .dores__resolution p {
+            font-size: 1.05rem;
+            color: var(--clr-text-muted);
+            line-height: 1.7;
+        }
+
+        /* AULAS */
+        .aulas {
+            background: var(--clr-bg-cream);
+        }
+
+        .aulas .section-title {
+            color: var(--clr-vinho);
+        }
+
+        .aulas__grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2.5rem;
+            margin-top: 2rem;
+        }
+
+        .aulas__card {
+            background: var(--clr-bg);
+            border-radius: var(--radius);
+            border: 1px solid rgba(141, 26, 71, .1);
+            padding: 2.5rem 2rem;
+        }
+
+        .aulas__card-tag {
+            display: inline-block;
+            background: var(--clr-vinho);
+            color: var(--clr-text-light);
+            font-family: var(--font-heading);
+            font-size: .85rem;
+            font-weight: 700;
+            letter-spacing: .1em;
+            text-transform: uppercase;
+            padding: .4rem 1.2rem;
+            border-radius: 50px;
+            margin-bottom: 1.5rem;
+        }
+
+        .aulas__card-list {
+            list-style: none;
+            margin: 0 0 1.5rem;
+        }
+
+        .aulas__card-list li {
+            position: relative;
+            padding-left: 1.8rem;
+            margin-bottom: .8rem;
+            font-size: 1rem;
+            color: var(--clr-text);
+            line-height: 1.5;
+        }
+
+        .aulas__card-list li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: .45rem;
+            width: 8px;
+            height: 8px;
+            background: var(--clr-dourado);
+            border-radius: 50%;
+        }
+
+        .aulas__card-image {
+            width: 100%;
+            margin-top: 1rem;
+        }
+
+        .aulas__card-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: calc(var(--radius) - 4px);
+        }
+
+        /* 6. GANHOS */
+        .ganhos {
+            background: var(--clr-vinho-dark);
+            color: var(--clr-text-light);
+        }
+
+        .ganhos .section-title {
+            color: var(--clr-text-light);
+        }
+
+        .ganhos__grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .ganhos__card {
+            background: rgba(255, 255, 255, .06);
+            border: 1px solid rgba(255, 255, 255, .1);
+            border-radius: var(--radius);
+            padding: 2rem;
+        }
+
+        .ganhos__card h3 {
+            font-family: var(--font-body);
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--clr-dourado-light);
+        }
+
+        .ganhos__card p {
+            font-size: .95rem;
+            opacity: .85;
+            line-height: 1.6;
+        }
+
+        /* 7. BONUS */
+        .bonus {
+            background-color: var(--clr-bg);
+        }
+
+        .bonus__grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .bonus__card {
+            background: var(--clr-bg);
+            border: 1px solid rgba(141, 26, 71, .1);
+            border-top: 4px solid var(--clr-vinho);
+            border-radius: var(--radius);
+            padding: 2rem;
+        }
+
+        .bonus__card-emoji {
+            font-size: 2rem;
+            line-height: 1;
+            display: block;
+            margin-bottom: 1rem;
+        }
+
+        .bonus__card h3 {
+            font-family: var(--font-body);
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--clr-vinho);
+            margin-bottom: .6rem;
+        }
+
+        .bonus__card p {
+            font-size: .95rem;
+            color: var(--clr-text-muted);
+            line-height: 1.6;
+        }
+
+        .bonus__quote {
+            max-width: 700px;
+            margin: 0 auto;
+            text-align: center;
+            padding: 2.5rem;
+            background: var(--clr-bg-cream);
+            border-radius: var(--radius);
+            border: 1px solid rgba(141, 26, 71, .1);
+        }
+
+        .bonus__quote p {
+            font-family: var(--font-heading);
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: var(--clr-vinho);
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .bonus__quote-days {
+            font-family: var(--font-body);
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--clr-verde);
+        }
+
+        /* 8. PRECO */
+        .pricing {
+            background: var(--clr-vinho);
+            color: var(--clr-text-light);
+        }
+
+        .pricing__content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .pricing__anchors {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .pricing__anchor-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 1.5rem;
+            background: rgba(255, 255, 255, .06);
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, .1);
+        }
+
+        .pricing__anchor-item span:last-child {
+            text-decoration: line-through;
+            opacity: .6;
+        }
+
+        .pricing__box {
+            background: var(--clr-bg);
+            color: var(--clr-text);
+            border-radius: var(--radius);
+            padding: 3rem 2.5rem;
+            text-align: center;
+        }
+
+        .pricing__box-label {
+            font-size: .9rem;
+            text-transform: uppercase;
+            letter-spacing: .1em;
+            color: var(--clr-text-muted);
+            margin-bottom: .3rem;
+        }
+
+        .pricing__box-from {
+            font-size: 1.1rem;
+            text-decoration: line-through;
+            color: var(--clr-text-muted);
+            margin-bottom: .3rem;
+        }
+
+        .pricing__box-price {
+            font-family: var(--font-heading);
+            font-size: clamp(2.8rem, 6vw, 3.8rem);
+            font-weight: 700;
+            color: var(--clr-vinho);
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+        }
+
+        .pricing__box .btn {
+            margin-bottom: 1rem;
+        }
+
+        .pricing__box-note {
+            font-size: .8rem;
+            color: var(--clr-text-muted);
+        }
+
+        /* 9. GARANTIA */
+        .guarantee {
+            background-color: var(--clr-bg-cream);
+        }
+
+        .guarantee__box {
+            max-width: 700px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            gap: 2.5rem;
+            padding: 3rem;
+            background: var(--clr-bg);
+            border-radius: var(--radius);
+            border: 1px solid rgba(57, 125, 127, .15);
+        }
+
+        .guarantee__seal {
+            flex-shrink: 0;
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: var(--clr-verde);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: var(--clr-text-light);
+        }
+
+        .guarantee__seal-days {
+            font-family: var(--font-heading);
+            font-size: 2rem;
+            font-weight: 700;
+            line-height: 1;
+        }
+
+        .guarantee__seal-text {
+            font-size: .65rem;
+            text-transform: uppercase;
+            letter-spacing: .1em;
+            margin-top: .2rem;
+        }
+
+        .guarantee__content h3 {
+            font-size: 1.4rem;
+            color: var(--clr-verde-dark);
+            margin-bottom: .8rem;
+        }
+
+        .guarantee__content p {
+            font-size: 1rem;
+            color: var(--clr-text-muted);
+            line-height: 1.7;
+        }
+
+        /* 10. MENTORA */
+        .mentora {
+            background: var(--clr-bg);
+        }
+
+        .mentora__grid {
+            display: grid;
+            grid-template-columns: 350px 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .mentora__image img {
+            width: 100%;
+            border-radius: var(--radius);
+            display: block;
+        }
+
+        .mentora__eyebrow {
+            display: inline-block;
+            font-size: .8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: .15em;
+            color: var(--clr-dourado-dark);
+            margin-bottom: .5rem;
+        }
+
+        .mentora__name {
+            font-size: clamp(2rem, 3.5vw, 2.8rem);
+            color: var(--clr-vinho);
+            margin-bottom: 1.5rem;
+        }
+
+        .mentora__bio {
+            font-size: 1.05rem;
+            color: var(--clr-text-muted);
+            line-height: 1.7;
+            margin-bottom: 1rem;
+        }
+
+        .mentora__quote {
+            margin-top: 1.5rem;
+            padding: 1.5rem;
+            background: var(--clr-bg-cream);
+            border-left: 3px solid var(--clr-dourado);
+            border-radius: 0 var(--radius) var(--radius) 0;
+        }
+
+        .mentora__quote p {
+            font-family: var(--font-heading);
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: var(--clr-vinho);
+            line-height: 1.6;
+        }
+
+        /* 11. FAQ */
+        .faq {
+            background: var(--clr-vinho-dark);
+            color: var(--clr-text-light);
+        }
+
+        .faq .section-title {
+            color: var(--clr-text-light);
+        }
+
+        .faq__list {
+            display: flex;
+            flex-direction: column;
+            gap: .8rem;
+            max-width: 750px;
+            margin: 0 auto;
+        }
+
+        .faq__item {
+            background: rgba(255, 255, 255, .05);
+            border: 1px solid rgba(255, 255, 255, .1);
+            border-radius: var(--radius);
+            padding: 1.3rem 1.5rem;
+        }
+
+        .faq__item summary {
+            font-size: 1.1rem;
+            color: var(--clr-dourado-light);
+            font-family: var(--font-heading);
+            font-weight: 700;
+            cursor: pointer;
+            list-style: none;
+            position: relative;
+            padding-right: 2rem;
+        }
+
+        .faq__item summary::-webkit-details-marker {
+            display: none;
+        }
+
+        .faq__item summary::after {
+            content: '+';
+            position: absolute;
+            right: 0;
+            top: 0;
+            font-size: 1.5rem;
+            color: var(--clr-dourado-light);
+        }
+
+        .faq__item[open] summary {
+            margin-bottom: .8rem;
+        }
+
+        .faq__item[open] summary::after {
+            content: '\2212';
+        }
+
+        .faq__item p {
+            color: rgba(255, 255, 255, .85);
+            font-size: 1rem;
+            line-height: 1.7;
+        }
+
+        /* CTA FINAL */
+        .cta-final {
+            background: var(--clr-bg-cream);
+            padding: 5rem 0;
+        }
+
+        .cta-final__box {
+            max-width: 650px;
+            margin: 0 auto;
+            text-align: center;
+            padding: 3rem;
+            background: var(--clr-bg);
+            border-radius: var(--radius);
+            border: 1px solid rgba(141, 26, 71, .1);
+        }
+
+        .cta-final__box .section-title {
+            color: var(--clr-vinho);
+            margin-bottom: 1rem;
+            font-size: clamp(1.5rem, 3vw, 2rem);
+        }
+
+        .cta-final__box p {
+            color: var(--clr-text-muted);
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+        }
+
+        .cta-final__price {
+            margin-bottom: 1.5rem;
+        }
+
+        .cta-final__price .pricing__box-from {
+            display: block;
+        }
+
+        .cta-final__price .pricing__box-price {
+            font-size: 2.5rem;
+        }
+
+        /* FOOTER */
+        .footer {
+            background: var(--clr-vinho-dark);
+            color: var(--clr-text-light);
+            padding: 2.5rem 0;
+            text-align: center;
+        }
+
+        .footer__manifesto {
+            max-width: 650px;
+            margin: 0 auto 2rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid rgba(255, 255, 255, .1);
+        }
+
+        .footer__manifesto-headline {
+            font-family: var(--font-heading);
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--clr-dourado-light);
+            margin-bottom: .8rem;
+        }
+
+        .footer__manifesto-text {
+            font-size: .9rem;
+            line-height: 1.7;
+            opacity: .75;
+        }
+
+        .footer__title {
+            font-family: var(--font-heading);
+            font-size: 1rem;
+            letter-spacing: .15em;
+            text-transform: uppercase;
+            margin-bottom: .5rem;
+            opacity: .7;
+        }
+
+        .footer__copy {
+            font-size: .85rem;
+            opacity: .5;
+            margin-bottom: .5rem;
+        }
+
+        .footer__links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            font-size: .8rem;
+            opacity: .4;
+        }
+
+        /* RESPONSIVO */
+        @media (max-width:768px) {
+            .section-padding {
+                padding: 3.5rem 0;
+            }
+
+            .countdown-bar {
+                padding: .35rem .5rem;
+            }
+
+            .countdown-bar__inner {
+                gap: .4rem;
+            }
+
+            .countdown-bar__label {
+                font-size: .68rem;
+                letter-spacing: .05em;
+            }
+
+            .countdown-bar__timer {
+                gap: .2rem;
+            }
+
+            .countdown-bar__number {
+                font-size: .85rem;
+                min-width: 28px;
+                padding: .1rem .25rem;
+                line-height: 1.1;
+            }
+
+            .countdown-bar__block {
+                min-width: 34px;
+            }
+
+            .countdown-bar__unit {
+                font-size: .45rem;
+                margin-top: 0;
+            }
+
+            .countdown-bar__sep {
+                font-size: .85rem;
+                margin-top: 0;
+            }
+
+            .hero {
+                padding: 1.5rem 0 2rem;
+                text-align: center;
+            }
+
+            .hero__container {
+                display: flex;
+                flex-direction: column;
+                gap: .5rem;
+                align-items: center;
+            }
+
+            .hero__content {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                width: 100%;
+            }
+
+            .hero__visual {
+                order: 2;
+                width: 100%;
+                margin-top: 1.5rem;
+            }
+
+            .hero__palmira img {
+                max-width: 280px;
+            }
+
+            .hero__logo-small {
+                max-width: 230px;
+                margin: 0 auto .8rem auto;
+            }
+
+            .hero__title {
+                font-size: 1.22rem;
+                margin-bottom: .45rem;
+                line-height: 1.2;
+            }
+
+            .hero__subtitle {
+                font-size: .85rem;
+                margin-bottom: .6rem;
+                line-height: 1.3;
+            }
+
+            .hero__bullets {
+                margin: 0 auto .65rem auto;
+                text-align: left;
+                max-width: 330px;
+            }
+
+            .hero__bullets li {
+                font-size: .78rem;
+                padding-left: 1.1rem;
+                margin-bottom: .35rem;
+                line-height: 1.3;
+            }
+
+            .hero__bullets li::before {
+                top: .32rem;
+                width: 5px;
+                height: 5px;
+            }
+
+            .hero__price-block {
+                width: 100%;
+                max-width: 290px;
+                padding: .5rem 1rem;
+                margin: 0 auto .65rem auto;
+                border-radius: 6px;
+                display: flex;
+                align-items: center;
+                justify-content: space-around;
+                text-align: center;
+            }
+
+            .hero__price-from {
+                font-size: .75rem;
+            }
+
+            .hero__price-to {
+                font-size: 1.4rem;
+                line-height: 1;
+            }
+
+            .hero__vagas {
+                font-size: .65rem;
+                margin-top: 0;
+            }
+
+            .btn--lg {
+                padding: .7rem 1.2rem;
+                font-size: .85rem;
+                width: 100%;
+                max-width: 320px;
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .credentials__grid {
+                gap: .8rem;
+            }
+
+            .credentials__icon {
+                width: 40px;
+                height: 40px;
+            }
+
+            .credentials__number {
+                font-size: 1.1rem;
+            }
+
+            .credentials__label {
+                font-size: .75rem;
+                max-width: 100%;
+            }
+
+            .aulas__grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .aulas__card {
+                padding: 2rem 1.5rem;
+            }
+
+            .aulas__card-image {
+                max-width: 250px;
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .bonus__grid {
+                grid-template-columns: 1fr;
+            }
+
+            .bonus__card {
+                text-align: center;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .pricing__content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .guarantee__box {
+                flex-direction: column;
+                text-align: center;
+                padding: 2rem;
+            }
+
+            .mentora__grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+                text-align: center;
+            }
+
+            .mentora__image {
+                max-width: 300px;
+                margin: 0 auto;
+            }
+
+            .mentora__quote {
+                border-left: none;
+                border-top: 3px solid var(--clr-dourado);
+                border-radius: var(--radius);
+                text-align: center;
+            }
+
+            .ganhos__grid {
+                grid-template-columns: 1fr;
+            }
+
+            .ganhos__card {
+                text-align: center;
+            }
+        }
+
+        @media (max-width:480px) {
+            .pricing__box {
+                padding: 2rem 1.5rem;
+            }
+        }
+    </style>
 </head>
 
 <body>
-    <!-- Google Tag Manager (noscript) -->
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5SGRDC89" height="0" width="0"
-            style="display:none;visibility:hidden"></iframe></noscript>
-
     <!-- ============================
          1. COUNTDOWN HEADER BAR
          ============================ -->
     <div class="countdown-bar" id="countdown-bar">
         <div class="countdown-bar__inner">
             <span class="countdown-bar__label">A Semana começa em:</span>
-            <div class="countdown-bar__timer" id="countdown-timer">
+            <div class="countdown-bar__timer">
                 <div class="countdown-bar__block">
                     <span class="countdown-bar__number" id="cd-days">00</span>
                     <span class="countdown-bar__unit">Dias</span>
@@ -81,7 +1251,8 @@
 
             <div class="hero__content">
 
-                <img src="/.netlify/images?url=/spd-v1/images/spd-mob.webp&w=400&q=85" alt="Semana Perfumaria das Deusas" class="hero__logo-small" loading="eager" fetchpriority="high" width="260" height="auto">
+                <img src="/spd-v1/images/opt-hero-logo.webp" alt="Semana Perfumaria das Deusas" class="hero__logo-small"
+                    width="520" height="201" fetchpriority="high" decoding="async">
 
                 <h1 class="hero__title">Inédito! Primeira Semana de Perfumes e Deusas do Brasil</h1>
 
@@ -108,18 +1279,13 @@
                     <span class="hero__vagas">Vagas Limitadas</span>
                 </div>
 
-                <a href="https://pay.hotmart.com/N106779043T?checkoutMode=10" class="btn btn--verde btn--lg pulse-loop" id="hero-cta">Quero Entrar Agora</a>
-
-                <!-- Foto da Palmira no mobile (abaixo do botão) -->
-                <div class="hero__palmira-mobile">
-                    <img src="/.netlify/images?url=/spd-v1/images/palmira2-spd.webp&w=400&q=85" alt="Palmira Margarida" loading="lazy" width="400" height="400">
-                </div>
+                <a href="https://pay.hotmart.com/N106779043T?checkoutMode=10" class="btn btn--verde btn--lg" id="hero-cta">Quero Entrar Agora</a>
             </div>
 
             <div class="hero__visual">
-                <!-- Foto da Palmira no desktop -->
-                <div class="hero__palmira-desktop">
-                    <img src="/.netlify/images?url=/spd-v1/images/palmira2-spd.webp&w=500&q=85" alt="Palmira Margarida" loading="eager" width="500" height="500">
+                <div class="hero__palmira">
+                    <img src="/spd-v1/images/opt-palmira-hero.webp" alt="Palmira Margarida" width="700" height="700"
+                        loading="lazy" decoding="async">
                 </div>
             </div>
 
@@ -135,7 +1301,7 @@
             <div class="credentials__grid">
                 <div class="credentials__item">
                     <div class="credentials__icon">
-                        <svg viewBox="0 0 24 24">
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
                             <path d="M4 19.5A2.5 2.5 0 016.5 17H20" />
                             <path d="M4 19.5V4.5A2.5 2.5 0 016.5 2H20v20H6.5A2.5 2.5 0 014 19.5z" />
                         </svg>
@@ -145,7 +1311,7 @@
                 </div>
                 <div class="credentials__item">
                     <div class="credentials__icon">
-                        <svg viewBox="0 0 24 24">
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
                             <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" />
                             <circle cx="9" cy="7" r="4" />
                             <path d="M23 21v-2a4 4 0 00-3-3.87" />
@@ -157,7 +1323,7 @@
                 </div>
                 <div class="credentials__item">
                     <div class="credentials__icon">
-                        <svg viewBox="0 0 24 24">
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
                             <path d="M22 10v6M2 10l10-5 10 5-10 5z" />
                             <path d="M6 12v5c0 2 3 4 6 4s6-2 6-4v-5" />
                         </svg>
@@ -175,7 +1341,7 @@
          ============================ -->
     <section class="section-padding dores" id="dores">
         <div class="container text-center">
-            <h2 class="section-title" style="color: var(--clr-vinho);">Você já se perguntou por que você...</h2>
+            <h2 class="section-title" style="color:var(--clr-vinho)">Você já se perguntou por que você...</h2>
         </div>
         <div class="container">
             <div class="dores__questions">
@@ -208,7 +1374,7 @@
             </div>
 
             <div class="section-cta">
-                <a href="https://pay.hotmart.com/N106779043T?checkoutMode=10" class="btn btn--vinho btn--lg pulse-loop" id="dores-cta">Quero Me Libertar Agora</a>
+                <a href="https://pay.hotmart.com/N106779043T?checkoutMode=10" class="btn btn--vinho btn--lg" id="dores-cta">Quero Me Libertar Agora</a>
             </div>
         </div>
     </section>
@@ -231,7 +1397,8 @@
                         <li>Teste exclusivo para descobrir a deusa que vai transformar sua vida</li>
                     </ul>
                     <div class="aulas__card-image">
-                        <img src="/.netlify/images?url=/spd-v1/images/TesteDeusas.webp&w=600&q=85" alt="Teste das Deusas" loading="lazy" width="600" height="auto">
+                        <img src="/spd-v1/images/opt-aula1.webp" alt="Teste das Deusas" width="470" height="632"
+                            loading="lazy" decoding="async">
                     </div>
                 </div>
                 <div class="aulas__card">
@@ -243,13 +1410,14 @@
                         <li>Receita AO VIVO de um perfume ritualístico para a deusa que cura todas as mulheres: Afrodite.</li>
                     </ul>
                     <div class="aulas__card-image">
-                        <img src="/.netlify/images?url=/spd-v1/images/Afrodite.webp&w=600&q=85" alt="Perfume de Afrodite" loading="lazy" width="600" height="auto">
+                        <img src="/spd-v1/images/opt-aula2.webp" alt="Perfume de Afrodite" width="470" height="632"
+                            loading="lazy" decoding="async">
                     </div>
                 </div>
             </div>
 
             <div class="section-cta">
-                <a href="https://pay.hotmart.com/N106779043T?checkoutMode=10" class="btn btn--verde btn--lg pulse-loop" id="aulas-cta">Quero Entrar Agora</a>
+                <a href="https://pay.hotmart.com/N106779043T?checkoutMode=10" class="btn btn--verde btn--lg" id="aulas-cta">Quero Entrar Agora</a>
             </div>
         </div>
     </section>
@@ -287,7 +1455,7 @@
             </div>
 
             <div class="section-cta">
-                <a href="https://pay.hotmart.com/N106779043T?checkoutMode=10" class="btn btn--verde btn--lg pulse-loop" id="ganhos-cta">Quero Essa Transformação</a>
+                <a href="https://pay.hotmart.com/N106779043T?checkoutMode=10" class="btn btn--verde btn--lg" id="ganhos-cta">Quero Essa Transformação</a>
             </div>
         </div>
     </section>
@@ -298,7 +1466,7 @@
          ============================ -->
     <section class="section-padding bonus" id="bonus">
         <div class="container text-center">
-            <h2 class="section-title" style="color: var(--clr-vinho);">O que você recebe na Semana Perfumaria das Deusas
+            <h2 class="section-title" style="color:var(--clr-vinho)">O que você recebe na Semana Perfumaria das Deusas
             </h2>
         </div>
         <div class="container">
@@ -336,7 +1504,7 @@
             </div>
 
             <div class="section-cta">
-                <a href="https://pay.hotmart.com/N106779043T?checkoutMode=10" class="btn btn--verde btn--lg pulse-loop" id="bonus-cta">Garantir Minha Vaga por R$19,90</a>
+                <a href="https://pay.hotmart.com/N106779043T?checkoutMode=10" class="btn btn--verde btn--lg" id="bonus-cta">Garantir Minha Vaga por R$19,90</a>
             </div>
         </div>
     </section>
@@ -347,8 +1515,8 @@
          ============================ -->
     <section class="section-padding pricing" id="preco">
         <div class="container">
-            <div class="text-center" style="margin-bottom: 3rem;">
-                <h2 class="section-title" style="color: var(--clr-text-light);">Veja tudo que você recebe:</h2>
+            <div class="text-center" style="margin-bottom:3rem">
+                <h2 class="section-title" style="color:#fff">Veja tudo que você recebe:</h2>
             </div>
             <div class="pricing__content">
                 <div class="pricing__anchors">
@@ -375,7 +1543,7 @@
                     <div class="pricing__box-from">de R$197</div>
                     <div class="pricing__box-label">por apenas</div>
                     <div class="pricing__box-price">R$19,90</div>
-                    <a href="https://pay.hotmart.com/N106779043T?checkoutMode=10" class="btn btn--verde btn--full pulse-loop">Quero Entrar Agora</a>
+                    <a href="https://pay.hotmart.com/N106779043T?checkoutMode=10" class="btn btn--verde btn--full">Quero Entrar Agora</a>
                     <p class="pricing__box-note">Pagamento único. Acesso imediato.</p>
                 </div>
             </div>
@@ -411,8 +1579,8 @@
         <div class="container">
             <div class="mentora__grid">
                 <div class="mentora__image">
-                    <img src="/.netlify/images?url=/spd-v1/images/palmira02.webp&w=700&q=85" alt="Palmira Margarida"
-                        width="700" height="700" loading="lazy">
+                    <img src="/spd-v1/images/opt-mentora.webp" alt="Palmira Margarida" width="350" height="550"
+                        loading="lazy" decoding="async">
                 </div>
                 <div class="mentora__text">
                     <span class="mentora__eyebrow">Quem vai conduzir essa jornada</span>
@@ -499,7 +1667,7 @@
                     <span class="pricing__box-from">de R$197</span>
                     <div class="pricing__box-price">R$19,90</div>
                 </div>
-                <a href="https://pay.hotmart.com/N106779043T?checkoutMode=10" class="btn btn--verde btn--lg pulse-loop">Quero Entrar Agora</a>
+                <a href="https://pay.hotmart.com/N106779043T?checkoutMode=10" class="btn btn--verde btn--lg">Quero Entrar Agora</a>
             </div>
         </div>
     </section>
@@ -525,70 +1693,84 @@
 
 
     <!-- ============================
-         SCRIPTS
+         SCRIPTS (inline, sem bloqueio)
          ============================ -->
-
-    <!-- Countdown Timer -->
     <script>
+        // Countdown + repasse de UTM
         (function () {
-            // CONFIGURAR DATA DO EVENTO AQUI (formato: ano, mes-1, dia, hora, minuto)
-            var eventDate = new Date(2026, 7, 11, 20, 0, 0); // 11 de Agosto de 2026, 20h
+            var eventDate = new Date(2026, 7, 11, 20, 0, 0); // 11/08/2026 20h
 
-            var daysEl = document.getElementById('cd-days');
-            var hoursEl = document.getElementById('cd-hours');
-            var minsEl = document.getElementById('cd-mins');
-            var secsEl = document.getElementById('cd-secs');
+            var el = {
+                d: document.getElementById('cd-days'),
+                h: document.getElementById('cd-hours'),
+                m: document.getElementById('cd-mins'),
+                s: document.getElementById('cd-secs')
+            };
+            var last = { d: '', h: '', m: '', s: '' };
+            var timer;
 
-            function pad(n) { return n < 10 ? '0' + n : n; }
+            function pad(n) { return n < 10 ? '0' + n : '' + n; }
 
-            function updateCountdown() {
-                var now = new Date();
-                var diff = eventDate - now;
+            function set(k, v) {
+                if (last[k] !== v) { last[k] = v; el[k].textContent = v; }
+            }
+
+            function tick() {
+                var diff = eventDate - Date.now();
 
                 if (diff <= 0) {
-                    daysEl.textContent = '00';
-                    hoursEl.textContent = '00';
-                    minsEl.textContent = '00';
-                    secsEl.textContent = '00';
-                    var bar = document.getElementById('countdown-bar');
-                    if (bar) {
-                        bar.querySelector('.countdown-bar__label').textContent = 'Evento iniciado';
-                    }
+                    clearInterval(timer);
+                    set('d', '00'); set('h', '00'); set('m', '00'); set('s', '00');
+                    var label = document.querySelector('.countdown-bar__label');
+                    if (label) { label.textContent = 'Evento iniciado'; }
                     return;
                 }
 
-                var days = Math.floor(diff / (1000 * 60 * 60 * 24));
-                var hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                var mins = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-                var secs = Math.floor((diff % (1000 * 60)) / 1000);
-
-                daysEl.textContent = pad(days);
-                hoursEl.textContent = pad(hours);
-                minsEl.textContent = pad(mins);
-                secsEl.textContent = pad(secs);
+                set('d', pad(Math.floor(diff / 86400000)));
+                set('h', pad(Math.floor(diff % 86400000 / 3600000)));
+                set('m', pad(Math.floor(diff % 3600000 / 60000)));
+                set('s', pad(Math.floor(diff % 60000 / 1000)));
             }
 
-            updateCountdown();
-            setInterval(updateCountdown, 1000);
+            tick();
+            timer = setInterval(tick, 1000);
+
+            // Pausa o timer quando a aba nao esta visivel
+            document.addEventListener('visibilitychange', function () {
+                if (document.hidden) {
+                    clearInterval(timer);
+                } else {
+                    tick();
+                    timer = setInterval(tick, 1000);
+                }
+            });
+
+            // Repassa parametros de UTM para o checkout
+            var qs = location.search;
+            if (qs.length > 1) {
+                var params = qs.substring(1);
+                var links = document.querySelectorAll('a[href*="hotmart.com"]');
+                for (var i = 0; i < links.length; i++) {
+                    links[i].href += (links[i].href.indexOf('?') !== -1 ? '&' : '?') + params;
+                }
+            }
         })();
     </script>
 
-    <!-- UTM Pass-through -->
+    <!-- Google Tag Manager (carrega depois do load, fora do caminho critico) -->
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            var urlParams = window.location.search;
-            if (urlParams) {
-                var links = document.querySelectorAll('a[href*="hotmart.com"], a[href*="checkout"]');
-                links.forEach(function (link) {
-                    if (!link.href.includes(urlParams.substring(1))) {
-                        var separator = link.href.indexOf('?') !== -1 ? '&' : '?';
-                        link.href = link.href + separator + urlParams.substring(1);
-                    }
-                });
-            }
+        window.addEventListener('load', function () {
+            setTimeout(function () {
+                (function (w, d, s, l, i) {
+                    w[l] = w[l] || []; w[l].push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
+                    var f = d.getElementsByTagName(s)[0], j = d.createElement(s),
+                        dl = l != 'dataLayer' ? '&l=' + l : '';
+                    j.async = true; j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+                    f.parentNode.insertBefore(j, f);
+                })(window, document, 'script', 'dataLayer', 'GTM-5SGRDC89');
+            }, 2500);
         });
     </script>
-
 </body>
 
 </html>

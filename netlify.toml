@@ -114,6 +114,27 @@
     Cache-Control = "public, max-age=31536000, immutable"
 
 [[headers]]
+  for = "/spd-v1/images/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/spd-v1/fonts/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# HTML da spd-v1: sempre revalida (CSS esta inline, entao nao pode ficar preso em cache)
+[[headers]]
+  for = "/spd-v1/*.html"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+[[headers]]
+  for = "/spd-v1/"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+[[headers]]
   for = "*.css"
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"

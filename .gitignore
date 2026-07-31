@@ -4,3 +4,8 @@
 # Backups
 _backup_*/
 **/_backup_*/
+
+# Relatorios do Lighthouse: sao temporarios de sessao de otimizacao.
+# A raiz e publicada (publish = "." no netlify.toml), entao qualquer json
+# solto aqui vira arquivo publico no dominio.
+lighthouse-*.json

@@ -14,10 +14,18 @@
     <meta property="og:description"
         content="Descubra a deusa e o perfume do seu momento. Primeira Semana de Perfumes e Deusas do Brasil.">
 
-    <!-- Preload dos recursos criticos (fontes self-hosted + imagem LCP) -->
-    <link rel="preload" href="/spd-v1/fonts/outfit.woff2" as="font" type="font/woff2" crossorigin>
+    <!-- DNS resolvido cedo, sem abrir conexao ociosa: o GTM so e buscado na 1a interacao -->
+    <link rel="dns-prefetch" href="https://www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://pay.hotmart.com">
+
+    <!-- Preload dos recursos criticos.
+         Ordem importa: o que pinta primeiro vem primeiro na fila High.
+         Outfit (corpo) NAO e preloadado de proposito: font-display:swap ja cobre,
+         e o preload dele roubava 21KB de banda da imagem LCP. -->
+    <link rel="preload" href="/spd-v1/images/opt-hero-logo.webp" as="image" fetchpriority="high"
+        imagesrcset="/spd-v1/images/opt-hero-logo-260.webp 260w, /spd-v1/images/opt-hero-logo.webp 520w"
+        imagesizes="(max-width:768px) 230px, 260px">
     <link rel="preload" href="/spd-v1/fonts/philosopher-700.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="preload" href="/spd-v1/images/opt-hero-logo.webp" as="image" fetchpriority="high">
 
     <!-- CSS 100% inline: zero requisicao bloqueante de renderizacao -->
     <style>
@@ -99,6 +107,24 @@
 
         .text-center {
             text-align: center;
+        }
+
+        /* Pula estilo/layout/paint das secoes fora da viewport.
+           Era o maior custo de main thread da pagina (Style & Layout ~255ms),
+           que pesava tanto no FCP quanto no recalculo a cada interacao (INP).
+           `contain-intrinsic-size: auto <x>` guarda o tamanho real apos o
+           primeiro render, entao nao gera salto de scroll nem CLS. */
+        #aulas,
+        #ganhos,
+        #bonus,
+        #preco,
+        #garantia,
+        #mentora,
+        #faq,
+        #cadastro,
+        .footer {
+            content-visibility: auto;
+            contain-intrinsic-size: auto 800px;
         }
 
         /* 1. COUNTDOWN BAR */
@@ -1251,7 +1277,9 @@
 
             <div class="hero__content">
 
-                <img src="/spd-v1/images/opt-hero-logo.webp" alt="Semana Perfumaria das Deusas" class="hero__logo-small"
+                <img src="/spd-v1/images/opt-hero-logo.webp"
+                    srcset="/spd-v1/images/opt-hero-logo-260.webp 260w, /spd-v1/images/opt-hero-logo.webp 520w"
+                    sizes="(max-width:768px) 230px, 260px" alt="Semana Perfumaria das Deusas" class="hero__logo-small"
                     width="520" height="201" fetchpriority="high" decoding="async">
 
                 <h1 class="hero__title">Inédito! Primeira Semana de Perfumes e Deusas do Brasil</h1>
@@ -1284,8 +1312,12 @@
 
             <div class="hero__visual">
                 <div class="hero__palmira">
-                    <img src="/spd-v1/images/opt-palmira-hero.webp" alt="Palmira Margarida" width="700" height="700"
-                        loading="lazy" decoding="async">
+                    <!-- Elemento LCP no mobile: NUNCA usar loading="lazy" aqui.
+                         O lazy adiava a busca ate o layout e custava ~428ms de Load Delay. -->
+                    <img src="/spd-v1/images/opt-palmira-hero.webp"
+                        srcset="/spd-v1/images/opt-palmira-hero-380.webp 380w, /spd-v1/images/opt-palmira-hero.webp 700w"
+                        sizes="(max-width:768px) 280px, 380px" alt="Palmira Margarida" width="700" height="700"
+                        fetchpriority="high" decoding="async">
                 </div>
             </div>
 
@@ -1757,10 +1789,25 @@
         })();
     </script>
 
-    <!-- Google Tag Manager (carrega depois do load, fora do caminho critico) -->
+    <!-- Google Tag Manager.
+         Carrega na PRIMEIRA interacao do usuario, com fallback de 5s.
+
+         Por que nao `load + 2500ms`: o container puxa ~392KB de JS de terceiro
+         (gtm.js 132KB + gtag/js 156KB + fbevents.js 104KB). Aos 2,5s isso caia
+         exatamente na janela em que o usuario comeca a tocar na tela, gerando
+         long tasks de 318-468ms em cima das interacoes. Era a causa do INP 269ms.
+
+         Os gatilhos sao sinais que PRECEDEM o toque (scroll, pointermove,
+         touchstart), entao o GTM em geral ja terminou de carregar antes do
+         primeiro clique. E a injecao vai para `scheduler.postTask` com
+         prioridade 'background', que por especificacao cede a vez para input:
+         nem a propria interacao que disparou o carregamento paga o custo. -->
     <script>
-        window.addEventListener('load', function () {
-            setTimeout(function () {
+        (function () {
+            var EVENTS = ['touchstart', 'pointermove', 'scroll', 'keydown', 'pointerdown'];
+            var done = false;
+
+            function inject() {
                 (function (w, d, s, l, i) {
                     w[l] = w[l] || []; w[l].push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
                     var f = d.getElementsByTagName(s)[0], j = d.createElement(s),
@@ -1768,8 +1815,30 @@
                     j.async = true; j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
                     f.parentNode.insertBefore(j, f);
                 })(window, document, 'script', 'dataLayer', 'GTM-5SGRDC89');
-            }, 2500);
-        });
+            }
+
+            function start() {
+                if (done) { return; }
+                done = true;
+                for (var k = 0; k < EVENTS.length; k++) {
+                    window.removeEventListener(EVENTS[k], start, { passive: true });
+                }
+                // Cede a vez para input antes de gastar main thread com o GTM
+                if (window.scheduler && scheduler.postTask) {
+                    scheduler.postTask(inject, { priority: 'background' });
+                } else if (window.requestIdleCallback) {
+                    requestIdleCallback(inject);
+                } else {
+                    setTimeout(inject, 300);
+                }
+            }
+
+            for (var k = 0; k < EVENTS.length; k++) {
+                window.addEventListener(EVENTS[k], start, { passive: true });
+            }
+            // Fallback: quem nunca interage ainda e contabilizado
+            setTimeout(start, 5000);
+        })();
     </script>
 </body>
 

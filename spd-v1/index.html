@@ -328,6 +328,57 @@
             letter-spacing: .1em;
         }
 
+        /* Status dos lotes. Bloco (nao flex) de proposito: as pilulas sao
+           inline-block, entao herdam o text-align do container e ficam
+           alinhadas a esquerda no hero e centralizadas nas caixas de preco. */
+        .lote-status {
+            margin-bottom: .8rem;
+            line-height: 2;
+        }
+
+        .lote-status__item {
+            display: inline-block;
+            margin-right: .35rem;
+            padding: .26rem .6rem;
+            border: 1px solid;
+            border-radius: 100px;
+            font-size: .72rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: .08em;
+            white-space: nowrap;
+        }
+
+        .lote-status__item--off {
+            color: var(--clr-text-muted);
+            border-color: rgba(0, 0, 0, .16);
+            text-decoration: line-through;
+        }
+
+        .lote-status__item--on {
+            color: var(--clr-text-light);
+            background: var(--clr-vinho);
+            border-color: var(--clr-vinho);
+        }
+
+        .price-parcel {
+            display: block;
+            font-size: .95rem;
+            font-weight: 600;
+            color: var(--clr-text-muted);
+        }
+
+        /* .pricing__box-price carrega margin-bottom de 1.5rem para separar do
+           botao. Com a parcela no meio, a margem passa para ela. */
+        .pricing__box-price--tight {
+            margin-bottom: .3rem;
+        }
+
+        .price-parcel--box {
+            font-size: 1.05rem;
+            margin-bottom: 1.5rem;
+        }
+
         /* BOTOES */
         .btn {
             display: inline-block;
@@ -1307,15 +1358,24 @@
                     <span class="hero__date-tag">11/08 e 13/08 • AO VIVO</span>
                 </div>
 
+                <!-- Fora do .hero__price-block de proposito: no mobile aquele bloco
+                     vira flex row com space-around, e um terceiro filho quebraria
+                     o alinhamento entre preco e "vagas limitadas". -->
+                <div class="lote-status">
+                    <span class="lote-status__item lote-status__item--off">Lote 1 encerrado</span>
+                    <span class="lote-status__item lote-status__item--on">Lote 2 aberto</span>
+                </div>
+
                 <div class="hero__price-block">
                     <div class="hero__price-numbers">
                         <span class="hero__price-from">De R$197</span>
-                        <div class="hero__price-to">R$19,90</div>
+                        <div class="hero__price-to">R$24,90</div>
+                        <span class="price-parcel">ou 2x de R$13,11</span>
                     </div>
                     <span class="hero__vagas">Vagas Limitadas</span>
                 </div>
 
-                <a href="https://pay.hotmart.com/N106779043T?checkoutMode=10" class="btn btn--verde btn--lg" id="hero-cta">Quero Entrar Agora</a>
+                <a href="https://pay.hotmart.com/N106779043T?off=nle618pz&amp;checkoutMode=10" class="btn btn--verde btn--lg" id="hero-cta">Quero Entrar Agora</a>
             </div>
 
             <div class="hero__visual">
@@ -1414,7 +1474,7 @@
             </div>
 
             <div class="section-cta">
-                <a href="https://pay.hotmart.com/N106779043T?checkoutMode=10" class="btn btn--vinho btn--lg" id="dores-cta">Quero Me Libertar Agora</a>
+                <a href="https://pay.hotmart.com/N106779043T?off=nle618pz&amp;checkoutMode=10" class="btn btn--vinho btn--lg" id="dores-cta">Quero Me Libertar Agora</a>
             </div>
         </div>
     </section>
@@ -1457,7 +1517,7 @@
             </div>
 
             <div class="section-cta">
-                <a href="https://pay.hotmart.com/N106779043T?checkoutMode=10" class="btn btn--verde btn--lg" id="aulas-cta">Quero Entrar Agora</a>
+                <a href="https://pay.hotmart.com/N106779043T?off=nle618pz&amp;checkoutMode=10" class="btn btn--verde btn--lg" id="aulas-cta">Quero Entrar Agora</a>
             </div>
         </div>
     </section>
@@ -1495,7 +1555,7 @@
             </div>
 
             <div class="section-cta">
-                <a href="https://pay.hotmart.com/N106779043T?checkoutMode=10" class="btn btn--verde btn--lg" id="ganhos-cta">Quero Essa Transformação</a>
+                <a href="https://pay.hotmart.com/N106779043T?off=nle618pz&amp;checkoutMode=10" class="btn btn--verde btn--lg" id="ganhos-cta">Quero Essa Transformação</a>
             </div>
         </div>
     </section>
@@ -1544,7 +1604,7 @@
             </div>
 
             <div class="section-cta">
-                <a href="https://pay.hotmart.com/N106779043T?checkoutMode=10" class="btn btn--verde btn--lg" id="bonus-cta">Garantir Minha Vaga por R$19,90</a>
+                <a href="https://pay.hotmart.com/N106779043T?off=nle618pz&amp;checkoutMode=10" class="btn btn--verde btn--lg" id="bonus-cta">Garantir Minha Vaga por R$24,90</a>
             </div>
         </div>
     </section>
@@ -1579,11 +1639,16 @@
                 </div>
 
                 <div class="pricing__box">
+                    <div class="lote-status">
+                        <span class="lote-status__item lote-status__item--off">Lote 1 encerrado</span>
+                        <span class="lote-status__item lote-status__item--on">Lote 2 aberto</span>
+                    </div>
                     <div class="pricing__box-label">Tudo isso junto</div>
                     <div class="pricing__box-from">de R$197</div>
                     <div class="pricing__box-label">por apenas</div>
-                    <div class="pricing__box-price">R$19,90</div>
-                    <a href="https://pay.hotmart.com/N106779043T?checkoutMode=10" class="btn btn--verde btn--full">Quero Entrar Agora</a>
+                    <div class="pricing__box-price pricing__box-price--tight">R$24,90</div>
+                    <span class="price-parcel price-parcel--box">ou 2x de R$13,11</span>
+                    <a href="https://pay.hotmart.com/N106779043T?off=nle618pz&amp;checkoutMode=10" class="btn btn--verde btn--full">Quero Entrar Agora</a>
                     <p class="pricing__box-note">Pagamento único. Acesso imediato.</p>
                 </div>
             </div>
@@ -1703,11 +1768,16 @@
             <div class="cta-final__box">
                 <h2 class="section-title">Garanta Sua Vaga na Semana Perfumaria das Deusas</h2>
                 <p>As vagas são limitadas e podem encerrar a qualquer momento.</p>
+                <div class="lote-status">
+                    <span class="lote-status__item lote-status__item--off">Lote 1 encerrado</span>
+                    <span class="lote-status__item lote-status__item--on">Lote 2 aberto</span>
+                </div>
                 <div class="cta-final__price">
                     <span class="pricing__box-from">de R$197</span>
-                    <div class="pricing__box-price">R$19,90</div>
+                    <div class="pricing__box-price pricing__box-price--tight">R$24,90</div>
+                    <span class="price-parcel price-parcel--box">ou 2x de R$13,11</span>
                 </div>
-                <a href="https://pay.hotmart.com/N106779043T?checkoutMode=10" class="btn btn--verde btn--lg">Quero Entrar Agora</a>
+                <a href="https://pay.hotmart.com/N106779043T?off=nle618pz&amp;checkoutMode=10" class="btn btn--verde btn--lg">Quero Entrar Agora</a>
             </div>
         </div>
     </section>

@@ -130,9 +130,18 @@
         #mentora,
         #faq,
         #cadastro,
+        #suporte,
+        .credentials,
         .footer {
             content-visibility: auto;
             contain-intrinsic-size: auto 800px;
+        }
+
+        /* Suporte e credenciais sao faixas curtas: com o placeholder de 800px
+           a barra de rolagem encolheria ao chegar nelas. */
+        #suporte,
+        .credentials {
+            contain-intrinsic-size: auto 220px;
         }
 
         /* 1. COUNTDOWN BAR */
@@ -1011,6 +1020,24 @@
             font-size: 2.5rem;
         }
 
+        /* SUPORTE / DUVIDAS */
+        .suporte {
+            background: var(--clr-bg-cream);
+            padding: 3.5rem 0;
+        }
+
+        .suporte__title {
+            font-size: clamp(1.3rem, 2.5vw, 1.8rem);
+            color: var(--clr-vinho);
+            margin-bottom: 1.5rem;
+        }
+
+        .section-cta__note {
+            margin-top: .9rem;
+            font-size: .85rem;
+            color: var(--clr-text-muted);
+        }
+
         /* FOOTER */
         .footer {
             background: var(--clr-vinho-dark);
@@ -1295,9 +1322,33 @@
             }
         }
     </style>
+    <!-- Pixel Meta carregado direto, fora do GTM.
+         Precisa disparar o PageView na entrada: o connect rate do Facebook e
+         LandingPageViews/cliques, entao pixel adiado = clique contado sem
+         pageview. O script e async, nao bloqueia render, e vem depois do
+         preload do LCP para nao roubar prioridade de banda.
+         ATENCAO: desative a tag do Pixel dentro do GTM-5SGRDC89 ou o
+         PageView sera contado duas vezes. -->
+    <link rel="preconnect" href="https://connect.facebook.net" crossorigin>
+    <script>
+        !function (f, b, e, v, n, t, s) {
+            if (f.fbq) return; n = f.fbq = function () { n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments) };
+            if (!f._fbq) f._fbq = n; n.push = n; n.loaded = !0; n.version = '2.0'; n.queue = [];
+            t = b.createElement(e); t.async = !0; t.src = v;
+            s = b.getElementsByTagName(e)[0]; s.parentNode.insertBefore(t, s)
+        }(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
+        fbq('init', '664953787740466');
+        fbq('track', 'PageView');
+    </script>
 </head>
 
 <body>
+    <noscript><img height="1" width="1" style="display:none" alt=""
+            src="https://www.facebook.com/tr?id=664953787740466&ev=PageView&noscript=1"></noscript>
+
+    <!-- ============================
+         1. COUNTDOWN HEADER BAR
+         ============================ -->
     <!-- ============================
          1. COUNTDOWN HEADER BAR
          ============================ -->
@@ -1327,6 +1378,7 @@
             </div>
         </div>
     </div>
+
 
     <!-- ============================
          2. HERO / CTA INICIAL
@@ -1394,50 +1446,50 @@
 
 
     <!-- ============================
-         3. FAIXA DE CREDENCIAIS
+         3. O QUE VOCE VAI VER NAS DUAS AULAS
          ============================ -->
-    <section class="credentials">
+    <section class="section-padding aulas" id="aulas">
+        <div class="container text-center">
+            <h2 class="section-title">Como a Semana Perfumaria das Deusas vai mudar sua vida?</h2>
+        </div>
         <div class="container">
-            <div class="credentials__grid">
-                <div class="credentials__item">
-                    <div class="credentials__icon">
-                        <svg viewBox="0 0 24 24" aria-hidden="true">
-                            <path d="M4 19.5A2.5 2.5 0 016.5 17H20" />
-                            <path d="M4 19.5V4.5A2.5 2.5 0 016.5 2H20v20H6.5A2.5 2.5 0 014 19.5z" />
-                        </svg>
+            <div class="aulas__grid">
+                <div class="aulas__card">
+                    <span class="aulas__card-tag">Aula 1</span>
+                    <ul class="aulas__card-list">
+                        <li>Você vai conhecer mitologias e deusas de diversas culturas</li>
+                        <li>Reconhecer a potência das deusas na sua vida</li>
+                        <li>Teste exclusivo para descobrir a deusa que vai transformar sua vida</li>
+                    </ul>
+                    <div class="aulas__card-image">
+                        <img src="/spd-v1/images/opt-aula1.webp" alt="Teste das Deusas" width="470" height="632"
+                            loading="lazy" decoding="async">
                     </div>
-                    <span class="credentials__number">2 Livros</span>
-                    <span class="credentials__label">de perfumaria e feminino publicados</span>
                 </div>
-                <div class="credentials__item">
-                    <div class="credentials__icon">
-                        <svg viewBox="0 0 24 24" aria-hidden="true">
-                            <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" />
-                            <circle cx="9" cy="7" r="4" />
-                            <path d="M23 21v-2a4 4 0 00-3-3.87" />
-                            <path d="M16 3.13a4 4 0 010 7.75" />
-                        </svg>
+                <div class="aulas__card">
+                    <span class="aulas__card-tag">Aula 2</span>
+                    <ul class="aulas__card-list">
+                        <li>Você vai descobrir a forma mais eficaz e confiável que existe no mundo para ativar a energia de uma deusa na sua vida</li>
+                        <li>Vai conhecer em detalhes a Perfumaria Terapêutica e aprender a fazer perfumes para as deusas em casa</li>
+                        <li>Vai descobrir o melhor perfume para libertar o seu feminino</li>
+                        <li>Receita AO VIVO de um perfume ritualístico para a deusa que cura todas as mulheres: Afrodite.</li>
+                    </ul>
+                    <div class="aulas__card-image">
+                        <img src="/spd-v1/images/opt-aula2.webp" alt="Perfume de Afrodite" width="470" height="632"
+                            loading="lazy" decoding="async">
                     </div>
-                    <span class="credentials__number">+2.000</span>
-                    <span class="credentials__label">perfumistas formadas</span>
                 </div>
-                <div class="credentials__item">
-                    <div class="credentials__icon">
-                        <svg viewBox="0 0 24 24" aria-hidden="true">
-                            <path d="M22 10v6M2 10l10-5 10 5-10 5z" />
-                            <path d="M6 12v5c0 2 3 4 6 4s6-2 6-4v-5" />
-                        </svg>
-                    </div>
-                    <span class="credentials__number">PhD</span>
-                    <span class="credentials__label">em História das Ciências</span>
-                </div>
+            </div>
+
+            <div class="section-cta">
+                <a href="https://pay.hotmart.com/N106779043T?off=nle618pz&amp;checkoutMode=10" class="btn btn--verde btn--lg" id="aulas-cta">Quero Entrar Agora</a>
             </div>
         </div>
     </section>
 
 
     <!-- ============================
-         5. DOBRA DORES
+         4. DORES
          ============================ -->
     <section class="section-padding dores" id="dores">
         <div class="container text-center">
@@ -1481,50 +1533,7 @@
 
 
     <!-- ============================
-         DOBRA EXTRA - AULAS
-         ============================ -->
-    <section class="section-padding aulas" id="aulas">
-        <div class="container text-center">
-            <h2 class="section-title">Como a Semana Perfumaria das Deusas vai mudar sua vida?</h2>
-        </div>
-        <div class="container">
-            <div class="aulas__grid">
-                <div class="aulas__card">
-                    <span class="aulas__card-tag">Aula 1</span>
-                    <ul class="aulas__card-list">
-                        <li>Você vai conhecer mitologias e deusas de diversas culturas</li>
-                        <li>Reconhecer a potência das deusas na sua vida</li>
-                        <li>Teste exclusivo para descobrir a deusa que vai transformar sua vida</li>
-                    </ul>
-                    <div class="aulas__card-image">
-                        <img src="/spd-v1/images/opt-aula1.webp" alt="Teste das Deusas" width="470" height="632"
-                            loading="lazy" decoding="async">
-                    </div>
-                </div>
-                <div class="aulas__card">
-                    <span class="aulas__card-tag">Aula 2</span>
-                    <ul class="aulas__card-list">
-                        <li>Você vai descobrir a forma mais eficaz e confiável que existe no mundo para ativar a energia de uma deusa na sua vida</li>
-                        <li>Vai conhecer em detalhes a Perfumaria Terapêutica e aprender a fazer perfumes para as deusas em casa</li>
-                        <li>Vai descobrir o melhor perfume para libertar o seu feminino</li>
-                        <li>Receita AO VIVO de um perfume ritualístico para a deusa que cura todas as mulheres: Afrodite.</li>
-                    </ul>
-                    <div class="aulas__card-image">
-                        <img src="/spd-v1/images/opt-aula2.webp" alt="Perfume de Afrodite" width="470" height="632"
-                            loading="lazy" decoding="async">
-                    </div>
-                </div>
-            </div>
-
-            <div class="section-cta">
-                <a href="https://pay.hotmart.com/N106779043T?off=nle618pz&amp;checkoutMode=10" class="btn btn--verde btn--lg" id="aulas-cta">Quero Entrar Agora</a>
-            </div>
-        </div>
-    </section>
-
-
-    <!-- ============================
-         6. DOBRA GANHOS
+         5. GANHOS
          ============================ -->
     <section class="section-padding ganhos" id="ganhos">
         <div class="container text-center">
@@ -1562,7 +1571,7 @@
 
 
     <!-- ============================
-         7. BONUS
+         6. O QUE ESTA INCLUSO
          ============================ -->
     <section class="section-padding bonus" id="bonus">
         <div class="container text-center">
@@ -1605,13 +1614,14 @@
 
             <div class="section-cta">
                 <a href="https://pay.hotmart.com/N106779043T?off=nle618pz&amp;checkoutMode=10" class="btn btn--verde btn--lg" id="bonus-cta">Garantir Minha Vaga por R$24,90</a>
+                <p class="section-cta__note">Preço pode ser alterado conforme as vagas disponíveis.</p>
             </div>
         </div>
     </section>
 
 
     <!-- ============================
-         8. ANCORAGEM DE PRECO
+         7. QUANTO CUSTA
          ============================ -->
     <section class="section-padding pricing" id="preco">
         <div class="container">
@@ -1657,7 +1667,7 @@
 
 
     <!-- ============================
-         9. GARANTIA
+         8. GARANTIA
          ============================ -->
     <section class="section-padding guarantee" id="garantia">
         <div class="container">
@@ -1678,7 +1688,41 @@
 
 
     <!-- ============================
-         10. SOBRE A MENTORA
+         9. SUPORTE / DUVIDAS
+         ============================ -->
+    <section class="suporte" id="suporte">
+        <div class="container text-center">
+            <h2 class="suporte__title">Se ainda estiver com dúvidas, fale com nossa equipe</h2>
+            <a href="https://wa.me/5521970705168" class="btn btn--verde btn--lg" id="suporte-cta" rel="noopener">Falar com o suporte</a>
+        </div>
+    </section>
+
+
+    <!-- ============================
+         10. QUANTO CUSTA (2o BLOCO DE PRECO)
+         ============================ -->
+    <section class="cta-final" id="cadastro">
+        <div class="container">
+            <div class="cta-final__box">
+                <h2 class="section-title">Garanta Sua Vaga na Semana Perfumaria das Deusas</h2>
+                <p>As vagas são limitadas e podem encerrar a qualquer momento.</p>
+                <div class="lote-status">
+                    <span class="lote-status__item lote-status__item--off">Lote 1 encerrado</span>
+                    <span class="lote-status__item lote-status__item--on">Lote 2 aberto</span>
+                </div>
+                <div class="cta-final__price">
+                    <span class="pricing__box-from">de R$197</span>
+                    <div class="pricing__box-price pricing__box-price--tight">R$24,90</div>
+                    <span class="price-parcel price-parcel--box">ou 2x de R$13,11</span>
+                </div>
+                <a href="https://pay.hotmart.com/N106779043T?off=nle618pz&amp;checkoutMode=10" class="btn btn--verde btn--lg">Quero Entrar Agora</a>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ============================
+         11. PALMIRA MARGARIDA
          ============================ -->
     <section class="section-padding mentora" id="mentora">
         <div class="container">
@@ -1703,7 +1747,50 @@
 
 
     <!-- ============================
-         11. FAQ
+         12. CREDENCIAIS
+         ============================ -->
+    <section class="credentials">
+        <div class="container">
+            <div class="credentials__grid">
+                <div class="credentials__item">
+                    <div class="credentials__icon">
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M4 19.5A2.5 2.5 0 016.5 17H20" />
+                            <path d="M4 19.5V4.5A2.5 2.5 0 016.5 2H20v20H6.5A2.5 2.5 0 014 19.5z" />
+                        </svg>
+                    </div>
+                    <span class="credentials__number">2 Livros</span>
+                    <span class="credentials__label">de perfumaria e feminino publicados</span>
+                </div>
+                <div class="credentials__item">
+                    <div class="credentials__icon">
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" />
+                            <circle cx="9" cy="7" r="4" />
+                            <path d="M23 21v-2a4 4 0 00-3-3.87" />
+                            <path d="M16 3.13a4 4 0 010 7.75" />
+                        </svg>
+                    </div>
+                    <span class="credentials__number">+2.000</span>
+                    <span class="credentials__label">perfumistas formadas</span>
+                </div>
+                <div class="credentials__item">
+                    <div class="credentials__icon">
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M22 10v6M2 10l10-5 10 5-10 5z" />
+                            <path d="M6 12v5c0 2 3 4 6 4s6-2 6-4v-5" />
+                        </svg>
+                    </div>
+                    <span class="credentials__number">PhD</span>
+                    <span class="credentials__label">em História das Ciências</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ============================
+         13. DUVIDAS FREQUENTES
          ============================ -->
     <section class="section-padding faq" id="faq">
         <div class="container text-center">
@@ -1755,29 +1842,6 @@
                     <summary>Por que faz diferença garantir meu ingresso agora?</summary>
                     <p>As vagas são limitadas e o valor pode ser alterado a qualquer momento. Garantindo agora, você assegura o melhor preço e sua participação na Semana.</p>
                 </details>
-            </div>
-        </div>
-    </section>
-
-
-    <!-- ============================
-         CTA FINAL
-         ============================ -->
-    <section class="cta-final" id="cadastro">
-        <div class="container">
-            <div class="cta-final__box">
-                <h2 class="section-title">Garanta Sua Vaga na Semana Perfumaria das Deusas</h2>
-                <p>As vagas são limitadas e podem encerrar a qualquer momento.</p>
-                <div class="lote-status">
-                    <span class="lote-status__item lote-status__item--off">Lote 1 encerrado</span>
-                    <span class="lote-status__item lote-status__item--on">Lote 2 aberto</span>
-                </div>
-                <div class="cta-final__price">
-                    <span class="pricing__box-from">de R$197</span>
-                    <div class="pricing__box-price pricing__box-price--tight">R$24,90</div>
-                    <span class="price-parcel price-parcel--box">ou 2x de R$13,11</span>
-                </div>
-                <a href="https://pay.hotmart.com/N106779043T?off=nle618pz&amp;checkoutMode=10" class="btn btn--verde btn--lg">Quero Entrar Agora</a>
             </div>
         </div>
     </section>

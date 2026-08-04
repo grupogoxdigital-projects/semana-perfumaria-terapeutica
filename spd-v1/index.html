@@ -122,7 +122,11 @@
            que pesava tanto no FCP quanto no recalculo a cada interacao (INP).
            `contain-intrinsic-size: auto <x>` guarda o tamanho real apos o
            primeiro render, entao nao gera salto de scroll nem CLS. */
-        #aulas,
+        /* #aulas ficou de fora: depois da reordenacao ele e a primeira secao
+           depois do hero e ja entra na viewport no carregamento. Com
+           content-visibility ali, o placeholder de 800px virava a altura real
+           assim que a secao era renderizada e sozinho gerava CLS de 0.117. */
+        #dores,
         #ganhos,
         #bonus,
         #preco,
@@ -1263,35 +1267,32 @@
             }
         }
     </style>
-    <!-- Pixel Meta carregado direto, fora do GTM.
-         Precisa disparar o PageView na entrada: o connect rate do Facebook e
-         LandingPageViews/cliques, entao pixel adiado = clique contado sem
-         pageview. O script e async, nao bloqueia render, e vem depois do
-         preload do LCP para nao roubar prioridade de banda.
+    <!-- PageView do Meta por beacon de imagem, disparado na entrada.
+
+         O connect rate do Facebook e LandingPageViews/cliques, entao o
+         PageView TEM que sair antes de o usuario poder desistir. Mas
+         carregar o fbevents.js aqui custava 220KB de JS de terceiro
+         (104KB do fbevents + 116KB do signals/config) no caminho critico:
+         Script Evaluation 479ms, TBT 280ms, INP no vermelho.
+
+         Este GET de 1x1 e o mesmo endpoint que o <noscript> oficial usa.
+         Registra o PageView com ~1KB e zero parse de JS. O fbevents.js
+         entra depois, junto do GTM, so para cookie (_fbp) e matching.
+
          ATENCAO: desative a tag do Pixel dentro do GTM-5SGRDC89 ou o
          PageView sera contado duas vezes. -->
-    <link rel="preconnect" href="https://connect.facebook.net" crossorigin>
+    <link rel="dns-prefetch" href="https://www.facebook.com">
+    <link rel="dns-prefetch" href="https://connect.facebook.net">
     <script>
-        !function (f, b, e, v, n, t, s) {
-            if (f.fbq) return; n = f.fbq = function () { n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments) };
-            if (!f._fbq) f._fbq = n; n.push = n; n.loaded = !0; n.version = '2.0'; n.queue = [];
-            t = b.createElement(e); t.async = !0; t.src = v;
-            s = b.getElementsByTagName(e)[0]; s.parentNode.insertBefore(t, s)
-        }(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
-        fbq('init', '664953787740466');
-        fbq('track', 'PageView');
+        (function () {
+            new Image().src = 'https://www.facebook.com/tr?id=664953787740466&ev=PageView&noscript=1';
+        })();
     </script>
 </head>
 
 <body>
     <noscript><img height="1" width="1" style="display:none" alt=""
             src="https://www.facebook.com/tr?id=664953787740466&ev=PageView&noscript=1"></noscript>
-
-    <!-- ============================
-         1. COUNTDOWN HEADER BAR
-         ============================ -->
-    <!-- ============================
-         1. COUNTDOWN HEADER BAR
 
     <!-- ============================
          COUNTDOWN HEADER BAR (extra da spd-v1)
@@ -1894,6 +1895,17 @@
                     j.async = true; j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
                     f.parentNode.insertBefore(j, f);
                 })(window, document, 'script', 'dataLayer', 'GTM-5SGRDC89');
+
+                // fbevents.js pega carona no mesmo gatilho. Serve para o cookie
+                // _fbp e advanced matching; o PageView ja saiu no beacon do head,
+                // por isso aqui tem `init` mas nenhum `track`.
+                !function (f, b, e, v, n, t, s) {
+                    if (f.fbq) return; n = f.fbq = function () { n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments) };
+                    if (!f._fbq) f._fbq = n; n.push = n; n.loaded = !0; n.version = '2.0'; n.queue = [];
+                    t = b.createElement(e); t.async = !0; t.src = v;
+                    s = b.getElementsByTagName(e)[0]; s.parentNode.insertBefore(t, s)
+                }(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
+                fbq('init', '664953787740466');
             }
 
             function start() {

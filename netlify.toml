@@ -86,14 +86,15 @@
   to = "/spd-v1/:splat"
   status = 200
 
-# Sem `force`, a Netlify aplica o 301 automatico de barra final antes desta
-# regra e todo clique de anuncio em /spd-v1 pagava um redirect inteiro antes
-# de o HTML comecar. Serve o index direto, sem hop.
+# ATENCAO: esta regra nao elimina o hop. Testado: /spd-v1 sem barra final
+# devolve 301 mesmo com `force = true`, porque o "Pretty URLs" do site
+# (processing_settings.html.pretty_urls) roda antes das regras de redirect.
+# Use sempre a URL COM barra nos anuncios, ou desligue Pretty URLs nas
+# configuracoes da Netlify -- o que afeta o site inteiro, nao so a spd-v1.
 [[redirects]]
   from = "/spd-v1"
-  to = "/spd-v1/index.html"
+  to = "/spd-v1/"
   status = 200
-  force = true
 
 # Coleção Pombagira - Aula aberta (jul/26)
 # Pagina de obrigado com URL curta na raiz

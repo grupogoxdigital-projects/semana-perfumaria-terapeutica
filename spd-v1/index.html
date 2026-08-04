@@ -639,25 +639,30 @@
         })();
     </script>
 
-    <!-- Google Tag Manager.
-         Carrega na PRIMEIRA interacao do usuario, com fallback de 5s.
+    <!-- Google Tag Manager + fbevents.
 
-         Por que nao `load + 2500ms`: o container puxa ~392KB de JS de terceiro
-         (gtm.js 132KB + gtag/js 156KB + fbevents.js 104KB). Aos 2,5s isso caia
-         exatamente na janela em que o usuario comeca a tocar na tela, gerando
-         long tasks de 318-468ms em cima das interacoes. Era a causa do INP 269ms.
+         REGRA: nada aqui pode ser disparado por um evento que o INP mede.
+         O INP mede clique, toque e tecla. A versao anterior escutava
+         touchstart, pointerdown e keydown, entao o primeiro toque do usuario
+         mandava buscar ~1,75MB de JS de terceiro (gtm.js 457KB + dois
+         gtag/js de 448KB + fbevents 395KB) e a conta caia justamente na
+         interacao que estava sendo medida. Era a causa do INP de 264ms.
 
-         Os gatilhos sao sinais que PRECEDEM o toque (scroll, pointermove,
-         touchstart), entao o GTM em geral ja terminou de carregar antes do
-         primeiro clique. E a injecao vai para `scheduler.postTask` com
-         prioridade 'background', que por especificacao cede a vez para input:
-         nem a propria interacao que disparou o carregamento paga o custo. -->
+         Os gatilhos agora sao so `scroll` e `pointermove`: nenhum dos dois
+         entra no calculo do INP, e ambos costumam acontecer antes do
+         primeiro toque, entao o carregamento termina antes de o usuario
+         clicar em qualquer coisa.
+
+         Quem nunca rola a pagina cai no fallback ocioso depois do load, que
+         tambem nao depende de toque. GTM e fbevents vao em tarefas
+         separadas para nao formarem uma unica long task. -->
     <script>
         (function () {
-            var EVENTS = ['touchstart', 'pointermove', 'scroll', 'keydown', 'pointerdown'];
+            // scroll e pointermove nao sao interacoes medidas pelo INP
+            var EVENTS = ['scroll', 'pointermove'];
             var done = false;
 
-            function inject() {
+            function loadGTM() {
                 (function (w, d, s, l, i) {
                     w[l] = w[l] || []; w[l].push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
                     var f = d.getElementsByTagName(s)[0], j = d.createElement(s),
@@ -665,10 +670,11 @@
                     j.async = true; j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
                     f.parentNode.insertBefore(j, f);
                 })(window, document, 'script', 'dataLayer', 'GTM-5SGRDC89');
+            }
 
-                // fbevents.js pega carona no mesmo gatilho. Serve para o cookie
-                // _fbp e advanced matching; o PageView ja saiu no beacon do head,
-                // por isso aqui tem `init` mas nenhum `track`.
+            // Serve para o cookie _fbp e advanced matching. O PageView ja saiu
+            // no beacon do head, por isso tem `init` e nenhum `track`.
+            function loadPixel() {
                 !function (f, b, e, v, n, t, s) {
                     if (f.fbq) return; n = f.fbq = function () { n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments) };
                     if (!f._fbq) f._fbq = n; n.push = n; n.loaded = !0; n.version = '2.0'; n.queue = [];
@@ -678,26 +684,35 @@
                 fbq('init', '664953787740466');
             }
 
+            // Cada um na sua tarefa, em prioridade que cede a vez para input
+            function defer(fn) {
+                if (window.scheduler && scheduler.postTask) {
+                    scheduler.postTask(fn, { priority: 'background' });
+                } else if (window.requestIdleCallback) {
+                    requestIdleCallback(fn, { timeout: 3000 });
+                } else {
+                    setTimeout(fn, 0);
+                }
+            }
+
             function start() {
                 if (done) { return; }
                 done = true;
                 for (var k = 0; k < EVENTS.length; k++) {
                     window.removeEventListener(EVENTS[k], start, { passive: true });
                 }
-                // Cede a vez para input antes de gastar main thread com o GTM
-                if (window.scheduler && scheduler.postTask) {
-                    scheduler.postTask(inject, { priority: 'background' });
-                } else if (window.requestIdleCallback) {
-                    requestIdleCallback(inject);
-                } else {
-                    setTimeout(inject, 300);
-                }
+                defer(loadGTM);
+                defer(loadPixel);
             }
 
             for (var k = 0; k < EVENTS.length; k++) {
                 window.addEventListener(EVENTS[k], start, { passive: true });
             }
-            // Fallback: quem nunca interage ainda e contabilizado
+
+            // Fallback para quem nunca rola. Timer fixo de proposito: com
+            // requestIdleCallback ele dispara assim que a pagina fica ociosa,
+            // ou seja, ainda dentro da janela de carregamento -- medido, isso
+            // jogava o TBT para 1100ms. O importante e nao depender de toque.
             setTimeout(start, 5000);
         })();
     </script>

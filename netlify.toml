@@ -70,6 +70,17 @@
   to = "/mpa-n1-v3"
   status = 200
 
+# Combo Nivel 1 + Nivel 2
+[[redirects]]
+  from = "/n1n2/*"
+  to = "/mpa-n1n2/:splat"
+  status = 200
+
+[[redirects]]
+  from = "/n1n2"
+  to = "/mpa-n1n2"
+  status = 200
+
 [[redirects]]
   from = "/vsl1/*"
   to = "/mpa-n1-ev-vsl1/:splat"
